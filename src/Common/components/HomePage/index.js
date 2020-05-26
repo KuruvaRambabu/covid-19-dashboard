@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../logo.svg";
+import logo from "../../../logo.svg"
 
 function App() {
   return (
@@ -18,7 +18,8 @@ function App() {
         >
           Learn React
         </a>
-        <Link to="/page-1">Page 1</Link>
+        <Link to= "/sign-in-page">SignInPage</Link>
+       
       </header>
     </div>
   );

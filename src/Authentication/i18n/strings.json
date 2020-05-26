@@ -1,0 +1,11 @@
+{"hiTherePleaseSignUp":"Hi there, please sign up",
+    "userName":"USER NAME",
+    "password":"PASSWORD",
+    "login":"LOGIN",
+    "userNameErrorMessage":"Please enter username",
+    "passwordErroeMessage":"Please enter password",
+    "userNamePlaceholderText":"Enter email address",
+    "passwordPlaceholderText":"password",
+    "userNameInputFieldType":"text",
+    "passwordInputFieldType":"password"
+}

@@ -1,0 +1,95 @@
+sign-in-page
+    stores
+        ->observable variables
+            1.accesToken
+            2. getUserSignInAPIError
+            3. GetUserSignInAPIStatus
+            4. authApiService
+            
+        ->methods
+
+            1. init
+            2. GetUserSignInToken
+            3. SetUserSignInAPiResponse
+            4. setGetUserSignInAPIError
+            5. setGetUserSignInAPIStatus
+            6. userSignOut
+            7. constuctor
+
+    Services
+        -> methods
+            1. SignInAPI
+        -> variables
+            1. api
+
+    Route
+        --> SignInPageRouteComponent
+            observable Variables
+                userName
+                password
+                errorMessage
+
+            variables
+                signInPageRef
+
+            methods
+                1. onChangeUserName
+                2. onChangePassword
+                3. OnClickLoginIn
+                4. onSignInSucces
+                5. onSigInFailure
+                6. renderCovid19DashBoard
+                7. 
+        
+    Components
+      --> UserSignInPage
+            variables
+                1. userNameRef
+                2. passwordRef
+
+            methods
+                1. componentDidMount
+            props
+                1. userName
+                2. password
+                3. onChangePassword
+                4. onChangeUserName
+                5. OnClickLoginIn
+                6. errorMessage
+
+
+CommonComponents: InputField
+                -->props
+                    1. type (password, text)
+                    2. onChangePassword
+                    3. onChangeUserName
+                    4. userName
+                    5. password
+                    6. passwordRef
+                    7. userNameRef
+                    8. placeholderText
+
+
+
+Covid 19 DashBoard Plan
+
+    stores
+        ->observable Variables
+            1. covid19Data
+            2. getCovid19DataAPIStatus
+            3. getCovid19DataAPIError
+            4. covid19APIService
+            5. 
+            6. 
+        -> methods
+            1.init
+            2. setCovid19DataAPIResponse
+            3. setCovid19DataAPIError
+            4. setGetUserSignInAPIStatus
+            5. GetCovid19Data
+            @computed
+                getConfirmedCases
+                getAciveCases
+                getRecoveredCases
+                getDeathCases
+                getTotalCases
