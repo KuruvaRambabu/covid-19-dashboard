@@ -30,17 +30,24 @@ class SignInPage extends React.Component {
             onClickSignIn,
             token,
             apiStatus,
+            passwordErrorMessage,
+            userNameErrorMessage
         } = this.props
 
         return (
             <SignInPageMainContainer>
                 <SignInCardContanier>
                     <ImageContainer>
-                        <CompanyLogo src={imageUrls.ibhubsLogo} alt="ibhubs image" />
+                        <CompanyLogo
+                            src={imageUrls.ibhubsLogo}
+                            alt={strings.altForCompanyLogo}
+                        />
                     </ImageContainer>
+
                     <Heading>
                         {strings.hiTherePleaseSignUp}
                     </Heading>
+
                     <Form>
                         <Typo12SteelHKGrotesk>
                             {strings.userName}
@@ -48,7 +55,11 @@ class SignInPage extends React.Component {
                                 onChangeField={onChangeUserName}
                                 type={strings.userNameInputFieldType}
                                 value={userName}
+                                placeholder={strings.userNamePlaceholderText}
+                                errorMessage ={userNameErrorMessage}
                             />
+                           {userNameErrorMessage ? 
+                             <ErrorMessage>{userNameErrorMessage}</ErrorMessage> : "" }
                         </Typo12SteelHKGrotesk>
 
                         <Typo12SteelHKGrotesk>
@@ -56,16 +67,22 @@ class SignInPage extends React.Component {
                             <InputField
                                 onChangeField={onChangePassword}
                                 type={strings.passwordInputFieldType}
-
+                                placeholder={strings.passwordPlaceholderText}
                                 value={password}
+                                errorMessage={passwordErrorMessage}
                             />
+                             {passwordErrorMessage ? 
+                             <ErrorMessage>{passwordErrorMessage}</ErrorMessage> : "" }
                         </Typo12SteelHKGrotesk>
-                        <PrimarySignInButton type="submit" 
-                        onClick={onClickSignIn}>
-                            LOGIN
-                    </PrimarySignInButton>
-                    {errorMessage? 
-                        <ErrorMessage>{errorMessage}</ErrorMessage> : ""}
+
+                        <PrimarySignInButton
+                            type={strings.signInBtntype}
+                            onClick={onClickSignIn}>
+                            {strings.LoginButtonName}
+                        </PrimarySignInButton>
+
+                        {errorMessage ?
+                            <ErrorMessage>{errorMessage}</ErrorMessage> : ""}
                     </Form>
                 </SignInCardContanier>
             </SignInPageMainContainer>

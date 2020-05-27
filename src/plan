@@ -74,22 +74,63 @@ CommonComponents: InputField
 Covid 19 DashBoard Plan
 
     stores
-        ->observable Variables
-            1. covid19Data
-            2. getCovid19DataAPIStatus
-            3. getCovid19DataAPIError
-            4. covid19APIService
-            5. 
-            6. 
-        -> methods
-            1.init
-            2. setCovid19DataAPIResponse
-            3. setCovid19DataAPIError
-            4. setGetUserSignInAPIStatus
-            5. GetCovid19Data
-            @computed
-                getConfirmedCases
-                getAciveCases
-                getRecoveredCases
-                getDeathCases
-                getTotalCases
+        CumulativeCovid19Store
+            ->observable Variables
+                1. covid19Data
+                2. getCovid19DataAPIStatus
+                3. getCovid19DataAPIError
+                4. covid19APIService
+                5. 
+                6. 
+            -> methods
+                1.init
+                2. setCovid19DataAPIResponse
+                3. setCovid19DataAPIError
+                4. setGetUserSignInAPIStatus
+                5. GetCovid19Data
+                @computed
+                    getConfirmedCases
+                    getAciveCases
+                    getRecoveredCases
+                    getDeathCases
+        Dailyovid19Store
+            @observable variables
+                1. DailyCovid19Data
+                2.
+
+components:
+
+    1. Covid19DashBoard
+    2. Cumulativecovid19Dashboard
+    3. DailyCovid19Dashboard
+    4. Header
+        1.datepicker
+        2. stateName
+        3. cumulative/Daily buttons
+    5. CumulativeCovid19CasesGraph
+    6. CumulativeConfirmedCasesGraphReportOfEachDistrict
+
+
+
+CommonComponents
+    1. CasesDetails
+        props
+            Confirmed
+            Active
+            Deaths
+            Recovered
+        it will displays all these
+    2. DistrictWiseCasesInATableFormat
+        it will display all the cases in the district in a table format
+    3. DistrictWiseConfirmedCasesGraphReport
+    4. DailyCasesGraphReport
+        1. it will take ConfrimedCases and display its Graph
+        2.Deaths
+        3. Recovered
+
+Routes
+    1. ProtectedRoute
+    2. Covid19DashBoardRoute
+Services
+    1. CumulativeCovid19Service
+    2. 

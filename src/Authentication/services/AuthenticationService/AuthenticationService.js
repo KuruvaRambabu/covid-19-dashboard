@@ -17,7 +17,7 @@ class AuthenticationService{
             return networkCallWithApisauce(
                 this.api,
                 endpoints.signIn,
-               {},
+                requestObject,
                 apiMethods.get
             )
     }

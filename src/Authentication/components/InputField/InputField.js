@@ -8,13 +8,16 @@ class InputField extends React.Component {
             type,
              placeholder,
               value,
-            onChangeField } = this.props
+            onChangeField,
+        errorMessage} = this.props
         return (
             <InputElement
+                border={errorMessage ? "red" : "gray"}
                 type={type}
                 placeholder={placeholder}
                 value={value}
                 onChange = {onChangeField}
+
             >
             </InputElement>
         )

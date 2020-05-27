@@ -33,7 +33,7 @@ color:${colors.darkBlueGrey};
 `
 
 export const PrimarySignInButton = styled.button`
-    ${tw`w-full h-8 mt-4 text-white rounded `};
+    ${tw`w-full h-8 mt-4 text-white rounded focus:outline-none`};
     background:${colors.brightBlue};
     font-family: Rubik;
     font-size: 14px;
@@ -42,5 +42,5 @@ export const PrimarySignInButton = styled.button`
 `
 
 export const ErrorMessage = styled.span`
-    ${tw`text-red-500 text-center `}
+    ${tw`text-red-500 text-center h-4 `}
 `

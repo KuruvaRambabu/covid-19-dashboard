@@ -33,13 +33,12 @@ class AuthenticationStore {
             })
             .catch(error => {
                 this.setGetUserSignInAPIError(error);
-               onFailure()
+                onFailure()
             })
     }
 
     @action.bound
     setUserSignInAPIResponse(response) {
-        
         setAccessToken(response[0].access_token);
         this.accessToken=getAccessToken();
         console.log(this.accesToken)
@@ -53,7 +52,8 @@ class AuthenticationStore {
 
     @action.bound
     setGetUserSignInAPIStatus(apiStatus) {
-        this.getUserSignInAPIStatus =apiStatus
+        this.getUserSignInAPIStatus=apiStatus
+        
     }
 
     @action.bound
