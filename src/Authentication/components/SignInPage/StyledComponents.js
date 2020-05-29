@@ -10,7 +10,7 @@ export const SignInPageMainContainer = styled.div`
     background:${colors.iceBlue}
 `
 export const SignInCardContanier = styled.div`
-    ${tw` md:w-1/3  lg:w-1/4 w-1/2 flex flex-col justify-center items-center `};height:400px;
+    ${tw` md:w-1/2  lg:w-1/3 w-2/3 flex flex-col justify-center items-center `};height:450px;
     background:${colors.white}
 `
 
@@ -43,4 +43,12 @@ export const PrimarySignInButton = styled.button`
 
 export const ErrorMessage = styled.span`
     ${tw`text-red-500 text-center h-4 `}
+`
+export const DontHaveAccount = styled.p`
+color:${colors.darkBlueGrey};
+line-height: 8;
+font-family: HKGrotesk;
+  font-size: 14px;
+  font-weight: normal;
+    ${tw``}
 `

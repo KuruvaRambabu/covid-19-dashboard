@@ -78,15 +78,12 @@ class SignInRoute extends React.Component {
     }
 
     
-    renderCovid19DashBoard = () => {
-        return <Redirect to={COVID_19_DASHBOARD_PATH} />;
-    };
 
-
-    
     render() {
-        if (getAccessToken()) {
-            this.renderCovid19DashBoard()
+        console.log("sign in route")
+        const accessToken = getAccessToken()
+        if (accessToken) {
+            return <Redirect to={COVID_19_DASHBOARD_PATH} />
         }
         return (
             <SignInPage

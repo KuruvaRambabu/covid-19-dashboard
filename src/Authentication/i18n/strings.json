@@ -10,5 +10,6 @@
     "passwordInputFieldType":"password",
     "altForCompanyLogo":"IbhusLogo",
     "signInBtntype":"submit",
-    "LoginButtonName":"LOGIN"
+    "LoginButtonName":"LOGIN",
+    "dontHaveanAccountText":"Don't have an account ? SignUp"
 }

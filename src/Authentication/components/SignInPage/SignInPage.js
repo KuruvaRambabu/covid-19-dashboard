@@ -12,7 +12,8 @@ import {
     Heading,
     ImageContainer,
     PrimarySignInButton,
-    ErrorMessage
+    ErrorMessage,
+    DontHaveAccount
 } from "./StyledComponents"
 import imageUrls from "../../../Common/ImageUrls/ImageUrls.json"
 import { Typo12SteelHKGrotesk } from "../../../StyleGuide/Typos"
@@ -84,6 +85,9 @@ class SignInPage extends React.Component {
                         {errorMessage ?
                             <ErrorMessage>{errorMessage}</ErrorMessage> : ""}
                     </Form>
+                <DontHaveAccount>
+                       {strings.dontHaveanAccountText}
+                </DontHaveAccount>
                 </SignInCardContanier>
             </SignInPageMainContainer>
         )

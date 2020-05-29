@@ -19,7 +19,7 @@ class AuthenticationStore {
     init() {
         this.getUserSignInAPIError = null
         this.getUserSignInAPIStatus = API_INITIAL
-        this.accesToken = getAccessToken
+        this.accesToken = getAccessToken()
     }
 
     @action.bound
@@ -41,7 +41,7 @@ class AuthenticationStore {
     setUserSignInAPIResponse(response) {
         setAccessToken(response[0].access_token);
         this.accessToken=getAccessToken();
-        console.log(this.accesToken)
+        console.log("authentication store",this.accesToken)
     }
 
     @action.bound

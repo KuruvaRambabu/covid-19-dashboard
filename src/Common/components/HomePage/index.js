@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../logo.svg"
+import { COVID_19_SIGN_IN_PAGE_PATH } from "../../routes/RouteConstants";
+
 
 function App() {
   return (
@@ -18,7 +20,7 @@ function App() {
         >
           Learn React
         </a>
-        <Link to= "/sign-in-page">SignInPage</Link>
+        <Link to={COVID_19_SIGN_IN_PAGE_PATH} >Covid 19 DashBoard</Link>
        
       </header>
     </div>

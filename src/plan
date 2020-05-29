@@ -127,10 +127,18 @@ CommonComponents
         1. it will take ConfrimedCases and display its Graph
         2.Deaths
         3. Recovered
+     5. ProtectedRoute
 
 Routes
-    1. ProtectedRoute
+   
     2. Covid19DashBoardRoute
 Services
     1. CumulativeCovid19Service
     2. 
+
+
+stores
+    1. cumulativeStateAndDistictData 
+        -->
+    2. cumulativeGraphDataOfState
+    3.

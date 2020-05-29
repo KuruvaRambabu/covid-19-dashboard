@@ -1,0 +1,76 @@
+{
+    "total_active": 108,
+    "total_recovered": 90,
+    "total_confirmed": 200,  
+    "total_deaths": 2,
+   
+    "districts": [
+      {
+        "total_active": 20,
+        "total_recovered": 30,
+        "total_confirmed": 90,
+        "total_deaths": 0,
+        "district_name": "Kadapa",
+        "district_id": "kdp"
+      },
+      {
+        "total_active": 30,
+        "total_recovered": 0,
+        "total_confirmed": 30,
+        "total_deaths": 1,
+        "district_name": "Kurnool",
+        "district_id": "knl"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 40,
+        "total_deaths": 0,
+        "district_name": "Nellore",
+        "district_id": "nlr"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 50,
+        "total_deaths": 0,
+        "district_name": "Chittoor",
+        "district_id": "chtr"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 60,
+        "total_confirmed": 60,
+        "total_deaths": 0,
+        "district_name": "Ananthapuram",
+        "district_id": "atp"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 70,
+        "total_deaths": 0,
+        "district_name": "Vishakapatnam",
+        "district_id": "vskp"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 10,
+        "total_deaths": 0,
+        "district_name": "West Godavari",
+        "district_id": "wg"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 15,
+        "total_deaths": 0,
+        "district_name": "krishna",
+        "district_id": "krsn"
+      }
+
+    ]
+  }
+
+ 
