@@ -24,7 +24,7 @@ import DistrictWiseData from "../DistrictWiseData/DistrictWiseData";
 import ConfirmedCasesBarChart from "../ConfirmedCasesBarChart/ConfirmedCasesBarChart";
 import CumulativeCasesGraphReport from "../CumulativeCasesGraphReport/CumulativeCasesGraphReport";
 import TotalDistrictsCasesGraph from "../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph";
-//import dailyStateData from "../../fixtures/districtAnalysisData.json"
+
 import DailyCasesBarChart from "../DailyCasesBarChart/DailyCasesBarChart";
 
 @inject("covid19DataStore")
@@ -61,7 +61,7 @@ class ZonalDashboard extends React.Component {
         const deathCases = this.props.covid19DataStore.deathCases
         const districtWiseData = this.props.covid19DataStore.totalDistrictCases
         const barChartData = this.props.covid19DataStore.barChartData
-        const districtsDatawithDate = this.props.covid19DataStore.stateDataWithDates
+        const StateDatawithDates = this.props.covid19DataStore.stateDataWithDates
         const dRecovred =0
         const dActive =2
         const dConfirmed = 2
@@ -93,13 +93,13 @@ class ZonalDashboard extends React.Component {
                                 <CumulativeCasesGraphReportMainContainer>
                                     <GraphName>CUMULATIVE CASES REPORT </GraphName>
                                     <CumulativeCasesGraphReport
-                                        districtsDatawithDate={districtsDatawithDate}
+                                        districtsDatawithDate={StateDatawithDates}
                                     />
                                 </CumulativeCasesGraphReportMainContainer>
                                 <CumulativeCasesGraphReportMainContainer>
                                     <GraphName>CUMULATIVE CASES REPORT </GraphName>
                                     <CumulativeCasesGraphReport
-                                        districtsDatawithDate={districtsDatawithDate}
+                                        districtsDatawithDate={StateDatawithDates}
                                     />
                                 </CumulativeCasesGraphReportMainContainer>
                                 {/* <TotalDistrictsCasesGraph
@@ -154,7 +154,7 @@ class ZonalDashboard extends React.Component {
                                     <DailyCasesBarChart
                                         color=" #cc2900"
                                         type="total_confirmed"
-                                        districtsDatawithDate={districtsDatawithDate}
+                                        districtsDatawithDate={StateDatawithDates}
                                     />
 
                                 </CumulativeCasesGraphReportMainContainer>
@@ -163,7 +163,7 @@ class ZonalDashboard extends React.Component {
                                     <DailyCasesBarChart
                                         type="total_recovered"
                                         color="#33cc00"
-                                        districtsDatawithDate={districtsDatawithDate}
+                                        districtsDatawithDate={StateDatawithDates}
                                     />
 
                                 </CumulativeCasesGraphReportMainContainer>
@@ -173,7 +173,7 @@ class ZonalDashboard extends React.Component {
                                     <DailyCasesBarChart
                                         type="total_deaths"
                                         color="orange"
-                                        districtsDatawithDate={districtsDatawithDate}
+                                        districtsDatawithDate={StateDatawithDates}
                                     />
 
                                 </CumulativeCasesGraphReportMainContainer>

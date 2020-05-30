@@ -1,5 +1,7 @@
 import cumulativeStateAndDistictData from "../../fixtures/covid19StateAndDistrictData.json"
 import districtAnalysisData from "../../fixtures/districtAnalysisData.json"
+import stateDatawithDates from "../../fixtures/stateDataWithDates.json"
+
 class Covid19APIService {
 
     Covid19DataAPI() {
@@ -18,6 +20,16 @@ class Covid19APIService {
             },2000)
         })
     }
+
+    stateDatawithDates(){
+        return new Promise(resolve=>{
+            setTimeout(()=>{
+                    resolve(stateDatawithDates)
+            },2000)
+        })
+    }
+
+    
 }
 
 export default Covid19APIService

@@ -4,13 +4,11 @@ import {
 import React from "react"
 
 
-import districtsDataWithDates from "../../fixtures/districtsDataWithDates.json"
-
 class TotalDistrictsCasesGraph extends React.Component {
 
     render() {
         const {  districtConformedCasesGraphData } = this.props
-        console.log("confirmedCasesGraph", districtConformedCasesGraphData.dis)
+        // console.log("confirmedCasesGraph", districtConformedCasesGraphData.dis)
         return (
 
             <LineChart

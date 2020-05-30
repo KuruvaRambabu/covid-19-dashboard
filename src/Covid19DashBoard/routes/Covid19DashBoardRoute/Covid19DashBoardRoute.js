@@ -40,6 +40,7 @@ class Covid19DashBoardRoute extends React.Component {
             this.props.covid19DataStore.getDistrictWiseCaseAnalysisData()
             this.zonalDashboard = this.zonalDashboard ? false : true;
             this.districtWiseCaseAnalysis = this.districtWiseCaseAnalysis ? false : true;
+            
         }
     }
 

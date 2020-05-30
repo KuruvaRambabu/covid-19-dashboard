@@ -19,7 +19,7 @@ class DistrictWiseData extends React.Component {
            
         } = this.props.district
         const{index} = this.props
-        console.log(index,"sadfsadf")
+       
         return (
             <DistrictWiseTableDataContainer index = {index}>
                 <TableHeader >{district_name}</TableHeader>

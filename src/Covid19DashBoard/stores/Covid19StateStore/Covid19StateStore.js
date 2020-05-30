@@ -4,6 +4,7 @@ import { API_INITIAL} from "@ib/api-constants";
 import stateDataWithDates from "../../fixtures/stateDataWithDates.json"
 import { bindPromiseWithOnSuccess } from "@ib/mobx-promise";
 
+
 class Covid19DataStore {
     @observable covid19Data;
     @observable getCovid19DataAPIStatus;
@@ -11,6 +12,7 @@ class Covid19DataStore {
     @observable stateData;
     @observable sortByCase;
     @observable districtAnalysisData;
+    //@observable stateDataWithDates;
     covid19APIService;
 
     constructor(covid19APIService) {
@@ -42,8 +44,8 @@ class Covid19DataStore {
     }
 
     getDistrictWiseCaseAnalysisData(){
-        const districtAnalysisData = this.covid19APIService.districtAnalysisData()
-        return bindPromiseWithOnSuccess(districtAnalysisData)
+        const districtAnalysisDataPromise = this.covid19APIService.districtAnalysisData()
+        return bindPromiseWithOnSuccess(districtAnalysisDataPromise)
             .to(this.setGetCovidAPIStatus, response => {
                 this.setDistrictAnalysisDataResponse(response)
             })
@@ -52,14 +54,19 @@ class Covid19DataStore {
             })
     }
 
+
+
     @action.bound
     districtsDatawithDates() {  
+
         this.stateData = stateDataWithDates;
     }
 
     @action.bound
-    setDistrictAnalysisDataResponse(){
-
+    setDistrictAnalysisDataResponse(response){
+        
+        this.districtAnalysisData = response
+        console.log(response)
     }
 
     @action.bound
@@ -98,6 +105,12 @@ class Covid19DataStore {
 
     }
 
+    @computed 
+    get districtsConfirmedCasesData(){
+                return  this.districtAnalysisData.day_wise_report
+        
+    }
+
     @computed
     get barChartData() {
         const type = "total_confirmed"
@@ -111,7 +124,6 @@ class Covid19DataStore {
     @computed
     get totalDistrictCases() {
         let data = this.sortByCaseList(this.covid19Data.districts, this.sortByCase)
-        //console.log("dsfsda",this.covid19Data)
         return data
     }
 
