@@ -9,7 +9,8 @@ import districtsDataWithDates from "../../fixtures/districtsDataWithDates.json"
 class TotalDistrictsCasesGraph extends React.Component {
 
     render() {
-        const { districtsDatawithDate } = this.props
+        const {  districtConformedCasesGraphData } = this.props
+        console.log("confirmedCasesGraph", districtConformedCasesGraphData.dis)
         return (
 
             <LineChart

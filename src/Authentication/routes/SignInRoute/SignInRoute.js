@@ -36,8 +36,10 @@ class SignInRoute extends React.Component {
     }
 
     onSignInSuccess = () => {
+       
         const { history } = this.props;
-        history.push(COVID_19_DASHBOARD_PATH);
+        history.replace(COVID_19_DASHBOARD_PATH);
+        
       };
 
 
@@ -64,7 +66,8 @@ class SignInRoute extends React.Component {
             this.userNameErrorMessage=""
             this.passwordErrorMessage=""
             this.errorMessage = ""
-            const { userSignIn } = this.props.authenticationStore
+             const { userSignIn } = this.props.authenticationStore
+
             userSignIn(
                 {
                     username: this.username,
@@ -81,12 +84,14 @@ class SignInRoute extends React.Component {
 
     render() {
         console.log("sign in route")
-        const accessToken = getAccessToken()
-        if (accessToken) {
-            return <Redirect to={COVID_19_DASHBOARD_PATH} />
+        const { getUserSignInAPIStatus } = this.props.authenticationStore
+        if (getAccessToken()) {
+            console.log("hello")
+            return <Redirect to={{pathname: COVID_19_DASHBOARD_PATH}} />
         }
         return (
             <SignInPage
+            getUserSignInAPIStatus={getUserSignInAPIStatus}
                 userName={this.userName}
                 password={this.password}
                 errorMessage={this.errorMessage}

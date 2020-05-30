@@ -12,24 +12,48 @@ import {
 
 } from "./StyledComponents";
 import { observer } from "mobx-react";
+import ReactDatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+import { observable } from "mobx";
 
 @observer
 class Header extends React.Component {
+
+    @observable startDate = new Date()
+
+    handleChangeDate = (date) => {
+        this.startDate = date
+    }
+    onSelectDate = (date) => {
+        this.startDate = date
+    }
+
     render() {
+        const { onClickDailyData,
+            onClickCumulativeData,
+            isDaily,
+            isCumulative
+        } = this.props
         return (
             <HeaderMainContainer>
-
                 <StateName>Andhra Pradesh</StateName>
-                <Datelabel>
-                    Date : 
-                    <DatePicker
-                        type="date"
-                        defaultValue="2020-05-07"
-                    ></DatePicker>
-                </Datelabel>
+                <React.Fragment>
+                    <Datelabel>
+                        Date :
+                    <DatePicker>
+                            <ReactDatePicker
+                                handleChangeDate={this.handleChangeDate}
+                                onSelect={this.onSelectDate}
+                                selected={this.startDate} 
+                                dateFormat="yyyy/MM/dd"/>
+                        </DatePicker>
+
+                    </Datelabel>
+                </React.Fragment>
                 <CasesTypecontainer>
-                    <CumulativeBtn>Cumulative</CumulativeBtn>
-                    <DailyBtn>Daily</DailyBtn>
+                    <CumulativeBtn isCumulative={isCumulative} onClick={onClickCumulativeData} >Cumulative</CumulativeBtn>
+                    <DailyBtn isDaily={isDaily} onClick={onClickDailyData} >Daily</DailyBtn>
 
                 </CasesTypecontainer>
             </HeaderMainContainer>
@@ -38,3 +62,4 @@ class Header extends React.Component {
 }
 
 export default Header
+

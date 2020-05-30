@@ -27,7 +27,7 @@ flex-direction: row;
 
 export const CumulativeCasesGraphReportMainContainer = styled.div`
 background:#13263a;
-    ${tw`shadow-lg p-5 `}
+    ${tw`shadow-lg mb-4 p-4  `}
 
 `
 
@@ -37,6 +37,7 @@ export const CumulativeReportGraphs = styled.div`
     display:flex;
     justify-content:center;
     flex-direction: column;
+    border:2px solid red;
     align-items:center;
    
 }
@@ -50,7 +51,7 @@ export const CumulativeReportGraphs = styled.div`
 
 
 export const GraphName = styled.h1`
-    ${tw`text-xl  	`}
+    ${tw` text-xl 	`}
 `
 export const ZonalDashboardLeftContainer = styled.div`
     ${tw``}
@@ -60,6 +61,7 @@ export const CasesAndMapContainer = styled.div`
     width: 90%;
     display:flex;
     justify-content:center;
+    flex-direction:column;
     margin:2px;
     
 }
@@ -84,7 +86,7 @@ export const DistrictWiseTableData = styled.div`
   
 }
     background:#13263a;
-    ${tw` p-5 shadow-lg  `} height:300px;
+    ${tw` shadow-lg mb-4 `} ;
 `
 
 export const ZonalDashboardTableFormatDataAndChartContainer = styled.div`
@@ -108,11 +110,18 @@ export const TableContainer = styled.table`
     ${tw`w-full  `}
 `
 export const TableRow = styled.tr`
-        ${tw``}
+background:${props=>((props.index)%2)===0 ? "#1f1f2e" : "#001133"};
+        ${tw`h-16 shadow-lg `}
 `
 
 export const TableHeader = styled.th`
-        ${tw`border cursor-pointer`}
+transition: 0.5s all ease-out;
+&:hover {
+  background-color: #00264d;
+  top: 10px;
+  color: white;
+}
+        ${tw` mt-4 cursor-pointer w-48 text-center `}
 `
 
 
@@ -130,7 +139,7 @@ export const ConfirmedCasesBarChartContainer = styled.div`
     
 }
     background:#13263a;
-    ${tw` shadow-lg  font-serif font-medium`};
+    ${tw` shadow-lg mb-4 font-serif font-medium`};
     
 `
 

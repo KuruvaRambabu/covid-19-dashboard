@@ -15,11 +15,14 @@ class DistrictWiseData extends React.Component {
             total_recovered,
             total_confirmed,
             total_deaths,
-            district_name
+            district_name,
+           
         } = this.props.district
+        const{index} = this.props
+        console.log(index,"sadfsadf")
         return (
-            <DistrictWiseTableDataContainer>
-                <TableHeader>{district_name}</TableHeader>
+            <DistrictWiseTableDataContainer index = {index}>
+                <TableHeader >{district_name}</TableHeader>
                 <TableHeader>{total_confirmed}</TableHeader>
                 <TableHeader>{total_active}</TableHeader>
                 <TableHeader> {total_recovered} </TableHeader>

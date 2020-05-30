@@ -2,13 +2,13 @@ import styled from "@emotion/styled"
 import tw from "tailwind.macro"
 
 export const TotalCasesMainContainer = styled.div`
-    ${tw ` w-full md:w-11/12 border md:flex md:justify-between`}
+    ${tw ` w-full  flex-wrap md:flex md:justify-between`}
 `
 
 
 export const CaseContainer = styled.div`
 background: ${props => props.color};
-    ${tw `w-11/12   h-20  flex flex-col justify-center items-center`}
+    ${tw `w-full md:w-1/2 lg:w-1/4 h-20  flex flex-col justify-center items-center`}
 `
 
 export const CaseType = styled.p`

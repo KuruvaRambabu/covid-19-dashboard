@@ -19,79 +19,195 @@ import {
 import { observer, inject } from "mobx-react";
 import TotalCases from "../../../Common/components/TotalCases";
 import CasesAndItsMap from "../../../Common/components/CasesAndItsMap/CasesAndItsMap";
-import { toJS } from "mobx";
+import { toJS, observable } from "mobx";
 import DistrictWiseData from "../DistrictWiseData/DistrictWiseData";
 import ConfirmedCasesBarChart from "../ConfirmedCasesBarChart/ConfirmedCasesBarChart";
 import CumulativeCasesGraphReport from "../CumulativeCasesGraphReport/CumulativeCasesGraphReport";
 import TotalDistrictsCasesGraph from "../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph";
-
+//import dailyStateData from "../../fixtures/districtAnalysisData.json"
+import DailyCasesBarChart from "../DailyCasesBarChart/DailyCasesBarChart";
 
 @inject("covid19DataStore")
 @observer
 class ZonalDashboard extends React.Component {
+    @observable isCumulative = true;
+    @observable isDaily = false;
 
     sortByDistrict = (e) => {
         console.log(e.target.id)
-       this.props.covid19DataStore.sortBySelectedCase(e.target.id)
+        this.props.covid19DataStore.sortBySelectedCase(e.target.id)
     }
+
+    onClickCumulativeData = () => {
+        if (!this.isCumulative) {
+            this.isCumulative = this.isCumulative ? false : true;
+            this.isDaily = this.isDaily ? false : true;
+        }
+
+    }
+
+    onClickDailyData = () => {
+        if (!this.isDaily) {
+            this.isCumulative = this.isCumulative ? false : true;
+            this.isDaily = this.isDaily ? false : true;
+        }
+
+    }
+
     render() {
         const confirmedCases = this.props.covid19DataStore.confirmedCases
         const activeCases = this.props.covid19DataStore.activeCases
         const recoveredCases = this.props.covid19DataStore.recoveredCases
         const deathCases = this.props.covid19DataStore.deathCases
         const districtWiseData = this.props.covid19DataStore.totalDistrictCases
-        const  barChartData = this.props.covid19DataStore.barChartData
+        const barChartData = this.props.covid19DataStore.barChartData
         const districtsDatawithDate = this.props.covid19DataStore.stateDataWithDates
-        // console.log(confirmedCases, deathCases, activeCases, recoveredCases)
+        const dRecovred =0
+        const dActive =2
+        const dConfirmed = 2
+        const dDeaths = 1
 
-        console.log(toJS(districtsDatawithDate))
+
         return (
             <ZonalDashboardMainContainer>
-                <Header />
-                <ZonalDashboardCasesMapAndGraphContainer>
-                    <CasesAndMapContainer>
-                        <TotalCases
-                            confirmedCases={confirmedCases}
-                            activeCases={activeCases}
-                            recoveredCases={recoveredCases}
-                            deathCases={deathCases}
-                        />
-                        <CasesAndItsMap />
+                <Header
+                    isDaily={this.isDaily}
+                    isCumulative={this.isCumulative}
+                    onClickCumulativeData={this.onClickCumulativeData}
+                    onClickDailyData={this.onClickDailyData}
+                />
+                {this.isCumulative ?
+                     <React.Fragment>
+                        <ZonalDashboardCasesMapAndGraphContainer>
+                            <CasesAndMapContainer>
+                                <TotalCases
+                                    confirmedCases={confirmedCases}
+                                    activeCases={activeCases}
+                                    recoveredCases={recoveredCases}
+                                    deathCases={deathCases}
+                                />
+                                <CasesAndItsMap />
 
-                    </CasesAndMapContainer>
-                    <CumulativeReportGraphs>
-                        <CumulativeCasesGraphReportMainContainer>
-                            <GraphName>CUMULATIVE CASES REPORT </GraphName>
-                            <CumulativeCasesGraphReport  districtsDatawithDate ={ districtsDatawithDate} />
-                        </CumulativeCasesGraphReportMainContainer>
-                        <TotalDistrictsCasesGraph />
-                    </CumulativeReportGraphs>
+                            </CasesAndMapContainer>
+                            <CumulativeReportGraphs>
+                                <CumulativeCasesGraphReportMainContainer>
+                                    <GraphName>CUMULATIVE CASES REPORT </GraphName>
+                                    <CumulativeCasesGraphReport
+                                        districtsDatawithDate={districtsDatawithDate}
+                                    />
+                                </CumulativeCasesGraphReportMainContainer>
+                                <CumulativeCasesGraphReportMainContainer>
+                                    <GraphName>CUMULATIVE CASES REPORT </GraphName>
+                                    <CumulativeCasesGraphReport
+                                        districtsDatawithDate={districtsDatawithDate}
+                                    />
+                                </CumulativeCasesGraphReportMainContainer>
+                                {/* <TotalDistrictsCasesGraph
+                                    districtConformedCasesGraphData={districtConformedCasesGraphData}
 
-                </ZonalDashboardCasesMapAndGraphContainer>
+                                /> */}
+                            </CumulativeReportGraphs>
 
-                <ZonalDashboardTableFormatDataAndChartContainer>
-                    <DistrictWiseTableData>
-                        <TableContainer>
-                            <TableRow>
-                                <TableHeader onClick={this.sortByDistrict} id="district_name" >DistrictName</TableHeader>
-                                <TableHeader onClick={this.sortByDistrict} id="total_confirmed" >Confirmed</TableHeader>
-                                <TableHeader onClick={this.sortByDistrict} id="total_active">Active</TableHeader>
-                                <TableHeader onClick={this.sortByDistrict} id="total_recovered">Recovered</TableHeader>
-                                <TableHeader onClick={this.sortByDistrict} id="total_deaths" >Deaths</TableHeader>
+                        </ZonalDashboardCasesMapAndGraphContainer>
 
-                            </TableRow>
-                            {districtWiseData.map(district => (
-                                <DistrictWiseData key={district.district_id} district={district} />
-                            ))}
+                        <ZonalDashboardTableFormatDataAndChartContainer>
+                            <DistrictWiseTableData>
+                                <TableContainer>
+                                    <TableRow index={1} >
+                                        <TableHeader onClick={this.sortByDistrict} id="district_name" >DistrictName</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_confirmed" >Confirmed</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_active">Active</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_recovered">Recovered</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_deaths" >Deaths</TableHeader>
 
-                        </TableContainer>
+                                    </TableRow>
+                                    {districtWiseData.map((district, index) => (
+                                        <DistrictWiseData index={index} key={district.district_id} district={district} />
+                                    ))}
 
-                    </DistrictWiseTableData>
-                    <ConfirmedCasesBarChartContainer>
-                        <DistrictWIseReportName>District Wise Report</DistrictWIseReportName>
-                        <ConfirmedCasesBarChart districtWiseData={barChartData} />
-                    </ConfirmedCasesBarChartContainer>
-                </ZonalDashboardTableFormatDataAndChartContainer>
+                                </TableContainer>
+
+                            </DistrictWiseTableData>
+                            <ConfirmedCasesBarChartContainer>
+                                <DistrictWIseReportName>District Wise Report</DistrictWIseReportName>
+                                <ConfirmedCasesBarChart districtWiseData={barChartData} />
+                            </ConfirmedCasesBarChartContainer>
+                        </ZonalDashboardTableFormatDataAndChartContainer>
+                        </React.Fragment>
+
+                    :
+                    <React.Fragment>
+                        <ZonalDashboardCasesMapAndGraphContainer>
+                            <CasesAndMapContainer>
+                                <TotalCases
+                                    confirmedCases={dConfirmed}
+                                    activeCases={dActive}
+                                    recoveredCases={dRecovred}
+                                    deathCases={dDeaths}
+                                />
+                                <CasesAndItsMap />
+
+                            </CasesAndMapContainer>
+                            <CumulativeReportGraphs>
+                                <CumulativeCasesGraphReportMainContainer>
+                                    <GraphName>DAILY CONFIRMED CASES </GraphName>
+                                    <DailyCasesBarChart
+                                        color=" #cc2900"
+                                        type="total_confirmed"
+                                        districtsDatawithDate={districtsDatawithDate}
+                                    />
+
+                                </CumulativeCasesGraphReportMainContainer>
+                                <CumulativeCasesGraphReportMainContainer>
+                                    <GraphName>DAILY RECOVERED CASES </GraphName>
+                                    <DailyCasesBarChart
+                                        type="total_recovered"
+                                        color="#33cc00"
+                                        districtsDatawithDate={districtsDatawithDate}
+                                    />
+
+                                </CumulativeCasesGraphReportMainContainer>
+
+                                <CumulativeCasesGraphReportMainContainer>
+                                    <GraphName>DAILY DEATHS</GraphName>
+                                    <DailyCasesBarChart
+                                        type="total_deaths"
+                                        color="orange"
+                                        districtsDatawithDate={districtsDatawithDate}
+                                    />
+
+                                </CumulativeCasesGraphReportMainContainer>
+
+                            </CumulativeReportGraphs>
+
+                        </ZonalDashboardCasesMapAndGraphContainer>
+
+                        <ZonalDashboardTableFormatDataAndChartContainer>
+                            <DistrictWiseTableData>
+                                <TableContainer>
+                                    <TableRow index={1} >
+                                        <TableHeader onClick={this.sortByDistrict} id="district_name" >DistrictName</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_confirmed" >Confirmed</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_active">Active</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_recovered">Recovered</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="total_deaths" >Deaths</TableHeader>
+
+                                    </TableRow>
+                                    {districtWiseData.map((district, index) => (
+                                        <DistrictWiseData index={index} key={district.district_id} district={district} />
+                                    ))}
+
+                                </TableContainer>
+
+                            </DistrictWiseTableData>
+                            <ConfirmedCasesBarChartContainer>
+                                <DistrictWIseReportName>District Wise Report</DistrictWIseReportName>
+                                <ConfirmedCasesBarChart districtWiseData={barChartData} />
+                            </ConfirmedCasesBarChartContainer>
+                        </ZonalDashboardTableFormatDataAndChartContainer>
+                    </React.Fragment>
+
+                }
             </ZonalDashboardMainContainer>
         )
     }

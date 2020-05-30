@@ -12,7 +12,7 @@ export const SignOutBtn = styled.button`
 `
 
 export const SignOutBtnContainer = styled.div`
-    ${tw` pt-2 w-full sticky h-12 bg-gray-800 text-right text-white `}
+    ${tw` pt-2 mt-2 w-full sticky h-12 bg-gray-800 text-right text-white `}
 `
 
 

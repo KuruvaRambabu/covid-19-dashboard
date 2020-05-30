@@ -12,11 +12,11 @@ class CumulativeCasesGraphReport extends React.Component {
 
 
             <LineChart
-                width={600}
+                width={550}
                 height={300}
                 data={districtsDatawithDate}
                 margin={{
-                    top: 5, right: 30, left: 20, bottom: 5,
+                    top: 0, right: 0, left: 0, bottom: 0,
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />

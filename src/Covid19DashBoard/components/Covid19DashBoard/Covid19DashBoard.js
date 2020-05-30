@@ -47,12 +47,12 @@ class Covid19DashBoard extends React.Component {
                     <SignOutBtn onClick={onClickSignOut}>{strings.signOutBtnName}</SignOutBtn>
                 </SignOutBtnContainer>
                 <ZonalAndDistrictWiseContainer>
-                    <ZonalWiseBtn color = {zonalDashboard}
+                    <ZonalWiseBtn color={zonalDashboard}
                         onClick={onClickZonalDashboard}
                     >
                         {strings.zonalWiseBtnName}
                     </ZonalWiseBtn>
-                    <DistrictWiseBtn color = {districtWiseCaseAnalysis}
+                    <DistrictWiseBtn color={districtWiseCaseAnalysis}
                         onClick={onClickDistrictWIseCaseAnalysis}
                     >
                         {strings.districtWIseCaseAnalysis}
@@ -63,9 +63,8 @@ class Covid19DashBoard extends React.Component {
                     apiError={getCovid19DataAPIError}
                     onRetryClick={onRetryClick}
                     renderSuccessUI={renderCovid19DataUI}
-
                 />
-                
+
             </Covid19DashBoardMainContainer>
 
         )

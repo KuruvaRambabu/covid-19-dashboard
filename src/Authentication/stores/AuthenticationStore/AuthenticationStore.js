@@ -7,7 +7,7 @@ import { getAccessToken, setAccessToken, clearUserSession } from "../../../Commo
 class AuthenticationStore {
     @observable getUserSignInAPIError;
     @observable getUserSignInAPIStatus
-    @observable accesToken;
+    @observable accessToken;
     authAPIService;
     
     constructor(authAPIService) {
@@ -19,7 +19,7 @@ class AuthenticationStore {
     init() {
         this.getUserSignInAPIError = null
         this.getUserSignInAPIStatus = API_INITIAL
-        this.accesToken = getAccessToken()
+        this.accessToken = getAccessToken()
     }
 
     @action.bound

@@ -2,10 +2,17 @@ import { create } from "apisauce";
 import { networkCallWithApisauce } from "../../../Common/utils/APIUtils";
 import { apiMethods } from "../../../Common/constants/APIConstants";
 
-class Covid19API {
+
+
+class Covid19APIService {
     api;
+    districtAnalysis;
+
     constructor(){
         this.api= create({
+            baseURL:""
+        })
+        this.districtAnalysis= create({
             baseURL:""
         })
     }
@@ -14,10 +21,19 @@ class Covid19API {
         return networkCallWithApisauce(
             this.api,
             "",
-            request,
+           {},
+            apiMethods.get
+        )
+    }
+
+    districtAnalysisData(){
+        return networkCallWithApisauce(
+            this.districtAnalysis,
+            "",
+           {},
             apiMethods.get
         )
     }
 }
 
-export default Covid19API;
+export default Covid19APIService;

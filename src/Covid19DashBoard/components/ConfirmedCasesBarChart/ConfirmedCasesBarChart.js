@@ -8,6 +8,7 @@ import {
 class ConfirmedCasesBarChart extends React.Component {
     render() {
         const{districtWiseData} = this.props
+        
         return (
             <ComposedChart
                 layout="vertical"

@@ -14,5 +14,6 @@ export const TableHeader = styled.td`
 
 
 export const DistrictWiseTableDataContainer = styled.tr`
-    ${tw`border`}
+background:${props=>(props.index%2)===0 ? "#13263a" : " #001a33"};
+    ${tw` h-10`}
 `

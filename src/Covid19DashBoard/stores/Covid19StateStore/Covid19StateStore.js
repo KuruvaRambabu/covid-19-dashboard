@@ -1,8 +1,8 @@
 import { observable, action, computed, toJS } from "mobx";
-import { API_INITIAL, API_FETCHING, API_SUCCESS } from "@ib/api-constants";
+import { API_INITIAL} from "@ib/api-constants";
 
-import cumulativeStateAndDistictData from "../../fixtures/covid19StateAndDistrictData.json"
 import stateDataWithDates from "../../fixtures/stateDataWithDates.json"
+import { bindPromiseWithOnSuccess } from "@ib/mobx-promise";
 
 class Covid19DataStore {
     @observable covid19Data;
@@ -10,6 +10,7 @@ class Covid19DataStore {
     @observable getCovid19DataAPIError;
     @observable stateData;
     @observable sortByCase;
+    @observable districtAnalysisData;
     covid19APIService;
 
     constructor(covid19APIService) {
@@ -24,33 +25,48 @@ class Covid19DataStore {
         this.getCovid19DataAPIError = null;
         this.stateData = stateDataWithDates;
         this.sortByCase = ""
+        this.districtAnalysisData = []
 
     }
 
     @action.bound
     getCovid19Data() {
-        let promise = new Promise(function (resolve, reject) {
-            setTimeout(() => resolve(cumulativeStateAndDistictData), 1000);
-        });
-        this.setGetUserSignInAPIStatus(API_FETCHING)
-        promise.then(response => {
-            this.setCovid19DataAPIResponse(response)
-            this.setGetUserSignInAPIStatus(API_SUCCESS)
+        const covidDataPromise = this.covid19APIService.Covid19DataAPI()
+        return bindPromiseWithOnSuccess(covidDataPromise)
+            .to(this.setGetCovidAPIStatus, response => {
+                this.setCovid19DataAPIResponse(response)
+            })
+            .catch(error => {
+                this.setCovid19DataAPIError(error)
+            })
+    }
 
-        })
+    getDistrictWiseCaseAnalysisData(){
+        const districtAnalysisData = this.covid19APIService.districtAnalysisData()
+        return bindPromiseWithOnSuccess(districtAnalysisData)
+            .to(this.setGetCovidAPIStatus, response => {
+                this.setDistrictAnalysisDataResponse(response)
+            })
+            .catch(error => {
+                this.setCovid19DataAPIError(error)
+            })
     }
 
     @action.bound
-    districtsDatawithDates() {
-        alert("hi ram")
+    districtsDatawithDates() {  
         this.stateData = stateDataWithDates;
     }
 
     @action.bound
-    setCovid19DataAPIResponse(response) {
+    setDistrictAnalysisDataResponse(){
 
+    }
+
+    @action.bound
+    setCovid19DataAPIResponse(response) {
         this.covid19Data = response
     }
+
     @action.bound
     setCovid19DataAPIError() {
 
@@ -63,22 +79,18 @@ class Covid19DataStore {
     }
 
     @action.bound
-    setGetUserSignInAPIStatus(apiStatus) {
+    setGetCovidAPIStatus(apiStatus) {
         this.getCovid19DataAPIStatus = apiStatus
     }
-
-
-
 
     @action.bound
     sortByCaseList(data, type) {
         if (type === "") {
             return data
         }
-     
+
         else {
             let numArray = data.sort(function (a, b) {
-                console.log("data", toJS(a[type]))
                 return b[type] - a[type];
             })
             return numArray
@@ -86,16 +98,15 @@ class Covid19DataStore {
 
     }
 
-    @computed 
-        get barChartData(){
-           
-            const type = "total_confirmed"
-            const  data =this.covid19Data.districts
-            let numArray = data.sort(function (a, b) {
-                return b[type] - a[type];
-            })
-            return numArray
-        }
+    @computed
+    get barChartData() {
+        const type = "total_confirmed"
+        const data = this.covid19Data.districts
+        let numArray = data.sort(function (a, b) {
+            return b[type] - a[type];
+        })
+        return numArray
+    }
 
     @computed
     get totalDistrictCases() {
