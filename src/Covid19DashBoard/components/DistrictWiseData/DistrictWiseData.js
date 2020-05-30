@@ -11,22 +11,22 @@ import { observer } from "mobx-react"
 class DistrictWiseData extends React.Component {
     render() {
         const {
-            total_active,
-            total_recovered,
-            total_confirmed,
-            total_deaths,
-            district_name,
+            totalActive,
+            totalRecovered,
+            totalConfirmed,
+            totalDeaths,
+            districtName,
            
         } = this.props.district
         const{index} = this.props
        
         return (
             <DistrictWiseTableDataContainer index = {index}>
-                <TableHeader >{district_name}</TableHeader>
-                <TableHeader>{total_confirmed}</TableHeader>
-                <TableHeader>{total_active}</TableHeader>
-                <TableHeader> {total_recovered} </TableHeader>
-                <TableHeader>{total_deaths}</TableHeader>
+                <TableHeader >{districtName}</TableHeader>
+                <TableHeader>{totalConfirmed}</TableHeader>
+                <TableHeader>{totalActive}</TableHeader>
+                <TableHeader> {totalRecovered} </TableHeader>
+                <TableHeader>{totalDeaths}</TableHeader>
             </DistrictWiseTableDataContainer>
         )
     }

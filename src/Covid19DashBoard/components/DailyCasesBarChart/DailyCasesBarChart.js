@@ -18,8 +18,7 @@ class DailyCasesBarChart extends React.Component {
                     top: 5, right: 30, left: 20, bottom: 5,
                 }}
             >
-                <CartesianGrid stroke= "#ccc" />
-               
+                
                 <XAxis dataKey="till_date" />
                 <YAxis  />
                 <Tooltip />

@@ -13,7 +13,7 @@ class IndividualDistrictCasesGraph extends React.Component {
     const name = district.district_name
     district = district.district_statistics
     console.log(district)
-    //console.log("everyD",till_date])
+    
     return (
       <React.Fragment>
         <IndividualDistrictCasesGraphMainContainer>

@@ -84,57 +84,57 @@ describe("Test cases for Sign in Route", () => {
 
     // });
 
-    it("should render signInRoute success state", async () => {
-        const history = createMemoryHistory();
-        const route =COVID_19_SIGN_IN_PAGE_PATH;
-        history.push(route);
+    // it("should render signInRoute success state", async () => {
+    //     const history = createMemoryHistory();
+    //     const route =COVID_19_SIGN_IN_PAGE_PATH;
+    //     history.push(route);
     
-        const {
-          getByPlaceholderText,
-          getByRole,
-          queryByRole,
-          queryByLabelText,
-          getByTestId
-        } = render(
-          <Provider authenticationStore={authStore}>
-            <Router history={history}>
-              <Route path={COVID_19_SIGN_IN_PAGE_PATH}>
-                <SignInRoute />
-              </Route>
-              <Route path={COVID_19_DASHBOARD_PATH}>
-                <LocationDisplay />
-              </Route>
-            </Router>
-          </Provider>
-        );
+    //     const {
+    //       getByPlaceholderText,
+    //       getByRole,
+    //       queryByRole,
+    //       queryByLabelText,
+    //       getByTestId
+    //     } = render(
+    //       <Provider authenticationStore={authStore}>
+    //         <Router history={history}>
+    //           <Route path={COVID_19_SIGN_IN_PAGE_PATH}>
+    //             <SignInRoute />
+    //           </Route>
+    //           <Route path={COVID_19_DASHBOARD_PATH}>
+    //             <LocationDisplay />
+    //           </Route>
+    //         </Router>
+    //       </Provider>
+    //     );
     
-        const username = "test-user";
-        const password = "test-password";
+    //     const username = "test-user";
+    //     const password = "test-password";
     
-        const usernameField = getByPlaceholderText(strings.userNamePlaceholderText);
-        const passwordField = getByPlaceholderText(strings.passwordPlaceholderText);
-        const signInButton = getByRole("button", { name: strings.LoginButtonName });
+    //     const usernameField = getByPlaceholderText(strings.userNamePlaceholderText);
+    //     const passwordField = getByPlaceholderText(strings.passwordPlaceholderText);
+    //     const signInButton = getByRole("button", { name: strings.LoginButtonName });
     
-        const mockSuccessPromise = new Promise(function(resolve, reject) {
-          resolve(getUserSignResponse);
-        });
-        const mockSignInAPI = jest.fn();
-        mockSignInAPI.mockReturnValue(mockSuccessPromise);
-        authAPI.signInAPI = mockSignInAPI;
+    //     const mockSuccessPromise = new Promise(function(resolve, reject) {
+    //       resolve(getUserSignResponse);
+    //     });
+    //     const mockSignInAPI = jest.fn();
+    //     mockSignInAPI.mockReturnValue(mockSuccessPromise);
+    //     authAPI.signInAPI = mockSignInAPI;
     
-        fireEvent.change(usernameField, { target: { value: username } });
-        fireEvent.change(passwordField, { target: { value: password } });
-        fireEvent.click(signInButton);
+    //     fireEvent.change(usernameField, { target: { value: username } });
+    //     fireEvent.change(passwordField, { target: { value: password } });
+    //     fireEvent.click(signInButton);
     
-        await waitFor(() => {
-          expect(
-            queryByRole("button", { name: strings.LoginButtonName })
-          ).not.toBeInTheDocument();
-          expect(getByTestId("location-display")).toHaveTextContent(
-            COVID_19_DASHBOARD_PATH
-          );
-        });
-      });
+    //     await waitFor(() => {
+    //       expect(
+    //         queryByRole("button", { name: strings.LoginButtonName })
+    //       ).not.toBeInTheDocument();
+    //       expect(getByTestId("location-display")).toHaveTextContent(
+    //         COVID_19_DASHBOARD_PATH
+    //       );
+    //     });
+    //   });
     
 
 })

@@ -22,11 +22,11 @@ class ConfirmedCasesBarChart extends React.Component {
             >
                 <CartesianGrid  stroke= "#ccc" strokeDasharray="5 5"/>
                 <XAxis type="number" />
-                <YAxis dataKey="district_name" type="category" stroke="white"  />
+                <YAxis dataKey="districtName" type="category" stroke="white"  />
                 <Tooltip />
                 <Legend />
                
-                <Bar dataKey="total_confirmed" barSize={20} fill="#f56565" />
+                <Bar dataKey="totalConfirmed" barSize={20} fill="#f56565" />
                 
             </ComposedChart>
         )

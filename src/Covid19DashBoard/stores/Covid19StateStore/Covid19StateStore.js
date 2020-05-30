@@ -1,8 +1,10 @@
 import { observable, action, computed, toJS } from "mobx";
-import { API_INITIAL} from "@ib/api-constants";
+import { API_INITIAL } from "@ib/api-constants";
 
 import stateDataWithDates from "../../fixtures/stateDataWithDates.json"
 import { bindPromiseWithOnSuccess } from "@ib/mobx-promise";
+import covid19StateAndDistrictDataModel from "../models/covid19StateAndDistrictDataModel/covid19StateAndDistrictDataModel";
+
 
 
 class Covid19DataStore {
@@ -12,11 +14,18 @@ class Covid19DataStore {
     @observable stateData;
     @observable sortByCase;
     @observable districtAnalysisData;
+    @observable sampleCovid19Data;
+    @observable totalConfirmedCases;
+    @observable totalActiveCases;
+    @observable totalDeathCases;
+    @observable totalRecoveredCases;
+    @observable currentDate;
     //@observable stateDataWithDates;
     covid19APIService;
 
     constructor(covid19APIService) {
         this.covid19APIService = covid19APIService;
+        this.currentDate = new Date()
         this.init()
     }
 
@@ -28,12 +37,17 @@ class Covid19DataStore {
         this.stateData = stateDataWithDates;
         this.sortByCase = ""
         this.districtAnalysisData = []
-
+        this.sampleCovid19Data = [];
+        this.totalActiveCases = 0;
+        this.totalConfirmedCases = 0;
+        this.totalDeathCases = 0;
+        this.totalRecoveredCases = 0;
+        
     }
 
     @action.bound
     getCovid19Data() {
-        const covidDataPromise = this.covid19APIService.Covid19DataAPI()
+        const covidDataPromise = this.covid19APIService.Covid19DataAPI(this.currentDate)
         return bindPromiseWithOnSuccess(covidDataPromise)
             .to(this.setGetCovidAPIStatus, response => {
                 this.setCovid19DataAPIResponse(response)
@@ -43,7 +57,24 @@ class Covid19DataStore {
             })
     }
 
-    getDistrictWiseCaseAnalysisData(){
+    @action.bound
+    setCovid19DataAPIResponse(response) {
+
+        this.totalDeathCases = response.total_deaths;
+        this.totalRecoveredCases = response.total_confirmed;
+        this.totalActiveCases = response.total_active;
+        this.totalConfirmedCases = response.total_confirmed;
+
+
+        const data = response.districts
+        for (let i = 0; i < data.length; i++) {
+            const StateData = new covid19StateAndDistrictDataModel(data[i])
+            this.covid19Data.push(StateData)
+
+        }
+    }
+
+    getDistrictWiseCaseAnalysisData() {
         const districtAnalysisDataPromise = this.covid19APIService.districtAnalysisData()
         return bindPromiseWithOnSuccess(districtAnalysisDataPromise)
             .to(this.setGetCovidAPIStatus, response => {
@@ -54,35 +85,35 @@ class Covid19DataStore {
             })
     }
 
-
-
     @action.bound
-    districtsDatawithDates() {  
-
+    districtsDatawithDates() {
         this.stateData = stateDataWithDates;
     }
 
     @action.bound
-    setDistrictAnalysisDataResponse(response){
-        
+    setDistrictAnalysisDataResponse(response) {
+
+        console.log("district analysis data", response)
+
         this.districtAnalysisData = response
-        console.log(response)
+
     }
 
     @action.bound
-    setCovid19DataAPIResponse(response) {
-        this.covid19Data = response
+    setCovid19DataAPIError(error) {
+        this.getCovid19DataAPIError = error
     }
 
     @action.bound
-    setCovid19DataAPIError() {
-
+    onChangeCurrentDate(date) {
+        this.currentDate = date
+        this.init()
+        this.getCovid19Data()
     }
 
     @action.bound
     sortBySelectedCase(caseType) {
         this.sortByCase = caseType
-
     }
 
     @action.bound
@@ -92,63 +123,39 @@ class Covid19DataStore {
 
     @action.bound
     sortByCaseList(data, type) {
+
         if (type === "") {
             return data
         }
-
         else {
-            let numArray = data.sort(function (a, b) {
+            let sortedData = data.sort(function (a, b) {
                 return b[type] - a[type];
             })
-            return numArray
+            return sortedData
         }
-
     }
 
-    @computed 
-    get districtsConfirmedCasesData(){
-                return  this.districtAnalysisData.day_wise_report
-        
+    @computed
+    get districtsConfirmedCasesData() {
+        return this.districtAnalysisData.day_wise_report
     }
 
     @computed
     get barChartData() {
-        const type = "total_confirmed"
-        const data = this.covid19Data.districts
-        let numArray = data.sort(function (a, b) {
+        const type = "totalConfirmed"
+        const data = this.covid19Data
+
+        let sortedData = data.sort(function (a, b) {
             return b[type] - a[type];
         })
-        return numArray
+        return sortedData
     }
 
     @computed
     get totalDistrictCases() {
-        let data = this.sortByCaseList(this.covid19Data.districts, this.sortByCase)
+        let data = this.sortByCaseList(this.covid19Data, this.sortByCase)
         return data
     }
-
-    @computed
-    get confirmedCases() {
-        return this.covid19Data.total_confirmed
-    }
-
-
-
-    @computed
-    get activeCases() {
-        return this.covid19Data.total_active
-    }
-
-    @computed
-    get recoveredCases() {
-        return this.covid19Data.total_recovered
-    }
-
-    @computed
-    get deathCases() {
-        return this.covid19Data.total_deaths
-    }
-
 
     @computed
     get stateDataWithDates() {
@@ -159,3 +166,27 @@ class Covid19DataStore {
 
 
 export default Covid19DataStore;
+
+
+ // @computed
+    // get confirmedCases() {
+    //     return this.covid19Data.total_confirmed
+    // }
+
+
+
+    // @computed
+    // get activeCases() {
+    //     return this.covid19Data.total_active
+    // }
+
+    // @computed
+    // get recoveredCases() {
+    //     return this.covid19Data.total_recovered
+    // }
+
+    // @computed
+    // get deathCases() {
+    //     return this.covid19Data.total_deaths
+    // }
+

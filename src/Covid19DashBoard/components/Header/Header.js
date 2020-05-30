@@ -20,20 +20,24 @@ import { observable } from "mobx";
 @observer
 class Header extends React.Component {
 
-    @observable startDate = new Date()
-
     handleChangeDate = (date) => {
         this.startDate = date
+        console.log("date",date.toLocaleString() )
+        this.props.onChangeCurrentDate(date)
+       
     }
     onSelectDate = (date) => {
         this.startDate = date
+        this.props.onChangeCurrentDate(date)
+        alert("yes")
+
     }
 
     render() {
         const { onClickDailyData,
             onClickCumulativeData,
             isDaily,
-            isCumulative
+            isCumulative, startDate
         } = this.props
         return (
             <HeaderMainContainer>
@@ -43,10 +47,10 @@ class Header extends React.Component {
                         Date :
                     <DatePicker>
                             <ReactDatePicker
-                                handleChangeDate={this.handleChangeDate}
-                                onSelect={this.onSelectDate}
-                                selected={this.startDate} 
-                                dateFormat="yyyy/MM/dd"/>
+                                onChange={this.handleChangeDate}
+                                // onSelect={this.onSelectDate}
+                                selected={startDate} 
+                                dateFormat="yyyy-MM-dd"/>
                         </DatePicker>
 
                     </Datelabel>

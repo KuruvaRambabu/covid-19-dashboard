@@ -1,36 +1,42 @@
 import { create } from "apisauce";
 import { networkCallWithApisauce } from "../../../Common/utils/APIUtils";
 import { apiMethods } from "../../../Common/constants/APIConstants";
+import { baseURL } from "../../routes/RouteConstants/RouteConstants";
 
 
 
 class Covid19APIService {
     api;
-    districtAnalysis;
+    constructor() {
+        this.api = create({
+            baseURL: baseURL
+        })
 
-    constructor(){
-        this.api= create({
-            baseURL:""
-        })
-        this.districtAnalysis= create({
-            baseURL:""
-        })
     }
 
-    Covid19DataAPI(){
+    Covid19DataAPI() {
         return networkCallWithApisauce(
             this.api,
-            "",
-           {},
+            endPoints,
+            {},
             apiMethods.get
         )
     }
 
-    districtAnalysisData(){
+    districtAnalysisData() {
         return networkCallWithApisauce(
-            this.districtAnalysis,
-            "",
-           {},
+            this.api,
+            endPoints,
+            {},
+            apiMethods.get
+        )
+    }
+
+    stateDatawithDates() {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints,
+            {},
             apiMethods.get
         )
     }

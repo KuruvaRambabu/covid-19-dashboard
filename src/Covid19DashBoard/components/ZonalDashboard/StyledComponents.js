@@ -37,7 +37,7 @@ export const CumulativeReportGraphs = styled.div`
     display:flex;
     justify-content:center;
     flex-direction: column;
-    border:2px solid red;
+   
     align-items:center;
    
 }

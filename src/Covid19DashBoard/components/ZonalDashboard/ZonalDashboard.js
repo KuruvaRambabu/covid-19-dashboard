@@ -51,22 +51,25 @@ class ZonalDashboard extends React.Component {
             this.isCumulative = this.isCumulative ? false : true;
             this.isDaily = this.isDaily ? false : true;
         }
+    }
 
+    onChangeCurrentDate = (date)=>{
+        this.props.covid19DataStore.onChangeCurrentDate(date)
     }
 
     render() {
-        const confirmedCases = this.props.covid19DataStore.confirmedCases
-        const activeCases = this.props.covid19DataStore.activeCases
-        const recoveredCases = this.props.covid19DataStore.recoveredCases
-        const deathCases = this.props.covid19DataStore.deathCases
+        const confirmedCases = this.props.covid19DataStore.totalConfirmedCases
+        const activeCases = this.props.covid19DataStore.totalActiveCases
+        const recoveredCases = this.props.covid19DataStore.totalRecoveredCases
+        const deathCases = this.props.covid19DataStore.totalDeathCases
         const districtWiseData = this.props.covid19DataStore.totalDistrictCases
         const barChartData = this.props.covid19DataStore.barChartData
         const StateDatawithDates = this.props.covid19DataStore.stateDataWithDates
-        const dRecovred =0
-        const dActive =2
+        const dRecovred = 0
+        const dActive = 2
         const dConfirmed = 2
         const dDeaths = 1
-
+        const startDate = this.props.covid19DataStore.currentDate
 
         return (
             <ZonalDashboardMainContainer>
@@ -75,9 +78,11 @@ class ZonalDashboard extends React.Component {
                     isCumulative={this.isCumulative}
                     onClickCumulativeData={this.onClickCumulativeData}
                     onClickDailyData={this.onClickDailyData}
+                    onChangeCurrentDate = {this.onChangeCurrentDate}
+                    startDate = {startDate}
                 />
                 {this.isCumulative ?
-                     <React.Fragment>
+                    <React.Fragment>
                         <ZonalDashboardCasesMapAndGraphContainer>
                             <CasesAndMapContainer>
                                 <TotalCases
@@ -114,11 +119,11 @@ class ZonalDashboard extends React.Component {
                             <DistrictWiseTableData>
                                 <TableContainer>
                                     <TableRow index={1} >
-                                        <TableHeader onClick={this.sortByDistrict} id="district_name" >DistrictName</TableHeader>
-                                        <TableHeader onClick={this.sortByDistrict} id="total_confirmed" >Confirmed</TableHeader>
-                                        <TableHeader onClick={this.sortByDistrict} id="total_active">Active</TableHeader>
-                                        <TableHeader onClick={this.sortByDistrict} id="total_recovered">Recovered</TableHeader>
-                                        <TableHeader onClick={this.sortByDistrict} id="total_deaths" >Deaths</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="districtName" >DistrictName</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="totalConfirmed" >Confirmed</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="totalActive">Active</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="totalRecovered">Recovered</TableHeader>
+                                        <TableHeader onClick={this.sortByDistrict} id="totalDdeaths" >Deaths</TableHeader>
 
                                     </TableRow>
                                     {districtWiseData.map((district, index) => (
@@ -133,7 +138,7 @@ class ZonalDashboard extends React.Component {
                                 <ConfirmedCasesBarChart districtWiseData={barChartData} />
                             </ConfirmedCasesBarChartContainer>
                         </ZonalDashboardTableFormatDataAndChartContainer>
-                        </React.Fragment>
+                    </React.Fragment>
 
                     :
                     <React.Fragment>
