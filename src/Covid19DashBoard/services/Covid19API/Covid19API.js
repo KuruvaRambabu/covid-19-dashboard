@@ -32,7 +32,7 @@ class Covid19APIService {
         )
     }
 
-    stateDatawithDates() {
+    stateCumulativeReportData() {
         return networkCallWithApisauce(
             this.api,
             endPoints,

@@ -15,8 +15,7 @@ class DistrictWiseData extends React.Component {
             totalRecovered,
             totalConfirmed,
             totalDeaths,
-            districtName,
-           
+            districtName,           
         } = this.props.district
         const{index} = this.props
        

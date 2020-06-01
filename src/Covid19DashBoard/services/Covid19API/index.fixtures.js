@@ -21,7 +21,7 @@ class Covid19APIService {
         })
     }
 
-    stateDatawithDates(){
+    stateCumulativeReportData(){
         return new Promise(resolve=>{
             setTimeout(()=>{
                     resolve(stateDatawithDates)

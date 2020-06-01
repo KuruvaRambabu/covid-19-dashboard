@@ -3,22 +3,24 @@ import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
     Legend, ReferenceLine
 } from 'recharts';
+import { toJS } from "mobx";
+import { observer } from "mobx-react";
 
-
+@observer
 class DailyCasesBarChart extends React.Component {
     render() {
-        const { stateDatawithDates, type, color } = this.props
+        const { stateCumulativeReportData, type, color } = this.props
 
         return (
             <BarChart
                 width={500}
                 height={300}
-                data={stateDatawithDates}
+                data={toJS(stateCumulativeReportData)}
                 margin={{
                     top: 5, right: 30, left: 20, bottom: 5,
                 }}
             >
-                <XAxis dataKey="till_date" />
+                <XAxis dataKey="tillDate" />
                 <YAxis  />
                 <Tooltip />
                 <Legend />

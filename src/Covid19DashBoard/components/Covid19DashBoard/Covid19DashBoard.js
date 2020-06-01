@@ -17,18 +17,12 @@ import ZonalDashboard from "../ZonalDashboard"
 
 import { observable, toJS } from "mobx"
 import LoadingWrapperWithFailure from "../../../Common/components/LoadingWrapperWithFailure"
+import DistrictWiseCaseAnalysis from "../DistrictWiseCaseAnalysis/DistrictWiseCaseAnalysis"
 
 @observer
 class Covid19DashBoard extends React.Component {
 
-
-
     render() {
-        // this.covid19Data = covid19DataDistricts;
-        // this.covid19StateData = covid19StateData
-        // console.log(toJS( this.covid19Data))
-        // console.log(toJS( this.covid19StateData))
-
         const {
             onClickSignOut,
             zonalDashboard,
@@ -58,12 +52,13 @@ class Covid19DashBoard extends React.Component {
                         {strings.districtWIseCaseAnalysis}
                     </DistrictWiseBtn>
                 </ZonalAndDistrictWiseContainer>
-                <LoadingWrapperWithFailure
-                    apiStatus={getCovid19DataAPIStatus}
-                    apiError={getCovid19DataAPIError}
-                    onRetryClick={onRetryClick}
-                    renderSuccessUI={renderCovid19DataUI}
-                />
+
+                {(zonalDashboard && !districtWiseCaseAnalysis) ?
+
+                    <ZonalDashboard /> :
+
+                    <DistrictWiseCaseAnalysis />
+                }
 
             </Covid19DashBoardMainContainer>
 
@@ -72,3 +67,11 @@ class Covid19DashBoard extends React.Component {
 }
 
 export default Covid19DashBoard
+
+
+//     < LoadingWrapperWithFailure
+// apiStatus = { getCovid19DataAPIStatus }
+// apiError = { getCovid19DataAPIError }
+// onRetryClick = { onRetryClick }
+// renderSuccessUI = { renderCovid19DataUI }
+//     />

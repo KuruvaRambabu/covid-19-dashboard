@@ -1,4 +1,5 @@
 import React from "react"
+import { observer } from "mobx-react";
 
 import DailyCasesBarChart from "../DailyCasesBarChart/DailyCasesBarChart";
 
@@ -17,7 +18,8 @@ import {
     ConfirmedCasesBarChartContainer,
     DistrictWIseReportName
 } from "../ZonalDashboard/StyledComponents";
-import { observer } from "mobx-react";
+
+
 import TotalCases from "../../../Common/components/TotalCases";
 import CasesAndItsMap from "../../../Common/components/CasesAndItsMap/CasesAndItsMap";
 import DistrictWiseData from "../DistrictWiseData/DistrictWiseData";
@@ -28,24 +30,21 @@ import ConfirmedCasesBarChart from "../ConfirmedCasesBarChart/ConfirmedCasesBarC
 class DailyModel extends React.Component {
     render() {
         const {
-            dConfirmed,
-            dDeaths,
-            dActive,
-            dRecovred,
             districtWiseData,
-            stateDatawithDates,
+            stateCumulativeReportData,
             barChartData,
             sortCaseValues
         } = this.props
+        
         return (
             <React.Fragment>
                 <ZonalDashboardCasesMapAndGraphContainer>
                     <CasesAndMapContainer>
                         <TotalCases
-                            confirmedCases={dConfirmed}
-                            activeCases={dActive}
-                            recoveredCases={dRecovred}
-                            deathCases={dDeaths}
+                            confirmedCases={0}
+                            activeCases={0}
+                            recoveredCases={0}
+                            deathCases={0 }
                         />
                         <CasesAndItsMap />
 
@@ -55,17 +54,17 @@ class DailyModel extends React.Component {
                             <GraphName>DAILY CONFIRMED CASES </GraphName>
                             <DailyCasesBarChart
                                 color=" #cc2900"
-                                type="total_confirmed"
-                                stateDatawithDates={stateDatawithDates}
+                                type="totalConfirmed"
+                                stateCumulativeReportData={stateCumulativeReportData}
                             />
 
                         </CumulativeCasesGraphReportMainContainer>
                         <CumulativeCasesGraphReportMainContainer>
                             <GraphName>DAILY RECOVERED CASES </GraphName>
                             <DailyCasesBarChart
-                                type="total_recovered"
+                                type="totalRecovered"
                                 color="#33cc00"
-                                stateDatawithDates={stateDatawithDates}
+                                stateCumulativeReportData={stateCumulativeReportData}
                             />
 
                         </CumulativeCasesGraphReportMainContainer>
@@ -73,9 +72,9 @@ class DailyModel extends React.Component {
                         <CumulativeCasesGraphReportMainContainer>
                             <GraphName>DAILY DEATHS</GraphName>
                             <DailyCasesBarChart
-                                type="total_deaths"
+                                type="totalDeaths"
                                 color="orange"
-                                stateDatawithDates={stateDatawithDates}
+                                stateCumulativeReportData={stateCumulativeReportData}
                             />
 
                         </CumulativeCasesGraphReportMainContainer>

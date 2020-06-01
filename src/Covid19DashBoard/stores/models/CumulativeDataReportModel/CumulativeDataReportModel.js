@@ -1,23 +1,20 @@
-
-
-class Covid19StateAndDistrictDataModel {
+class CumulativeDataReportModel {
+    
     totalActive;
     totalRecovered;
     totalConfirmed;
     totalDeaths;
-    districtName;
-    districtId;
-
-    constructor(data) {
-       
+    stateName;
+    tillDate;
+    constructor(data){
        this.totalActive = data.total_active;
        this.totalRecovered = data.total_recovered;
        this.totalConfirmed = data.total_confirmed;
        this.totalDeaths = data.total_deaths;
-       this.districtName = data.district_name;
-       this.districtId = data.district_id;
-        
+       this.stateName = data.state_name;
+       this.tillDate = data.till_date
     }
+
 }
 
-export default Covid19StateAndDistrictDataModel;
+export default CumulativeDataReportModel;

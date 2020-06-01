@@ -3,15 +3,16 @@ import { API_INITIAL } from "@ib/api-constants";
 
 import stateDataWithDates from "../../fixtures/stateDataWithDates.json"
 import { bindPromiseWithOnSuccess } from "@ib/mobx-promise";
-import covid19StateAndDistrictDataModel from "../models/covid19StateAndDistrictDataModel/covid19StateAndDistrictDataModel";
-
+import Covid19StateAndDistrictDataModel from "../models/covid19StateAndDistrictDataModel/covid19StateAndDistrictDataModel";
+import CumulativeDataReportModel from "../models/CumulativeDataReportModel/CumulativeDataReportModel"
 
 
 class Covid19DataStore {
     @observable covid19Data;
     @observable getCovid19DataAPIStatus;
     @observable getCovid19DataAPIError;
-    @observable stateData;
+    @observable getDistrictWiseCaseAnalysisDataAPIStatus;
+    @observable getDistrictWiseCaseAnalysisDataAPIError;
     @observable sortByCase;
     @observable districtAnalysisData;
     @observable sampleCovid19Data;
@@ -20,13 +21,17 @@ class Covid19DataStore {
     @observable totalDeathCases;
     @observable totalRecoveredCases;
     @observable currentDate;
-    //@observable stateDataWithDates;
+    @observable stateCumulativeReportData;
+    @observable getStateCumulativeReportDataAPIStatus;
+    @observable getStateCumulativeReportDataAPIError;
     covid19APIService;
+
 
     constructor(covid19APIService) {
         this.covid19APIService = covid19APIService;
         this.currentDate = new Date()
         this.init()
+        this.districtWiseDataInit()
     }
 
     @action.bound
@@ -36,12 +41,21 @@ class Covid19DataStore {
         this.getCovid19DataAPIError = null;
         this.stateData = stateDataWithDates;
         this.sortByCase = ""
-        this.districtAnalysisData = []
         this.sampleCovid19Data = [];
         this.totalActiveCases = 0;
         this.totalConfirmedCases = 0;
         this.totalDeathCases = 0;
         this.totalRecoveredCases = 0;
+        this.getDistrictWiseCaseAnalysisDataAPIStatus = API_INITIAL;
+        this.getDistrictWiseCaseAnalysisDataAPIError = null;
+        this.districtAnalysisData = [];
+        this.stateCumulativeReportData = []
+
+    }
+
+    @action.bound
+    districtWiseDataInit() {
+
     }
 
     @action.bound
@@ -66,22 +80,60 @@ class Covid19DataStore {
         const data = response.districts
 
         data.forEach(district => {
-            const StateData = new covid19StateAndDistrictDataModel(district)
+            const StateData = new Covid19StateAndDistrictDataModel(district)
             this.covid19Data.push(StateData)
         })
-        
+
     }
 
     getDistrictWiseCaseAnalysisData() {
         const districtAnalysisDataPromise = this.covid19APIService.districtAnalysisData()
         return bindPromiseWithOnSuccess(districtAnalysisDataPromise)
-            .to(this.setGetCovidAPIStatus, response => {
+            .to(this.setGetDistrictWiseCaseAnalysisDataAPIStatus, response => {
                 this.setDistrictAnalysisDataResponse(response)
             })
             .catch(error => {
-                this.setCovid19DataAPIError(error)
+                this.setGetDistrictWiseCaseAnalysisDataAPIError(error)
             })
     }
+
+    @action.bound
+    getStateCumulativeReportData() {
+    
+        const stateCumulativeReportDataPromise = this.covid19APIService.stateCumulativeReportData()
+        return bindPromiseWithOnSuccess(stateCumulativeReportDataPromise)
+        .to(this.setGetStateCumulativeReportDataAPIStatus, response=>{
+            this.setGetStateCumulativeReportDataAPIResponse(response)
+        })
+        .catch(error=>{
+            this.setGetStateCumulativeReportDataAPIError(error)
+        })
+
+    }
+
+    @action.bound
+    setGetStateCumulativeReportDataAPIResponse(response) {
+      
+        const cumulativeReport = response.daily_report
+        
+        cumulativeReport.forEach(district => {
+            const StateData = new CumulativeDataReportModel(district)
+            this.stateCumulativeReportData.push(StateData)
+        })   
+        console.log(toJS(this.stateCumulativeReportData))
+
+    }
+
+    @action.bound
+    setGetStateCumulativeReportDataAPIStatus(apiStatus) {
+        this.getStateCumulativeReportDataAPIStatus = apiStatus
+    }
+
+    @action.bound
+    setGetStateCumulativeReportDataAPIError(error) {
+        this.getStateCumulativeReportDataAPIError = error
+    }
+
 
     @action.bound
     districtsDatawithDates() {
@@ -90,9 +142,18 @@ class Covid19DataStore {
 
     @action.bound
     setDistrictAnalysisDataResponse(response) {
-        console.log("districtdataAnalysis",response)
+       
         this.districtAnalysisData = response
+    }
 
+    @action.bound
+    setGetDistrictWiseCaseAnalysisDataAPIError(error) {
+        this.getDistrictWiseCaseAnalysisDataAPIError = error
+    }
+
+    @action.bound
+    setGetDistrictWiseCaseAnalysisDataAPIStatus(apiStatus) {
+        this.getDistrictWiseCaseAnalysisDataAPIStatus = apiStatus
     }
 
     @action.bound
@@ -105,6 +166,7 @@ class Covid19DataStore {
         this.currentDate = date
         this.init()
         this.getCovid19Data()
+        this.getStateCumulativeReportData()
     }
 
     @action.bound
@@ -118,7 +180,7 @@ class Covid19DataStore {
     }
 
     @action.bound
-    clearUserSession(){
+    clearUserSession() {
         this.init()
     }
 
@@ -129,7 +191,7 @@ class Covid19DataStore {
             return data
         }
         else {
-            let sortedData = data.sort(function (a, b) {
+            let sortedData = data.slice().sort(function (a, b) {
                 return b[type] - a[type];
             })
             return sortedData
@@ -146,7 +208,7 @@ class Covid19DataStore {
         const type = "totalConfirmed"
         const data = this.covid19Data
 
-        let sortedData = data.sort(function (a, b) {
+        let sortedData = data.slice().sort(function (a, b) {
             return b[type] - a[type];
         })
         return sortedData
@@ -159,8 +221,8 @@ class Covid19DataStore {
     }
 
     @computed
-    get stateDataWithDates() {
-        return this.stateData.day_wise_report
+    get stateCumulativeReport() {
+        return this.stateCumulativeReportData
     }
 
 }

@@ -5,28 +5,37 @@ import {
 } from "./StyledComponents";
 import { observer, inject } from "mobx-react";
 import CumulativeModel from "../CumulativeModel/CumulativeModel";
-import DailyModel from "../DailyModel/DailyMdel";
+import DailyModel from "../DailyModel/DailyModel";
 import { observable } from "mobx";
 
 
 @inject("covid19DataStore")
-@observer
+@observer 
 class ZonalDashboard extends React.Component {
     @observable isCumulative = true;
     @observable isDaily = false;
+    
+    componentDidMount() {
+        this.doNetworkCalls()
+    }
+
+    doNetworkCalls = () => {
+        this.props.covid19DataStore.init()
+        this.props.covid19DataStore.getStateCumulativeReportData()
+        this.props.covid19DataStore.getCovid19Data()
+    }
 
     sortCaseValues = (e) => {
-        alert(e.target.id)
         console.log(e.target.id)
         this.props.covid19DataStore.sortBySelectedCase(e.target.id)
     }
+
 
     onClickCumulativeData = () => {
         if (!this.isCumulative) {
             this.isCumulative = this.isCumulative ? false : true;
             this.isDaily = this.isDaily ? false : true;
         }
-
     }
 
     onClickDailyData = () => {
@@ -37,7 +46,17 @@ class ZonalDashboard extends React.Component {
     }
 
     onChangeCurrentDate = (date) => {
-        this.props.covid19DataStore.onChangeCurrentDate(date)
+        if(this.isCumulative){
+            this.props.covid19DataStore.onChangeCurrentDate(date)
+        }
+        else{
+            
+        }
+       
+    }
+
+    networkCallForDailyData=()=>{
+    
     }
 
     render() {
@@ -47,13 +66,12 @@ class ZonalDashboard extends React.Component {
         const deathCases = this.props.covid19DataStore.totalDeathCases
         const districtWiseData = this.props.covid19DataStore.totalDistrictCases
         const barChartData = this.props.covid19DataStore.barChartData
-        const stateDatawithDates = this.props.covid19DataStore.stateDataWithDates
-        const dRecovred = 0
-        const dActive = 2
-        const dConfirmed = 2
-        const dDeaths = 1
+        const stateCumulativeReportData = this.props.covid19DataStore.stateCumulativeReport
         const startDate = this.props.covid19DataStore.currentDate
-        console.log(stateDatawithDates)
+        const {
+            getCovid19DataAPIStatus,
+            getCovid19DataAPIError,
+        } = this.props.covid19DataStore
         return (
             <ZonalDashboardMainContainer>
                 <Header
@@ -64,6 +82,7 @@ class ZonalDashboard extends React.Component {
                     onChangeCurrentDate={this.onChangeCurrentDate}
                     startDate={startDate}
                 />
+
                 {this.isCumulative ?
                     <CumulativeModel
                         confirmedCases={confirmedCases}
@@ -71,9 +90,11 @@ class ZonalDashboard extends React.Component {
                         recoveredCases={recoveredCases}
                         deathCases={deathCases}
                         districtWiseData={districtWiseData}
-                        stateDataWithDates={stateDatawithDates}
+                        stateCumulativeReportData={stateCumulativeReportData}
                         barChartData={barChartData}
                         sortCaseValues={this.sortCaseValues}
+                        getCovid19DataAPIStatus={getCovid19DataAPIStatus}
+                        getCovid19DataAPIError={getCovid19DataAPIError}
                     />
                     :
                     <DailyModel
@@ -82,7 +103,7 @@ class ZonalDashboard extends React.Component {
                         recoveredCases={recoveredCases}
                         deathCases={deathCases}
                         districtWiseData={districtWiseData}
-                        stateDatawithDates={stateDatawithDates}
+                        stateCumulativeReportData={stateCumulativeReportData}
                         barChartData={barChartData}
                         sortCaseValues={this.sortCaseValues}
                     />

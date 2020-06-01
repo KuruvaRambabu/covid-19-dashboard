@@ -12,17 +12,14 @@ class Covid19DashBoardRoute extends React.Component {
     @observable zonalDashboard = true;
     @observable districtWiseCaseAnalysis = false;
 
-    componentDidMount() {
-        this.doNetworkCalls()
-    }
+    // componentDidMount() {
+    //     this.doNetworkCalls()
+    // }
 
-    @action.bound
-    doNetworkCalls() {
-        //this.props.covid19DataStore.districtsDatawithDates()
-        this.props.covid19DataStore.getCovid19Data()
-        
-        
-    }
+    // @action.bound
+    // doNetworkCalls() {
+    //     this.props.covid19DataStore.getCovid19Data() 
+    // }
     componentWillMount(){
         this.props.covid19DataStore.clearUserSession()
     }
@@ -33,7 +30,6 @@ class Covid19DashBoardRoute extends React.Component {
 
     onClickZonalDashboard = () => {
         if (!this.zonalDashboard) {
-            this.doNetworkCalls()
             this.zonalDashboard = this.zonalDashboard ? false : true;
             this.districtWiseCaseAnalysis = this.districtWiseCaseAnalysis ? false : true;
         }
@@ -41,46 +37,22 @@ class Covid19DashBoardRoute extends React.Component {
 
     onClickDistrictWIseCaseAnalysis = () => {
         if (!this.districtWiseCaseAnalysis) {
-            this.props.covid19DataStore.init()
-            this.props.covid19DataStore.getDistrictWiseCaseAnalysisData()
             this.zonalDashboard = this.zonalDashboard ? false : true;
-            this.districtWiseCaseAnalysis = this.districtWiseCaseAnalysis ? false : true;
-            
+            this.districtWiseCaseAnalysis = this.districtWiseCaseAnalysis ? false : true;  
         }
     }
-
-    onRetryClick = () => {
-        this.doNetworkCalls()
-    }
-
-    renderCovid19DataUI = observer(() => {
-        if (this.zonalDashboard && !this.districtWiseCaseAnalysis) {
-        
-           return <ZonalDashboard />
-        }
-
-        else{
-            return <DistrictWiseCaseAnalysis/>
-        }
-    })
-
-
 
     render() {
-        const {
-            getCovid19DataAPIStatus,
-            getCovid19DataAPIError,
-        } = this.props.covid19DataStore
+      
         return (
-            <Covid19DashBoard
+            <Covid19DashBoard 
                 onClickSignOut={this.onClickSignOut}
                 zonalDashboard={this.zonalDashboard}
                 onClickZonalDashboard={this.onClickZonalDashboard}
                 districtWiseCaseAnalysis={this.districtWiseCaseAnalysis}
                 onClickDistrictWIseCaseAnalysis={this.onClickDistrictWIseCaseAnalysis}
                 renderCovid19DataUI={this.renderCovid19DataUI}
-                getCovid19DataAPIStatus={getCovid19DataAPIStatus}
-                getCovid19DataAPIError={getCovid19DataAPIError}
+               
                 onRetryClick={this.onRetryClick}
             />
         )

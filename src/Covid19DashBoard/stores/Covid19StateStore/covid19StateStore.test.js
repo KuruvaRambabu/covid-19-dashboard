@@ -31,6 +31,8 @@ describe("Test for covid19 data store", () => {
         expect(covid19DataStore.totalDeathCases).toBe(0)
         expect(covid19DataStore.totalConfirmedCases).toBe(0)
         expect(covid19DataStore.totalActiveCases).toBe(0)
+        expect(covid19DataStore.getDistrictWiseCaseAnalysisDataAPIStatus).toBe(API_INITIAL)
+        expect(covid19DataStore.getDistrictWiseCaseAnalysisDataAPIError).toBe(null)
     })
 
     it("should test covid 19 data fetching state", () => {
@@ -51,7 +53,7 @@ describe("Test for covid19 data store", () => {
 
 
         covid19DataStore.getDistrictWiseCaseAnalysisData()
-        expect(covid19DataStore.getCovid19DataAPIStatus).toBe(API_FETCHING)
+        expect(covid19DataStore.getDistrictWiseCaseAnalysisDataAPIStatus).toBe(API_FETCHING)
     })
 
     it("sholud test covid19data succes state", async () => {
@@ -80,11 +82,10 @@ describe("Test for covid19 data store", () => {
         covid19APIService.districtAnalysisData = districtAnalysisDataAPI;
 
         await covid19DataStore.getDistrictWiseCaseAnalysisData()
-        expect(covid19DataStore.getCovid19DataAPIStatus).toBe(API_SUCCESS)
+        expect(covid19DataStore.getDistrictWiseCaseAnalysisDataAPIStatus).toBe(API_SUCCESS)
     })
 
     it("should test the cumulative data failure state", async () => {
-
         const mockFailurePromise = new Promise(function (resolve, reject) {
             reject(new Error("error"));
         })
@@ -108,8 +109,8 @@ describe("Test for covid19 data store", () => {
         covid19APIService.districtAnalysisData = districtAnalysisDataAPI;
 
         await covid19DataStore.getDistrictWiseCaseAnalysisData()
-        expect(covid19DataStore.getCovid19DataAPIStatus).toBe(API_FAILED)
-        expect(covid19DataStore.getCovid19DataAPIError).toBe("error")
+        expect(covid19DataStore.getDistrictWiseCaseAnalysisDataAPIStatus).toBe(API_FAILED)
+        expect(covid19DataStore.getDistrictWiseCaseAnalysisDataAPIError).toBe("error")
     })
 
     it("should test the sorted sortBySelectedCase type", () => {
