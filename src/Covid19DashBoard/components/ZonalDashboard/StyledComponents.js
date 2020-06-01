@@ -51,7 +51,7 @@ export const CumulativeReportGraphs = styled.div`
 
 
 export const GraphName = styled.h1`
-    ${tw` text-xl 	`}
+    ${tw`  font-bold p-5	`}
 `
 export const ZonalDashboardLeftContainer = styled.div`
     ${tw``}
@@ -144,7 +144,8 @@ export const ConfirmedCasesBarChartContainer = styled.div`
 `
 
 export const DistrictWIseReportName = styled.div`
-    ${tw`p-5 text-xl font-bold`}
+
+    ${tw`p-5  text-xl font-bold`}
 `
 
 

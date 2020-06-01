@@ -86,7 +86,6 @@ class SignInRoute extends React.Component {
         console.log("sign in route")
         const { getUserSignInAPIStatus } = this.props.authenticationStore
         if (getAccessToken()) {
-            console.log("hello")
             return <Redirect to={{pathname: COVID_19_DASHBOARD_PATH}} />
         }
         return (

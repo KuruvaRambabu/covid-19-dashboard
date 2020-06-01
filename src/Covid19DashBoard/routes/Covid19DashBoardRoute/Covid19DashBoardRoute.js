@@ -23,6 +23,10 @@ class Covid19DashBoardRoute extends React.Component {
         
         
     }
+    componentWillMount(){
+        this.props.covid19DataStore.clearUserSession()
+    }
+
     onClickSignOut = () => {
         this.props.authenticationStore.userSignOut()
     }

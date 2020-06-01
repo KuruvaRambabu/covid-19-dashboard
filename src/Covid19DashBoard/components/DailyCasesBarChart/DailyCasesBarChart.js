@@ -7,23 +7,22 @@ import {
 
 class DailyCasesBarChart extends React.Component {
     render() {
-        const { districtsDatawithDate, type, color } = this.props
+        const { stateDatawithDates, type, color } = this.props
 
         return (
             <BarChart
                 width={500}
                 height={300}
-                data={districtsDatawithDate}
+                data={stateDatawithDates}
                 margin={{
                     top: 5, right: 30, left: 20, bottom: 5,
                 }}
             >
-                
                 <XAxis dataKey="till_date" />
                 <YAxis  />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey={type} barSize={10} fill={color} />
+                <Bar dataKey={type} barSize={7} fill={color} />
 
             </BarChart>
         )

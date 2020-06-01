@@ -42,7 +42,6 @@ class Covid19DataStore {
         this.totalConfirmedCases = 0;
         this.totalDeathCases = 0;
         this.totalRecoveredCases = 0;
-        
     }
 
     @action.bound
@@ -64,14 +63,13 @@ class Covid19DataStore {
         this.totalRecoveredCases = response.total_confirmed;
         this.totalActiveCases = response.total_active;
         this.totalConfirmedCases = response.total_confirmed;
-
-
         const data = response.districts
-        for (let i = 0; i < data.length; i++) {
-            const StateData = new covid19StateAndDistrictDataModel(data[i])
-            this.covid19Data.push(StateData)
 
-        }
+        data.forEach(district => {
+            const StateData = new covid19StateAndDistrictDataModel(district)
+            this.covid19Data.push(StateData)
+        })
+        
     }
 
     getDistrictWiseCaseAnalysisData() {
@@ -92,9 +90,7 @@ class Covid19DataStore {
 
     @action.bound
     setDistrictAnalysisDataResponse(response) {
-
-        console.log("district analysis data", response)
-
+        console.log("districtdataAnalysis",response)
         this.districtAnalysisData = response
 
     }
@@ -119,6 +115,11 @@ class Covid19DataStore {
     @action.bound
     setGetCovidAPIStatus(apiStatus) {
         this.getCovid19DataAPIStatus = apiStatus
+    }
+
+    @action.bound
+    clearUserSession(){
+        this.init()
     }
 
     @action.bound
