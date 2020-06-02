@@ -24,6 +24,7 @@ import {
     ConfirmedCasesBarChartContainer,
     DistrictWIseReportName
 } from "../ZonalDashboard/StyledComponents";
+import TotalDistrictsCasesGraph from "../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph";
 
 @observer
 class CumulativeMode extends React.Component {
@@ -61,9 +62,12 @@ class CumulativeMode extends React.Component {
                     </CumulativeCasesGraphReportMainContainer>
                     <CumulativeCasesGraphReportMainContainer>
                         <GraphName>CUMULATIVE CASES REPORT </GraphName>
-                        <CumulativeCasesGraphReport 
-                            stateCumulativeReportData={stateCumulativeReportData}
-                        />
+                        <TotalDistrictsCasesGraph 
+                         stateCumulativeReportData={stateCumulativeReportData}
+                          />
+                        {/* <CumulativeCasesGraphReport 
+                           
+                        /> */}
                     </CumulativeCasesGraphReportMainContainer>
 
                 </CumulativeReportGraphs>
