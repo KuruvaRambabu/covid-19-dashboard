@@ -182,9 +182,7 @@ class Covid19DataStore {
     @action.bound
     onChangeCurrentDate(date) {
         this.currentDate = date
-        this.init()
-        this.getCovid19Data()
-        this.getStateCumulativeReportData()
+       
     }
 
     @action.bound
@@ -223,11 +221,13 @@ class Covid19DataStore {
         this.totalActiveCases = response.total_active;
         this.totalConfirmedCases = response.total_confirmed;
         const data = response.districts
-
+        console.log(toJS(data))
         data.forEach(district => {
             const StateData = new Covid19StateAndDistrictDataModel(district)
             this.covid19Data.push(StateData)
         })
+
+        console.log("starting", toJS(this.covid19Data))
     }
     @action.bound
     getStateDailyVerticalGraphData(){
@@ -299,6 +299,7 @@ class Covid19DataStore {
         let sortedData = data.slice().sort(function (a, b) {
             return b[type] - a[type];
         })
+        console.log("barchart data in store",toJS(sortedData))
         return sortedData
     }
 

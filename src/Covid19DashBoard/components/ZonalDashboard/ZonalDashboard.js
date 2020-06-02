@@ -26,7 +26,6 @@ class ZonalDashboard extends React.Component {
     }
 
     sortCaseValues = (e) => {
-        console.log(e.target.id)
         this.props.covid19DataStore.sortBySelectedCase(e.target.id)
     }
 
@@ -75,6 +74,7 @@ class ZonalDashboard extends React.Component {
         const startDate = this.props.covid19DataStore.currentDate
         const stateDailyVerticalGraphData =
             this.props.covid19DataStore.stateDailyVerticalGraphData
+        console.log("hello", districtWiseData)
         //const stateDailyData = this.props.covid19DataStore.districts
         //console.log("stateDailyBarChartdataRambabu  ", stateDailyVerticalGraphData)
         const {

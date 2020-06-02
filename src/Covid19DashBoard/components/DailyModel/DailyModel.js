@@ -105,7 +105,7 @@ class DailyModel extends React.Component {
         )
 
     })
-
+ 
     render() {
         const {
             getStateDailyDataAPIStatus,
