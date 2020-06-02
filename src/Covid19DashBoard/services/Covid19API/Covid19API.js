@@ -40,6 +40,14 @@ class Covid19APIService {
             apiMethods.get
         )
     }
+    stateDailyData() {
+        return networkCallWithApisauce(
+            this.api,
+            endPoints,
+            {},
+            apiMethods.get
+        )
+    }
 }
 
 export default Covid19APIService;

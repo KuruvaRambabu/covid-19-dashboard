@@ -17,7 +17,7 @@ class DistrictWiseCaseAnalysis extends React.Component {
     }
 
     renderDistrictAnalysisDataUI = observer(() => {
-        const districtsdata = this.props.covid19DataStore.districtAnalysisData.day_wise_report
+        const districtsdata = this.props.covid19DataStore.districtAnalysisData
         return districtsdata.map(district => (
             <IndividualDistrictCasesGraph  key= {district.districtName} district={district} />
         ))

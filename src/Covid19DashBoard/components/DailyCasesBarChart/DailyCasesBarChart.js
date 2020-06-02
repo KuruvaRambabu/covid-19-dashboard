@@ -10,7 +10,7 @@ import { observer } from "mobx-react";
 class DailyCasesBarChart extends React.Component {
     render() {
         const { stateCumulativeReportData, type, color } = this.props
-
+       
         return (
             <BarChart
                 width={500}
@@ -20,7 +20,7 @@ class DailyCasesBarChart extends React.Component {
                     top: 5, right: 30, left: 20, bottom: 5,
                 }}
             >
-                <XAxis dataKey="tillDate" />
+                <XAxis dataKey="date" />
                 <YAxis  />
                 <Tooltip />
                 <Legend />

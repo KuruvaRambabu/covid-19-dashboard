@@ -106,7 +106,7 @@ export const ZonalDashboardTableFormatDataAndChartContainer = styled.div`
 
     ${tw` mt-4`}
 `
-export const TableContainer = styled.table`
+export const TableContainer = styled.div`
     ${tw`w-full  `}
 `
 export const TableRow = styled.tr`

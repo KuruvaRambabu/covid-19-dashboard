@@ -10,8 +10,8 @@ class IndividualDistrictCasesGraph extends React.Component {
 
   render() {
     let { district } = this.props
-    const name = district.district_name
-    district = district.district_statistics
+    const name = district.districtName
+    district = district.districtStats
 
     return (
       <React.Fragment>
@@ -27,14 +27,14 @@ class IndividualDistrictCasesGraph extends React.Component {
           >
 
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="till_date" />
+            <XAxis dataKey="tillDate" />
             <YAxis />
             <Tooltip />
             <Legend />
             <Line type="monotone"
-              dataKey="total_confirmed"
+              dataKey="totalConfirmed"
               name={name} stroke="#b30000"
-              activeDot={{ r: 8 }} />
+              activeDot={{ r: 4 }} />
               
           </LineChart>
         </IndividualDistrictCasesGraphMainContainer>

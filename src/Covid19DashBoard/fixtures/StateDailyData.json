@@ -1,0 +1,119 @@
+{
+    "total_active": 0,
+    "total_recovered": 20,
+    "total_confirmed": 10,  
+    "total_deaths": 2,
+    
+    "districts": [
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 0,
+        "total_deaths": 0,
+        "district_name": "Kadapa",
+        "district_id": "kdp"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 0,
+        "total_deaths": 1,
+        "district_name": "Kurnool",
+        "district_id": "knl"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 0,
+        "total_deaths": 0,
+        "district_name": "Nellore",
+        "district_id": "nlr"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 0,
+        "total_deaths": 0,
+        "district_name": "Chittoor",
+        "district_id": "chtr"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 10,
+        "total_confirmed": 20,
+        "total_deaths": 0,
+        "district_name": "Ananthapuram",
+        "district_id": "atp"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 0,
+        "total_deaths": 0,
+        "district_name": "Vishakapatnam",
+        "district_id": "vskp"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 0,
+        "total_deaths": 0,
+        "district_name": "West Godavari",
+        "district_id": "wg"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 1,
+        "total_deaths": 0,
+        "district_name": "Krishna",
+        "district_id": "krsn"
+      }
+      ,
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 1,
+        "total_deaths": 0,
+        "district_name": "Prakasham",
+        "district_id": "krsn"
+      }
+      ,
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 1,
+        "total_deaths": 0,
+        "district_name": "Guntur",
+        "district_id": "krsn"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 1,
+        "total_deaths": 0,
+        "district_name": "Vijayanagaram",
+        "district_id": "krsn"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 1,
+        "total_deaths": 0,
+        "district_name": "Srikakulam",
+        "district_id": "krsn"
+      },
+      {
+        "total_active": 0,
+        "total_recovered": 0,
+        "total_confirmed": 1,
+        "total_deaths": 0,
+        "district_name": "East Godavari",
+        "district_id": "krsn"
+      }
+
+    ]
+  }
+
+ 
+ 

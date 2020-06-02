@@ -6,7 +6,7 @@
    
     "districts": [
       {
-        "total_active": 20,
+        "total_active": 20, 
         "total_recovered": 30,
         "total_confirmed": 90,
         "total_deaths": 0,

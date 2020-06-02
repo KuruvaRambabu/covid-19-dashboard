@@ -1,0 +1,82 @@
+{
+    "daily_report": [
+        {
+            "total_active": 4,
+            "total_recovered": 6,
+            "total_confirmed": 10,
+            "total_deaths": 0,
+            "date": "2020-05-01"
+        },
+        {
+            "total_active": 6,
+            "total_recovered": 5,
+            "total_confirmed": 12,
+            "total_deaths": 0,
+            "date": "2020-05-02"
+        },
+        {
+            "total_active": 3,
+            "total_recovered": 8,
+            "total_confirmed": 1,
+            "total_deaths": 0,
+            "date": "2020-05-03"
+        },
+        {
+            "total_active": 4,
+            "total_recovered": 1,
+            "total_confirmed": 5,
+            "total_deaths": 0,
+            "date": "2020-05-04"
+        },
+        {
+            "total_active": 5,
+            "total_recovered": 12,
+            "total_confirmed": 17,
+            "total_deaths": 2,
+            "till_date": "2020-05-05"
+        },
+        {
+            "total_active": 17,
+            "total_recovered": 5,
+            "total_confirmed": 18,
+            "total_deaths": 4,
+            "state_name": "Andhra Pradesh",
+            "date": "2020-05-06",
+            "state_id": "AP"
+        },
+        {
+            "total_active": 1,
+            "total_recovered": 7,
+            "total_confirmed": 20,
+            "total_deaths": 6,
+            "date": "2020-05-07"
+        },  {
+            "total_active": 10,
+            "total_recovered": 7,
+            "total_confirmed": 0,
+            "total_deaths": 10,
+            "date": "2020-05-08"
+        },
+        {
+            "total_active": 10,
+            "total_recovered": 1,
+            "total_confirmed": 2,
+            "total_deaths": 12,
+            "date": "2020-05-09"
+        },
+        {
+            "total_active": 10,
+            "total_recovered": 1,
+            "total_confirmed": 0,
+            "total_deaths": 5,
+            "date": "2020-05-10"
+        },
+        {
+            "total_active": 10,
+            "total_recovered": 7,
+            "total_confirmed": 20,
+            "total_deaths": 10,
+            "date": "2020-05-11"
+        }
+    ]
+}

@@ -26,7 +26,7 @@ class ConfirmedCasesBarChart extends React.Component {
                 <Tooltip />
                 <Legend />
                
-                <Bar dataKey="totalConfirmed" barSize={20} fill="#f56565" />
+                <Bar dataKey="totalConfirmed" name="positive" barSize={20} fill="#f56565" />
                 
             </ComposedChart>
         )

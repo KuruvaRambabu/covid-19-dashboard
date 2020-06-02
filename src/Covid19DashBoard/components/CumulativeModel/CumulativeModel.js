@@ -6,7 +6,7 @@ import TotalCases from "../../../Common/components/TotalCases";
 import CasesAndItsMap from "../../../Common/components/CasesAndItsMap/CasesAndItsMap";
 
 import CumulativeCasesGraphReport from "../CumulativeCasesGraphReport/CumulativeCasesGraphReport";
-import DistrictWiseData from "../DistrictWiseData/DistrictWiseData";
+import DataInTableFormatByDistrictWise from "../DataInTableFormatByDistrictWise/DataInTableFormatByDistrictWise";
 import ConfirmedCasesBarChart from "../ConfirmedCasesBarChart/ConfirmedCasesBarChart";
 
 
@@ -25,17 +25,13 @@ import {
     DistrictWIseReportName
 } from "../ZonalDashboard/StyledComponents";
 
-
-
-
-
 @observer
 class CumulativeModel extends React.Component {
 
     renderCumulativeCovid19DataUI = observer(() => {
         const {
             confirmedCases,
-            activeCases,
+            activeCases, 
             recoveredCases,
             deathCases,
             districtWiseData,
@@ -43,7 +39,7 @@ class CumulativeModel extends React.Component {
             barChartData,
             sortCaseValues
         } = this.props
-        
+
         return (<React.Fragment>
             <ZonalDashboardCasesMapAndGraphContainer>
                 <CasesAndMapContainer>
@@ -65,34 +61,19 @@ class CumulativeModel extends React.Component {
                     </CumulativeCasesGraphReportMainContainer>
                     <CumulativeCasesGraphReportMainContainer>
                         <GraphName>CUMULATIVE CASES REPORT </GraphName>
-                        <CumulativeCasesGraphReport key={Math.random()}
+                        <CumulativeCasesGraphReport 
                             stateCumulativeReportData={stateCumulativeReportData}
                         />
                     </CumulativeCasesGraphReportMainContainer>
-                    {/* <TotalDistrictsCasesGraph
-                            districtConformedCasesGraphData={districtConformedCasesGraphData}
 
-                        /> */}
                 </CumulativeReportGraphs>
 
             </ZonalDashboardCasesMapAndGraphContainer>
 
             <ZonalDashboardTableFormatDataAndChartContainer>
                 <DistrictWiseTableData>
-                    <TableContainer>
-                        <TableRow index={1} >
-                            <TableHeader onClick={sortCaseValues} id="districtName" >DistrictName</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalConfirmed" >Confirmed</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalActive">Active</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalRecovered">Recovered</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalDdeaths" >Deaths</TableHeader>
 
-                        </TableRow>
-                        {districtWiseData.map((district, index) => (
-                            <DistrictWiseData index={index} key={district.district_id} district={district} />
-                        ))}
-
-                    </TableContainer>
+                    <DataInTableFormatByDistrictWise districtWiseData={districtWiseData} />
 
                 </DistrictWiseTableData>
                 <ConfirmedCasesBarChartContainer>
@@ -127,3 +108,27 @@ class CumulativeModel extends React.Component {
 }
 
 export default CumulativeModel;
+
+
+
+
+
+
+{/* <TableContainer> */ }
+{/* <TableRow index={1} >
+                            <TableHeader onClick={sortCaseValues} id="districtName" >DistrictName</TableHeader>
+                            <TableHeader onClick={sortCaseValues} id="totalConfirmed" >Confirmed</TableHeader>
+                            <TableHeader onClick={sortCaseValues} id="totalActive">Active</TableHeader>
+                            <TableHeader onClick={sortCaseValues} id="totalRecovered">Recovered</TableHeader>
+                            <TableHeader onClick={sortCaseValues} id="totalDdeaths" >Deaths</TableHeader>
+
+                        </TableRow> */}
+{/* {districtWiseData.map((district, index) => (
+                            <DataInTableFormatByDistrictWise index={index} key={district.district_id} district={district} />
+
+                        ))} */}
+
+{/* <TotalDistrictsCasesGraph
+                            districtConformedCasesGraphData={districtConformedCasesGraphData}
+
+                        /> */}

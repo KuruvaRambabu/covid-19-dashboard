@@ -11,7 +11,7 @@ import { toJS } from "mobx";
 class CumulativeCasesGraphReport extends React.Component {
     render() {
         const { stateCumulativeReportData } = this.props
-        console.log("cumulativeCasesReport", toJS(stateCumulativeReportData))
+       
         return (
             <LineChart
                 width={550}

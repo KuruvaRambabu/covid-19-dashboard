@@ -10,12 +10,15 @@ import {
     Datelabel,
     ZonalAndDistrictWiseContainer,
 
+
+
 } from "./StyledComponents";
 import { observer } from "mobx-react";
 import ReactDatePicker from "react-datepicker";
-
+import subDays from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import { observable } from "mobx";
+
 
 @observer
 class Header extends React.Component {
@@ -32,6 +35,7 @@ class Header extends React.Component {
         alert("yes")
 
     }
+    
 
     render() {
         const { onClickDailyData,
@@ -50,6 +54,7 @@ class Header extends React.Component {
                                 onChange={this.handleChangeDate}
                                 // onSelect={this.onSelectDate}
                                 selected={startDate} 
+                                minDate = {"20-02-2020"}
                                 dateFormat="yyyy-MM-dd"/>
                         </DatePicker>
 

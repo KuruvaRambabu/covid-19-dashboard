@@ -10,11 +10,11 @@ import { observable } from "mobx";
 
 
 @inject("covid19DataStore")
-@observer 
+@observer
 class ZonalDashboard extends React.Component {
     @observable isCumulative = true;
     @observable isDaily = false;
-    
+
     componentDidMount() {
         this.doNetworkCalls()
     }
@@ -33,6 +33,7 @@ class ZonalDashboard extends React.Component {
 
     onClickCumulativeData = () => {
         if (!this.isCumulative) {
+            this.doNetworkCalls()
             this.isCumulative = this.isCumulative ? false : true;
             this.isDaily = this.isDaily ? false : true;
         }
@@ -40,23 +41,27 @@ class ZonalDashboard extends React.Component {
 
     onClickDailyData = () => {
         if (!this.isDaily) {
+            this.networkCallForDailyData()
             this.isCumulative = this.isCumulative ? false : true;
             this.isDaily = this.isDaily ? false : true;
         }
     }
 
     onChangeCurrentDate = (date) => {
-        if(this.isCumulative){
+        if (this.isCumulative) {
+            this.doNetworkCalls()
             this.props.covid19DataStore.onChangeCurrentDate(date)
         }
-        else{
-            
+        else {
+            this.networkCallForDailyData()
+            this.props.covid19DataStore.onChangeCurrentDate(date)
         }
-       
     }
 
-    networkCallForDailyData=()=>{
-    
+    networkCallForDailyData = () => {
+        this.props.covid19DataStore.init()
+        this.props.covid19DataStore.getStateDailyData()
+        this.props.covid19DataStore.getStateDailyVerticalGraphData()
     }
 
     render() {
@@ -68,9 +73,15 @@ class ZonalDashboard extends React.Component {
         const barChartData = this.props.covid19DataStore.barChartData
         const stateCumulativeReportData = this.props.covid19DataStore.stateCumulativeReport
         const startDate = this.props.covid19DataStore.currentDate
+        const stateDailyVerticalGraphData =
+            this.props.covid19DataStore.stateDailyVerticalGraphData
+        //const stateDailyData = this.props.covid19DataStore.districts
+        //console.log("stateDailyBarChartdataRambabu  ", stateDailyVerticalGraphData)
         const {
             getCovid19DataAPIStatus,
             getCovid19DataAPIError,
+            getStateDailyDataAPIStatus,
+            getStateDailyDataAPIError
         } = this.props.covid19DataStore
         return (
             <ZonalDashboardMainContainer>
@@ -106,6 +117,10 @@ class ZonalDashboard extends React.Component {
                         stateCumulativeReportData={stateCumulativeReportData}
                         barChartData={barChartData}
                         sortCaseValues={this.sortCaseValues}
+                        getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
+                        getStateDailyDataAPIError={getStateDailyDataAPIError}
+                        networkCallForDailyData={this.networkCallForDailyData}
+                        stateDailyVerticalGraphData={stateDailyVerticalGraphData}
                     />
                 }
             </ZonalDashboardMainContainer>

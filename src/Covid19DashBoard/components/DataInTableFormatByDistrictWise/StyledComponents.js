@@ -13,7 +13,6 @@ export const TableHeader = styled.td`
 `
 
 
-export const DistrictWiseTableDataContainer = styled.tr`
-background:${props=>(props.index%2)===0 ? "#13263a" : " #001a33"};
-    ${tw` h-10`}
+export const DistrictWiseTableDataContainer = styled.div`
+    ${tw`text-white bg-gray-800 font-serif text-center shadow-lg `}
 `
