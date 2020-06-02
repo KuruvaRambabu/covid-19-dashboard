@@ -25,17 +25,10 @@ class Header extends React.Component {
 
     handleChangeDate = (date) => {
         this.startDate = date
-        console.log("date",date.toLocaleString() )
         this.props.onChangeCurrentDate(date)
        
     }
-    onSelectDate = (date) => {
-        this.startDate = date
-        this.props.onChangeCurrentDate(date)
-        alert("yes")
-
-    }
-    
+   
 
     render() {
         const { onClickDailyData,
@@ -43,6 +36,7 @@ class Header extends React.Component {
             isDaily,
             isCumulative, startDate
         } = this.props
+        console.log("date", startDate.toLocaleDateString() )
         return (
             <HeaderMainContainer>
                 <StateName>Andhra Pradesh</StateName>
@@ -54,7 +48,7 @@ class Header extends React.Component {
                                 onChange={this.handleChangeDate}
                                 // onSelect={this.onSelectDate}
                                 selected={startDate} 
-                                minDate = {"20-02-2020"}
+                              
                                 dateFormat="yyyy-MM-dd"/>
                         </DatePicker>
 

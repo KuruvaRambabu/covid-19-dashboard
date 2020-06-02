@@ -10,7 +10,17 @@ export const SignInPageMainContainer = styled.div`
     background:${colors.iceBlue}
 `
 export const SignInCardContanier = styled.div`
-    ${tw` md:w-1/2  lg:w-1/3 w-2/3 flex flex-col justify-center items-center `};height:450px;
+@media only screen and (max-width: 767px){
+    height:100%;
+    width:400px;
+}
+
+@media only screen and (min-width: 768px){
+    height:500px;
+    width:400px;
+}
+
+    ${tw`  flex flex-col justify-center items-center `};
     background:${colors.white}
 `
 
@@ -21,7 +31,7 @@ export const Form = styled.form`
 export const CompanyLogo = styled.img`
     ${tw`w-full h-20`}
 `
-export const ImageContainer =styled.div`
+export const ImageContainer = styled.div`
     ${tw` w-full flex justify-center `}
 `
 

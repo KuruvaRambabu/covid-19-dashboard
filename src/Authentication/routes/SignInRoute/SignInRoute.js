@@ -17,6 +17,7 @@ class SignInRoute extends React.Component {
     @observable token;
     @observable passwordErrorMessage;
     @observable userNameErrorMessage;
+    @observable token;
 
     constructor(props) {
         super(props)
@@ -24,6 +25,7 @@ class SignInRoute extends React.Component {
         this.password = "";
         this.errorMessage = "";
         this.token = false
+        
     }
 
 
@@ -66,6 +68,7 @@ class SignInRoute extends React.Component {
             this.userNameErrorMessage=""
             this.passwordErrorMessage=""
             this.errorMessage = ""
+            this.token = true;
              const { userSignIn } = this.props.authenticationStore
 
             userSignIn(
@@ -99,6 +102,7 @@ class SignInRoute extends React.Component {
                 onClickSignIn={this.onClickSignIn}
                 passwordErrorMessage={this.passwordErrorMessage}
                 userNameErrorMessage={this.userNameErrorMessage}
+                token={this.token}
             />
         )
     }

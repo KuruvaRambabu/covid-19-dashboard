@@ -26,7 +26,7 @@ import {
 } from "../ZonalDashboard/StyledComponents";
 
 @observer
-class CumulativeModel extends React.Component {
+class CumulativeMode extends React.Component {
 
     renderCumulativeCovid19DataUI = observer(() => {
         const {
@@ -107,7 +107,7 @@ class CumulativeModel extends React.Component {
     }
 }
 
-export default CumulativeModel;
+export default CumulativeMode;
 
 
 

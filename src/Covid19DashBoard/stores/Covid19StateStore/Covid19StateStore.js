@@ -31,16 +31,13 @@ class Covid19DataStore {
     @observable stateDailyVerticalGraphData;
     @observable getStateDailyVerticalGraphDataAPIStauts;
     @observable getStateDailyVerticalGraphDataAPIError;
-
     covid19APIService;
-
-
 
     constructor(covid19APIService) {
         this.covid19APIService = covid19APIService;
         this.currentDate = new Date()
         this.init()
-        this.districtWiseDataInit()
+       
     }
 
     @action.bound
@@ -62,15 +59,7 @@ class Covid19DataStore {
         this.getStateDailyDataAPIError = null
         this.getStateDailyDataAPIStatus = API_INITIAL;
         this.stateDailyVerticalGraphData = [];
-
     }
-
-    @action.bound
-    districtWiseDataInit() {
-
-    }
-
-
 
     @action.bound
     getCovid19Data() {
@@ -86,20 +75,18 @@ class Covid19DataStore {
 
     @action.bound
     setCovid19DataAPIResponse(response) {
-
         this.totalDeathCases = response.total_deaths;
         this.totalRecoveredCases = response.total_confirmed;
         this.totalActiveCases = response.total_active;
         this.totalConfirmedCases = response.total_confirmed;
         const data = response.districts
-
         data.forEach(district => {
             const StateData = new Covid19StateAndDistrictDataModel(district)
             this.covid19Data.push(StateData)
         })
-
     }
 
+    @action.bound
     getDistrictWiseCaseAnalysisData() {
         const districtAnalysisDataPromise = this.covid19APIService.districtAnalysisData()
         return bindPromiseWithOnSuccess(districtAnalysisDataPromise)
@@ -113,16 +100,11 @@ class Covid19DataStore {
 
     @action.bound
     setDistrictAnalysisDataResponse(response) {
-        
         const dayWiseDistrictReport = response.day_wise_report;
         dayWiseDistrictReport.forEach(district => {
-
             const districtData = new DistrictWiseDataAnalysisModel(district)
             this.districtAnalysisData.push(districtData)
-
         })
-       
-
     }
 
     @action.bound
@@ -135,11 +117,8 @@ class Covid19DataStore {
         this.getDistrictWiseCaseAnalysisDataAPIError = error
     }
 
-
-
     @action.bound
     getStateCumulativeReportData() {
-
         const stateCumulativeReportDataPromise = this.covid19APIService.stateCumulativeReportData()
         return bindPromiseWithOnSuccess(stateCumulativeReportDataPromise)
             .to(this.setGetStateCumulativeReportDataAPIStatus, response => {
@@ -148,20 +127,15 @@ class Covid19DataStore {
             .catch(error => {
                 this.setGetStateCumulativeReportDataAPIError(error)
             })
-
     }
 
     @action.bound
     setGetStateCumulativeReportDataAPIResponse(response) {
-
         const cumulativeReport = response.day_wise_report
-
         cumulativeReport.forEach(district => {
             const StateData = new CumulativeDataReportModel(district)
             this.stateCumulativeReportData.push(StateData)
         })
-     
-
     }
 
     @action.bound
@@ -182,7 +156,6 @@ class Covid19DataStore {
     @action.bound
     onChangeCurrentDate(date) {
         this.currentDate = date
-       
     }
 
     @action.bound
@@ -206,32 +179,28 @@ class Covid19DataStore {
                 this.setGetStateDailyDataAPIError(error)
             })
     }
+
     @action.bound
     setGetStateDailyDataAPIStatus(apiStatus) {
-      
         this.getStateDailyDataAPIStatus = apiStatus
-
     }
 
     @action.bound
     setGetStateDailyDataAPIResponse(response) {
-     
         this.totalDeathCases = response.total_deaths;
         this.totalRecoveredCases = response.total_confirmed;
         this.totalActiveCases = response.total_active;
         this.totalConfirmedCases = response.total_confirmed;
         const data = response.districts
-        console.log(toJS(data))
+        this.covid19Data = []
         data.forEach(district => {
             const StateData = new Covid19StateAndDistrictDataModel(district)
             this.covid19Data.push(StateData)
         })
-
-        console.log("starting", toJS(this.covid19Data))
     }
+
     @action.bound
-    getStateDailyVerticalGraphData(){
-        
+    getStateDailyVerticalGraphData() {
         const stateDailyVerticalGraphDataPromise = this.covid19APIService.stateDailyVerticalGraphsAPI()
         return bindPromiseWithOnSuccess(stateDailyVerticalGraphDataPromise)
             .to(this.setGetStateDailyVerticalGraphDataAPIStatus, response => {
@@ -243,24 +212,23 @@ class Covid19DataStore {
     }
 
     @action.bound
-    setGetStateDailyVerticalGraphDataAPIStatus(apiStatus){
-
-    }
-    @action.bound
-    setGetStateDailyVerticalGraphDataAPIError(error){
+    setGetStateDailyVerticalGraphDataAPIStatus(apiStatus) {
 
     }
 
     @action.bound
-    setGetStateDailyVerticalGraphDataAPIResponse(response){
+    setGetStateDailyVerticalGraphDataAPIError(error) {
+
+    }
+
+    @action.bound
+    setGetStateDailyVerticalGraphDataAPIResponse(response) {
         const data = response.daily_report;
-
         data.forEach(district => {
             const StateData = new StateDailyVerticalGraphModel(district)
             this.stateDailyVerticalGraphData.push(StateData)
         })
     }
-
 
     @action.bound
     setGetStateDailyDataAPIError(error) {
@@ -274,7 +242,6 @@ class Covid19DataStore {
 
     @action.bound
     sortByCaseList(data, type) {
-
         if (type === "") {
             return data
         }
@@ -295,11 +262,9 @@ class Covid19DataStore {
     get barChartData() {
         const type = "totalConfirmed"
         const data = this.covid19Data
-
         let sortedData = data.slice().sort(function (a, b) {
             return b[type] - a[type];
         })
-        console.log("barchart data in store",toJS(sortedData))
         return sortedData
     }
 
@@ -313,9 +278,7 @@ class Covid19DataStore {
     get stateCumulativeReport() {
         return this.stateCumulativeReportData
     }
-
 }
-
 
 export default Covid19DataStore;
 

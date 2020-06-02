@@ -17,6 +17,7 @@ import {
 } from "./StyledComponents"
 import imageUrls from "../../../Common/ImageUrls/ImageUrls.json"
 import { Typo12SteelHKGrotesk } from "../../../StyleGuide/Typos"
+import SignInButton from "../../../Common/components/Button/SignInButton"
 
 
 @observer
@@ -57,10 +58,10 @@ class SignInPage extends React.Component {
                                 type={strings.userNameInputFieldType}
                                 value={userName}
                                 placeholder={strings.userNamePlaceholderText}
-                                errorMessage ={userNameErrorMessage}
+                                errorMessage={userNameErrorMessage}
                             />
-                           {userNameErrorMessage ? 
-                             <ErrorMessage>{userNameErrorMessage}</ErrorMessage> : "" }
+                            {userNameErrorMessage ?
+                                <ErrorMessage>{userNameErrorMessage}</ErrorMessage> : ""}
                         </Typo12SteelHKGrotesk>
 
                         <Typo12SteelHKGrotesk>
@@ -72,22 +73,22 @@ class SignInPage extends React.Component {
                                 value={password}
                                 errorMessage={passwordErrorMessage}
                             />
-                             {passwordErrorMessage ? 
-                             <ErrorMessage>{passwordErrorMessage}</ErrorMessage> : "" }
+                            {passwordErrorMessage ?
+                                <ErrorMessage>{passwordErrorMessage}</ErrorMessage> : ""}
                         </Typo12SteelHKGrotesk>
 
-                        <PrimarySignInButton
-                            type={strings.signInBtntype}
-                            onClick={onClickSignIn}>
-                            {strings.LoginButtonName}
-                        </PrimarySignInButton>
+                        <SignInButton
+                            token={token}
+                            onClickSignIn={onClickSignIn}
+                            name={strings.LoginButtonName}
+                        />
 
                         {errorMessage ?
                             <ErrorMessage>{errorMessage}</ErrorMessage> : ""}
                     </Form>
-                <DontHaveAccount>
-                       {strings.dontHaveanAccountText}
-                </DontHaveAccount>
+                    <DontHaveAccount>
+                        {strings.dontHaveanAccountText}
+                    </DontHaveAccount>
                 </SignInCardContanier>
             </SignInPageMainContainer>
         )

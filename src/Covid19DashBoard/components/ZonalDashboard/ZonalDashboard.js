@@ -4,8 +4,8 @@ import {
     ZonalDashboardMainContainer,
 } from "./StyledComponents";
 import { observer, inject } from "mobx-react";
-import CumulativeModel from "../CumulativeModel/CumulativeModel";
-import DailyModel from "../DailyModel/DailyModel";
+import CumulativeMode from "../CumulativeMode/CumulativeMode";
+import DailyMode from "../DailyMode/DailyMode";
 import { observable } from "mobx";
 
 
@@ -95,7 +95,7 @@ class ZonalDashboard extends React.Component {
                 />
 
                 {this.isCumulative ?
-                    <CumulativeModel
+                    <CumulativeMode
                         confirmedCases={confirmedCases}
                         activeCases={activeCases}
                         recoveredCases={recoveredCases}
@@ -108,7 +108,7 @@ class ZonalDashboard extends React.Component {
                         getCovid19DataAPIError={getCovid19DataAPIError}
                     />
                     :
-                    <DailyModel
+                    <DailyMode
                         confirmedCases={confirmedCases}
                         activeCases={activeCases}
                         recoveredCases={recoveredCases}

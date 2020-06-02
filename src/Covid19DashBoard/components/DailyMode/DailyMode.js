@@ -28,7 +28,7 @@ import LoadingWrapperWithFailure from "../../../Common/components/LoadingWrapper
 
 
 @observer
-class DailyModel extends React.Component {
+class DailyMode extends React.Component {
 
     componentDidMount(){
         this.props.networkCallForDailyData()
@@ -124,7 +124,7 @@ class DailyModel extends React.Component {
     }
 }
 
-export default DailyModel;
+export default DailyMode;
 
 
 
