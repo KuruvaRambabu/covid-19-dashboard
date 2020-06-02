@@ -1,3 +1,3 @@
-import AuthenticationStore from "./AuthenticationStore";
+import AuthenticationStore from './AuthenticationStore'
 
-export default AuthenticationStore;
+export default AuthenticationStore

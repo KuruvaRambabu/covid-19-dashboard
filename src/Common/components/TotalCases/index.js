@@ -1,3 +1,3 @@
-import TotalCases from "./TotalCases";
+import TotalCases from './TotalCases'
 
 export default TotalCases

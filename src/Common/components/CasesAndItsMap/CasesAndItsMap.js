@@ -1,23 +1,17 @@
-import React from "react"
-import {
-    CasesAndItsMapMainContainer,
+import React from 'react'
+import { CasesAndItsMapMainContainer } from './styledComponents'
 
-} from "./styledComponents"
-
-class CasesAndItsMap extends React.Component{
-    
-    render(){
-        return (
-            <CasesAndItsMapMainContainer>
-               State map
-                {/* <ActiveCases>
+class CasesAndItsMap extends React.Component {
+   render() {
+      return (
+         <CasesAndItsMapMainContainer>
+            State map
+            {/* <ActiveCases>
                     
                 </ActiveCases> */}
-
-            </CasesAndItsMapMainContainer>
-        )
-    }
-
+         </CasesAndItsMapMainContainer>
+      )
+   }
 }
 
-export default CasesAndItsMap;
+export default CasesAndItsMap

@@ -1,3 +1,3 @@
-import ZonalDashboard from "./ZonalDashboard";
+import ZonalDashboard from './ZonalDashboard'
 
-export default ZonalDashboard;
+export default ZonalDashboard

@@ -1,12 +1,12 @@
-import styled from '@emotion/styled';
-import tw from 'tailwind.macro';
+import styled from '@emotion/styled'
+import tw from 'tailwind.macro'
 
 export const Typo12SteelHKGrotesk = styled.label`
-font-family: HKGrotesk;
-  font-size: 12px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  color: #7e858e;
-  padding:5px;
+   font-family: HKGrotesk;
+   font-size: 12px;
+   font-weight: 300;
+   font-stretch: normal;
+   font-style: normal;
+   color: #7e858e;
+   padding: 5px;
 `
