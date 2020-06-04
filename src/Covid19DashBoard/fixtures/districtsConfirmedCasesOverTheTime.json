@@ -1,0 +1,69 @@
+{
+    "districts": [
+        {
+            "Kurnool": 20,
+            "Kadapa": 10,
+            "Nellore": 20,
+            "Chittoor": 40,
+            "Ananthapur": 10,
+            "Krishna": 10,
+            "Guntur": 10,
+            "Prakasham": 20,
+            "West Godavari": 10,
+            "East Godavari": 20,
+            "Vijayanagaram": 20,
+            "Vishakapatnam": 30,
+            "Srikakulam": 10,
+            "date": "2020-06-01"
+        },
+        {
+            "Kurnool": 30,
+            "Kadapa": 30,
+            "Nellore": 30,
+            "Chittoor": 30,
+            "Ananthapur": 30,
+            "Krishna": 30,
+            "Guntur": 30,
+            "Prakasham": 30,
+            "West Godavari": 30,
+            "East Godavari": 30,
+            "Vijayanagaram": 30,
+            "Vishakapatnam": 30,
+            "Srikakulam": 10,
+            "date": "2020-06-02"
+        },
+        {
+            "Kurnool": 40,
+            "Kadapa": 50,
+            "Nellore": 40,
+            "Chittoor": 50,
+            "Ananthapur": 40,
+            "Krishna": 50,
+            "Guntur": 50,
+            "Prakasham": 40,
+            "West Godavari": 30,
+            "East Godavari": 50,
+            "Vijayanagaram": 30,
+            "Vishakapatnam": 20,
+            "Srikakulam": 40,
+            "date": "2020-06-03"
+        },
+        {
+            "Kurnool": 60,
+            "Kadapa": 60,
+            "Nellore": 60,
+            "Chittoor": 60,
+            "Ananthapur": 60,
+            "Krishna": 40,
+            "Guntur": 60,
+            "Prakasham": 60,
+            "West Godavari": 60,
+            "East Godavari": 70,
+            "Vijayanagaram": 50,
+            "Vishakapatnam": 40,
+            "Srikakulam": 50,
+            "date": "2020-06-01"
+        }
+
+    ]
+}

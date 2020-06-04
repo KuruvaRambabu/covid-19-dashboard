@@ -70,9 +70,6 @@ class ZonalDashboard extends React.Component {
       const startDate = this.props.covid19DataStore.currentDate
       const stateDailyVerticalGraphData = this.props.covid19DataStore
          .stateDailyVerticalGraphData
-      console.log('hello', districtWiseData)
-      //const stateDailyData = this.props.covid19DataStore.districts
-      //console.log("stateDailyBarChartdataRambabu  ", stateDailyVerticalGraphData)
       const {
          getCovid19DataAPIStatus,
          getCovid19DataAPIError,
@@ -102,23 +99,24 @@ class ZonalDashboard extends React.Component {
                   sortCaseValues={this.sortCaseValues}
                   getCovid19DataAPIStatus={getCovid19DataAPIStatus}
                   getCovid19DataAPIError={getCovid19DataAPIError}
+
                />
             ) : (
-               <DailyMode
-                  confirmedCases={confirmedCases}
-                  activeCases={activeCases}
-                  recoveredCases={recoveredCases}
-                  deathCases={deathCases}
-                  districtWiseData={districtWiseData}
-                  stateCumulativeReportData={stateCumulativeReportData}
-                  barChartData={barChartData}
-                  sortCaseValues={this.sortCaseValues}
-                  getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
-                  getStateDailyDataAPIError={getStateDailyDataAPIError}
-                  networkCallForDailyData={this.networkCallForDailyData}
-                  stateDailyVerticalGraphData={stateDailyVerticalGraphData}
-               />
-            )}
+                  <DailyMode
+                     confirmedCases={confirmedCases}
+                     activeCases={activeCases}
+                     recoveredCases={recoveredCases}
+                     deathCases={deathCases}
+                     districtWiseData={districtWiseData}
+                     stateCumulativeReportData={stateCumulativeReportData}
+                     barChartData={barChartData}
+                     sortCaseValues={this.sortCaseValues}
+                     getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
+                     getStateDailyDataAPIError={getStateDailyDataAPIError}
+                     networkCallForDailyData={this.networkCallForDailyData}
+                     stateDailyVerticalGraphData={stateDailyVerticalGraphData}
+                  />
+               )}
          </ZonalDashboardMainContainer>
       )
    }

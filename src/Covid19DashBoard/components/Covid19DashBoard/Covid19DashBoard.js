@@ -66,9 +66,3 @@ class Covid19DashBoard extends React.Component {
 
 export default Covid19DashBoard
 
-//     < LoadingWrapperWithFailure
-// apiStatus = { getCovid19DataAPIStatus }
-// apiError = { getCovid19DataAPIError }
-// onRetryClick = { onRetryClick }
-// renderSuccessUI = { renderCovid19DataUI }
-//     />

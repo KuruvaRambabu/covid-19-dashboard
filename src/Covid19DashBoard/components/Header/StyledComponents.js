@@ -8,7 +8,10 @@ export const StateName = styled.p`
    ${tw``}
 `
 export const DatePicker = styled.div`
-   ${tw`   border text-black shadow-lg  `}
+
+background-color: red;
+
+   ${tw` text-black `}
 `
 export const CasesTypecontainer = styled.div`
    ${tw``}

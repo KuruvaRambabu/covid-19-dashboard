@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+   ResponsiveContainer,
    LineChart,
    Line,
    XAxis,
@@ -17,47 +18,49 @@ class CumulativeCasesGraphReport extends React.Component {
       const { stateCumulativeReportData } = this.props
 
       return (
-         <LineChart
-            width={550}
-            height={300}
-            data={toJS(stateCumulativeReportData)}
-            margin={{
-               top: 0,
-               right: 0,
-               left: 0,
-               bottom: 0
-            }}
-         >
-            <CartesianGrid strokeDasharray='3 3' />
-            <XAxis dataKey='tillDate' />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-               type='monotone'
-               dataKey='totalConfirmed'
-               stroke='#b30000'
-               activeDot={{ r: 1 }}
-            />
-            <Line
-               type='monotone'
-               dataKey='totalActive'
-               stroke='#0033cc'
-               activeDot={{ r: 1 }}
-            />
-            <Line
-               type='monotone'
-               dataKey='totalRecovered'
-               stroke='#00b300'
-               activeDot={{ r: 1 }}
-            />
-            <Line
-               type='monotone'
-               dataKey='totalDeaths'
-               stroke='#e6e600'
-               activeDot={{ r: 1 }}
-            />
-         </LineChart>
+         <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer>
+               <LineChart
+                  data={toJS(stateCumulativeReportData)}
+                  margin={{
+                     top: 0,
+                     right: 0,
+                     left: 0,
+                     bottom: 0
+                  }}
+               >
+                  <CartesianGrid strokeDasharray='3 3' />
+                  <XAxis dataKey='tillDate' />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                     type='monotone'
+                     dataKey='totalConfirmed'
+                     stroke='#b30000'
+                     activeDot={{ r: 1 }}
+                  />
+                  <Line
+                     type='monotone'
+                     dataKey='totalActive'
+                     stroke='#0033cc'
+                     activeDot={{ r: 1 }}
+                  />
+                  <Line
+                     type='monotone'
+                     dataKey='totalRecovered'
+                     stroke='#00b300'
+                     activeDot={{ r: 1 }}
+                  />
+                  <Line
+                     type='monotone'
+                     dataKey='totalDeaths'
+                     stroke='#e6e600'
+                     activeDot={{ r: 1 }}
+                  />
+               </LineChart>
+            </ResponsiveContainer>
+            </div>
       )
    }
 }

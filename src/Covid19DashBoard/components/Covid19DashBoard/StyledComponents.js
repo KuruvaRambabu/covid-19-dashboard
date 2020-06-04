@@ -8,11 +8,12 @@ export const Covid19DashBoardMainContainer = styled.div`
 `
 
 export const SignOutBtn = styled.button`
-   ${tw`focus:outline-none  border border-gray-500  rounded`}
+
+   ${tw`focus:outline-none mr-4  border font-serif rounded-sm`}
 `
 
 export const SignOutBtnContainer = styled.div`
-   ${tw` pt-2 mt-2 w-full sticky h-12 bg-gray-800 text-right text-white `}
+   ${tw` pt-2  w-full sticky h-12 bg-gray-800 text-right text-white `}
 `
 
 export const ZonalAndDistrictWiseContainer = styled.div`

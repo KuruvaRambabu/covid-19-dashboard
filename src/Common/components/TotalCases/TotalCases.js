@@ -21,7 +21,7 @@ class TotalCases extends React.Component {
       } = this.props
       return (
          <TotalCasesMainContainer>
-            <CaseContainer color='red'>
+            <CaseContainer>
                <CaseType>Confirmed</CaseType>
                <CasesNumber> {confirmedCases} </CasesNumber>
             </CaseContainer>
@@ -46,20 +46,4 @@ class TotalCases extends React.Component {
 }
 
 export default TotalCases
-
-{
-   /* <ConfirmedCasesContainer>
-                    <ConfirmedName>Confrimed</ConfirmedName>
-                    <ConfirmedNumber>300</ConfirmedNumber>
-                </ConfirmedCasesContainer>
-
-                <ActiveCasesContainer>
-                    <ActiveName>Active</ActiveName>
-                    <ActiveCasesNumber>100</ActiveCasesNumber>
-                </ActiveCasesContainer>
-
-                <RecoveredCasesContainer>
-                    <RecoveredName>Recovered</RecoveredName>
-                    <RecoveredCasesNumber>100</RecoveredCasesNumber>
-                </RecoveredCasesContainer> */
-}
+//className = "transition duration-500 transform hover:-translate-y-1 hover:scale-110" >

@@ -6,11 +6,12 @@ export const TotalCasesMainContainer = styled.div`
 `
 
 export const CaseContainer = styled.div`
-   background: ${props => props.color};
-   ${tw`w-full md:w-1/2 lg:w-1/4 h-20  flex flex-col justify-center items-center`}
+background-image: linear-gradient(-230deg,  #001a33,#000d33,#b3d9ff);
+   ${tw`w-full font-bold font-serif md:w-1/2 lg:w-1/4 h-20 flex flex-col justify-center items-center`}
 `
 
 export const CaseType = styled.p`
+
    ${tw``}
 `
 
@@ -21,7 +22,7 @@ export const CasesNumber = styled.p`
 // export const ConfirmedCasesContainer = styled.div`
 //     ${tw `w-40 bg-red-500 h-20  flex flex-col justify-center items-center`}
 // `
-
+//linear-gradient( #1bace2 34.48%,#00004d 30%, #00e2ed 100%);
 // export const ConfirmedName = styled.p`
 //     ${tw``}
 // `
@@ -52,4 +53,5 @@ export const CasesNumber = styled.p`
 
 // export const RecoveredCasesNumber = styled.p`
 //     ${tw`text-xl font-bold`}
+//background:radial-gradient(50% 50%, circle cover, red 0, blue 100%);
 // `

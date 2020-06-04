@@ -36,7 +36,8 @@ class CumulativeMode extends React.Component {
          districtWiseData,
          stateCumulativeReportData,
          barChartData,
-         sortCaseValues
+         sortCaseValues,
+         districtWiseConfirmedCasesLineChartData
       } = this.props
 
       return (
@@ -59,9 +60,9 @@ class CumulativeMode extends React.Component {
                      />
                   </CumulativeCasesGraphReportMainContainer>
                   <CumulativeCasesGraphReportMainContainer>
-                     <GraphName>CUMULATIVE CASES REPORT </GraphName>
+                     <GraphName>CUMULATIVE DISTRICT CONFIRMED CASES REPORT </GraphName>
                      <TotalDistrictsCasesGraph
-                        stateCumulativeReportData={stateCumulativeReportData}
+                        districtWiseConfirmedCasesLineChartData={districtWiseConfirmedCasesLineChartData}
                      />
                      {/* <CumulativeCasesGraphReport 
                            
@@ -87,10 +88,7 @@ class CumulativeMode extends React.Component {
       )
    })
 
-   onRetryClick = () => {
-      this.doNetworkCalls()
-   }
-
+  
    render() {
       const { getCovid19DataAPIStatus, getCovid19DataAPIError } = this.props
       return (

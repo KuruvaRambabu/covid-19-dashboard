@@ -24,7 +24,7 @@ export const ZonalDashboardCasesMapAndGraphContainer = styled.div`
 
 export const CumulativeCasesGraphReportMainContainer = styled.div`
    background: #13263a;
-   ${tw`shadow-lg mb-4 p-4  `}
+   ${tw`shadow-lg mb-4 p-4  w-full `}
 `
 
 export const CumulativeReportGraphs = styled.div`
@@ -33,7 +33,7 @@ export const CumulativeReportGraphs = styled.div`
       display: flex;
       justify-content: center;
       flex-direction: column;
-
+      
       align-items: center;
    }
 
@@ -62,7 +62,8 @@ export const CasesAndMapContainer = styled.div`
    @media (min-width: 993px) {
       width: 50%;
    }
-   ${tw`w-full   `};
+   background: #13263a;
+   ${tw`shadow-lg mb-4 `};
 `
 export const DistrictWiseTableData = styled.div`
    @media (max-width: 992px) {

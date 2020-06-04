@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+   ResponsiveContainer,
    ComposedChart,
    Bar,
    XAxis,
@@ -13,13 +14,12 @@ import { toJS } from 'mobx'
 class ConfirmedCasesBarChart extends React.Component {
    render() {
       const { districtWiseData } = this.props
-      console.log('me confrimed cases bar chart today', toJS(districtWiseData))
-
       return (
+         <div style={{ width: '90%', height: 500 }}>
+         <ResponsiveContainer>
          <ComposedChart
             layout='vertical'
-            width={500}
-            height={500}
+           
             data={toJS(districtWiseData)}
             margin={{
                top: 20,
@@ -41,6 +41,8 @@ class ConfirmedCasesBarChart extends React.Component {
                fill='#f56565'
             />
          </ComposedChart>
+         </ResponsiveContainer>
+         </div>
       )
    }
 }

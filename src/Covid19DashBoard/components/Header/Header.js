@@ -44,6 +44,7 @@ class Header extends React.Component {
                         // onSelect={this.onSelectDate}
                         selected={startDate}
                         dateFormat='yyyy-MM-dd'
+                       
                      />
                   </DatePicker>
                </Datelabel>

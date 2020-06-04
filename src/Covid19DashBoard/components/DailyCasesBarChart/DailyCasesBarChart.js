@@ -16,7 +16,6 @@ import { observer } from 'mobx-react'
 class DailyCasesBarChart extends React.Component {
    render() {
       const { stateCumulativeReportData, type, color } = this.props
-
       return (
          <BarChart
             width={500}
