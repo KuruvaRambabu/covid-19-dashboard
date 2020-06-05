@@ -133,3 +133,8 @@ export const ConfirmedCasesBarChartContainer = styled.div`
 export const DistrictWIseReportName = styled.div`
    ${tw`p-5  text-xl font-bold`}
 `
+
+
+export const DistrictButtonsContainer = styled.div`
+   ${tw`p-5  text-xl font-bold`}
+`

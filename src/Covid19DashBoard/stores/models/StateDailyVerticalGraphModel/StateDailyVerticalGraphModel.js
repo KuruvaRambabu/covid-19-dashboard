@@ -3,7 +3,6 @@ class StateDailyVerticalGraphModel {
    totalRecovered
    totalConfirmed
    totalDeaths
-
    date
    constructor(data) {
       this.totalActive = data.total_active

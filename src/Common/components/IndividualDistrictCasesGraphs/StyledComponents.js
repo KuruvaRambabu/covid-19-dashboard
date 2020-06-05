@@ -6,5 +6,5 @@ export const IndividualDistrictCasesGraphMainContainer = styled.div`
    ${tw` shadow-lg m-2 p-4  font-serif font-medium`};
 `
 export const DistrictNameTag = styled.p`
-   ${tw`font-bold p-2`}
+   ${tw`font-bold text-xm p-2 font-serif `}
 `

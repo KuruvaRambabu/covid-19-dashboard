@@ -9,12 +9,10 @@ export const StateName = styled.p`
 `
 export const DatePicker = styled.div`
 
-background-color: red;
-
    ${tw` text-black `}
 `
 export const CasesTypecontainer = styled.div`
-   ${tw``}
+   ${tw`flex`}
 `
 export const CumulativeBtn = styled.button`
    background: ${props => (props.isCumulative ? ' #4d0099' : '')};

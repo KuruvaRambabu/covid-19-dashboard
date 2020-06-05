@@ -16,7 +16,7 @@ import {
    TableRow,
    ConfirmedCasesBarChartContainer,
    DistrictWIseReportName
-} from '../ZonalDashboard/StyledComponents'
+} from '../ZonalDashboard/styledComponents'
 
 import TotalCases from '../../../Common/components/TotalCases'
 import CasesAndItsMap from '../../../Common/components/CasesAndItsMap/CasesAndItsMap'
@@ -24,7 +24,7 @@ import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/
 import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
 import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
 
-@observer
+@observer 
 class DailyMode extends React.Component {
    componentDidMount() {
       this.props.networkCallForDailyData()
@@ -35,6 +35,10 @@ class DailyMode extends React.Component {
          districtWiseData,
          stateCumulativeReportData,
          barChartData,
+         confirmedCases,
+         activeCases,
+         deathCases,
+         recoveredCases,
          stateDailyVerticalGraphData
       } = this.props
       //console.log("statedailt", barChartData)
@@ -43,10 +47,10 @@ class DailyMode extends React.Component {
             <ZonalDashboardCasesMapAndGraphContainer>
                <CasesAndMapContainer>
                   <TotalCases
-                     confirmedCases={0}
+                     confirmedCases={confirmedCases}
                      activeCases={0}
-                     recoveredCases={0}
-                     deathCases={0}
+                     recoveredCases={recoveredCases}
+                     deathCases={deathCases}
                   />
                   <CasesAndItsMap />
                </CasesAndMapContainer>

@@ -21,6 +21,7 @@ class IndividualDistrictCasesGraph extends React.Component {
 
       return (
          <React.Fragment>
+          
             <IndividualDistrictCasesGraphMainContainer>
                <DistrictNameTag>
                   CUMULATIVE CONFIRMED CASES - {name.toUpperCase()}
@@ -36,7 +37,7 @@ class IndividualDistrictCasesGraph extends React.Component {
                      bottom: 5
                   }}
                >
-                  <CartesianGrid strokeDasharray='3 3' />
+                  
                   <XAxis dataKey='tillDate' />
                   <YAxis />
                   <Tooltip />

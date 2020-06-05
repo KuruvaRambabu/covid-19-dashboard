@@ -8,6 +8,7 @@ import CasesAndItsMap from '../../../Common/components/CasesAndItsMap/CasesAndIt
 import CumulativeCasesGraphReport from '../CumulativeCasesGraphReport/CumulativeCasesGraphReport'
 import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/DataInTableFormatByDistrictWise'
 import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
+import distrtictButtons from "../../fixtures/districtButtons.json"
 
 import {
    ZonalDashboardCasesMapAndGraphContainer,
@@ -20,10 +21,12 @@ import {
    TableContainer,
    TableHeader,
    TableRow,
+   DistrictButtonsContainer,
    ConfirmedCasesBarChartContainer,
    DistrictWIseReportName
-} from '../ZonalDashboard/StyledComponents'
+} from '../ZonalDashboard/styledComponents'
 import TotalDistrictsCasesGraph from '../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph'
+import DistrictButton from "../../../Common/components/DistrcitsButton/DistrictButton"
 
 @observer
 class CumulativeMode extends React.Component {
@@ -37,7 +40,9 @@ class CumulativeMode extends React.Component {
          stateCumulativeReportData,
          barChartData,
          sortCaseValues,
-         districtWiseConfirmedCasesLineChartData
+         districtWiseConfirmedCasesLineChartData,
+         onRetryClick,
+         onClickGotoDistrictPage
       } = this.props
 
       return (
@@ -50,7 +55,19 @@ class CumulativeMode extends React.Component {
                      recoveredCases={recoveredCases}
                      deathCases={deathCases}
                   />
-                  <CasesAndItsMap />
+                  <DistrictButtonsContainer>
+                     {distrtictButtons.districts.map(district => {
+                        return <DistrictButton
+                           onClickGotoDistrictPage={onClickGotoDistrictPage}
+                          district = {district}
+                          key={district.districtId}
+                        />
+                     })}
+
+                  </DistrictButtonsContainer>
+
+
+                  {/* <CasesAndItsMap /> */}
                </CasesAndMapContainer>
                <CumulativeReportGraphs>
                   <CumulativeCasesGraphReportMainContainer>
@@ -88,45 +105,17 @@ class CumulativeMode extends React.Component {
       )
    })
 
-  
    render() {
-      const { getCovid19DataAPIStatus, getCovid19DataAPIError } = this.props
+      const { getCovid19DataAPIStatus, getCovid19DataAPIError, onRetryClick } = this.props
       return (
          <LoadingWrapperWithFailure
             apiStatus={getCovid19DataAPIStatus}
             apiError={getCovid19DataAPIError}
-            onRetryClick={this.onRetryClick}
+            onRetryClick={onRetryClick}
             renderSuccessUI={this.renderCumulativeCovid19DataUI}
          />
       )
    }
 }
 
-export default CumulativeMode
-
-{
-   /* <TableContainer> */
-}
-{
-   /* <TableRow index={1} >
-                            <TableHeader onClick={sortCaseValues} id="districtName" >DistrictName</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalConfirmed" >Confirmed</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalActive">Active</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalRecovered">Recovered</TableHeader>
-                            <TableHeader onClick={sortCaseValues} id="totalDdeaths" >Deaths</TableHeader>
-
-                        </TableRow> */
-}
-{
-   /* {districtWiseData.map((district, index) => (
-                            <DataInTableFormatByDistrictWise index={index} key={district.district_id} district={district} />
-
-                        ))} */
-}
-
-{
-   /* <TotalDistrictsCasesGraph
-                            districtConformedCasesGraphData={districtConformedCasesGraphData}
-
-                        /> */
-}
+export default CumulativeMode;

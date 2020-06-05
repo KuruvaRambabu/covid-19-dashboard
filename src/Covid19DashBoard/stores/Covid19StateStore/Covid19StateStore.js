@@ -8,6 +8,8 @@ import CumulativeDataReportModel from '../models/CumulativeDataReportModel/Cumul
 import DistrictWiseDataAnalysisModel from '../models/districtWiseDataAnalysisMode/districtWiseDataAnalysisModel'
 import { act } from 'react-dom/test-utils'
 import StateDailyVerticalGraphModel from '../models/StateDailyVerticalGraphModel/StateDailyVerticalGraphModel'
+import {format} from "date-fns"
+
 
 class Covid19DataStore {
    @observable covid19Data
@@ -58,13 +60,14 @@ class Covid19DataStore {
       this.getStateDailyDataAPIError = null
       this.getStateDailyDataAPIStatus = API_INITIAL
       this.stateDailyVerticalGraphData = []
+      this.getStateCumulativeReportDataAPIStatus = API_INITIAL
    }
 
    @action.bound
    getCovid19Data() {
-      const covidDataPromise = this.covid19APIService.Covid19DataAPI(
-         this.currentDate
-      )
+      const date = format((this.currentDate), ("yyyy-MM-dd"))
+      
+      const covidDataPromise = this.covid19APIService.Covid19DataAPI({till_date:date})
       return bindPromiseWithOnSuccess(covidDataPromise)
          .to(this.setGetCovidAPIStatus, response => {
             this.setCovid19DataAPIResponse(response)
@@ -76,8 +79,9 @@ class Covid19DataStore {
 
    @action.bound
    setCovid19DataAPIResponse(response) {
+      console.log("apiresponse", response)
       this.totalDeathCases = response.total_deaths
-      this.totalRecoveredCases = response.total_confirmed
+      this.totalRecoveredCases = response.total_recovered
       this.totalActiveCases = response.total_active
       this.totalConfirmedCases = response.total_confirmed
       const data = response.districts
@@ -116,10 +120,11 @@ class Covid19DataStore {
    @action.bound
    setGetDistrictWiseCaseAnalysisDataAPIError(error) {
       this.getDistrictWiseCaseAnalysisDataAPIError = error
-   }
+   } 
 
    @action.bound
    getStateCumulativeReportData() {
+      
       const stateCumulativeReportDataPromise = this.covid19APIService.stateCumulativeReportData()
       return bindPromiseWithOnSuccess(stateCumulativeReportDataPromise)
          .to(this.setGetStateCumulativeReportDataAPIStatus, response => {
@@ -157,6 +162,7 @@ class Covid19DataStore {
    @action.bound
    onChangeCurrentDate(date) {
       this.currentDate = date
+     
    }
 
    @action.bound
@@ -171,7 +177,8 @@ class Covid19DataStore {
 
    @action.bound
    getStateDailyData() {
-      const stateDailyDataPromise = this.covid19APIService.stateDailyData()
+      const date = format((this.currentDate), ("yyyy-MM-dd"))
+      const stateDailyDataPromise = this.covid19APIService.stateDailyData({date:date})
       return bindPromiseWithOnSuccess(stateDailyDataPromise)
          .to(this.setGetStateDailyDataAPIStatus, response => {
             this.setGetStateDailyDataAPIResponse(response)
@@ -184,10 +191,11 @@ class Covid19DataStore {
    @action.bound
    setGetStateDailyDataAPIStatus(apiStatus) {
       this.getStateDailyDataAPIStatus = apiStatus
-   }
+   } 
 
    @action.bound
    setGetStateDailyDataAPIResponse(response) {
+     
       this.totalDeathCases = response.total_deaths
       this.totalRecoveredCases = response.total_confirmed
       this.totalActiveCases = response.total_active
@@ -213,18 +221,25 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetStateDailyVerticalGraphDataAPIStatus(apiStatus) {}
-
+   setGetStateDailyVerticalGraphDataAPIStatus(apiStatus) {
+      this.getStateDailyVerticalGraphDataAPIStauts = apiStatus
+   }
+   
    @action.bound
    setGetStateDailyVerticalGraphDataAPIError(error) {}
 
    @action.bound
    setGetStateDailyVerticalGraphDataAPIResponse(response) {
-      const data = response.daily_report
-      data.forEach(district => {
+      console.log("api response", response)
+      const data = response.day_wise_report
+      console.log(toJS(data))
+      data.forEach((district) => {
+         console.log("loop side", district)
          const StateData = new StateDailyVerticalGraphModel(district)
          this.stateDailyVerticalGraphData.push(StateData)
       })
+      console.log("down side", this.stateDailyVerticalGraphData)
+     
    }
 
    @action.bound

@@ -22,16 +22,16 @@ import SignInButton from '../../../Common/components/Button/SignInButton'
 class SignInPage extends React.Component {
    render() {
       const {
-         userName,
+         email,
          password,
          errorMessage,
          onChangePassword,
          onChangeUserName,
          onClickSignIn,
          token,
-         apiStatus,
+         getUserSignInAPIStatus,
          passwordErrorMessage,
-         userNameErrorMessage
+         emailErrorMessage
       } = this.props
 
       return (
@@ -52,12 +52,12 @@ class SignInPage extends React.Component {
                      <InputField
                         onChangeField={onChangeUserName}
                         type={strings.userNameInputFieldType}
-                        value={userName}
+                        value={email}
                         placeholder={strings.userNamePlaceholderText}
-                        errorMessage={userNameErrorMessage}
+                        errorMessage={emailErrorMessage}
                      />
-                     {userNameErrorMessage ? (
-                        <ErrorMessage>{userNameErrorMessage}</ErrorMessage>
+                     {emailErrorMessage ? (
+                        <ErrorMessage>{emailErrorMessage}</ErrorMessage>
                      ) : (
                         ''
                      )}
@@ -81,6 +81,7 @@ class SignInPage extends React.Component {
 
                   <SignInButton
                      token={token}
+                     apiStatus = {getUserSignInAPIStatus}
                      onClickSignIn={onClickSignIn}
                      name={strings.LoginButtonName}
                   />

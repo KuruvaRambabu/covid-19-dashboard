@@ -1,0 +1,56 @@
+{
+    "districts": [
+        {
+            "districtName": "Kadapa",
+            "districtId": 1
+        },
+        {
+            "districtName": "Kurnool",
+            "districtId": 2
+        },
+        {
+            "districtName": "Chittoor",
+            "districtId": 3
+        },
+        {
+            "districtName": "Ananthapur",
+            "districtId": 4
+        },
+        {
+            "districtName": "Nellore",
+            "districtId": 5
+        },
+        {
+            "districtName": "Krishna",
+            "districtId": 6
+        },
+        {
+            "districtName": "Guntur",
+            "districtId": 7
+        },
+        {
+            "districtName": "Prakasam",
+            "districtId": 8
+        },
+        {
+            "districtName": "West Godavari",
+            "districtId": 9
+        },
+        {
+            "districtName": "East Godavari",
+            "districtId": 10
+        },
+        {
+            "districtName": "Vijayanagaram",
+            "districtId": 11
+        },
+        {
+            "districtName": "Vishakapatnam",
+            "districtId": 12
+        },
+        {
+            "districtName": "Srikakulam",
+            "districtId": 13
+        }
+    ]
+}

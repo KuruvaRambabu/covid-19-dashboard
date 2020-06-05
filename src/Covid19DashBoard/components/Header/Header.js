@@ -1,5 +1,7 @@
 import React from 'react'
 import strings from '../../i18n/strings.json'
+import {format } from "date-fns"
+
 import {
    HeaderMainContainer,
    CasesTypecontainer,
@@ -14,12 +16,12 @@ import { observer } from 'mobx-react'
 import ReactDatePicker from 'react-datepicker'
 import subDays from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { observable } from 'mobx'
+import { observable, values } from 'mobx'
 
 @observer
 class Header extends React.Component {
-   handleChangeDate = date => {
-      this.startDate = date
+   handleChangeDate = (date) => {
+      
       this.props.onChangeCurrentDate(date)
    }
 

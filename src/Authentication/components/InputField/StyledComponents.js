@@ -4,7 +4,7 @@ import { colors } from '../../themes/Colors'
 
 export const InputElement = styled.input`
    border: 1px solid
-      ${props => (props.border === 'red' ? 'red' : colors.darkBlueGrey)};
+      ${props => (props.border === 'red' ? 'red' : colors.steel)};
    color: ${colors.darkBlueGrey};
 
    font-size: 16px;

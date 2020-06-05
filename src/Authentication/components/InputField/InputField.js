@@ -1,5 +1,8 @@
 import React from 'react'
 import { InputElement } from './StyledComponents'
+import { colors } from "../../themes/Colors"
+
+
 
 class InputField extends React.Component {
    render() {
@@ -12,7 +15,7 @@ class InputField extends React.Component {
       } = this.props
       return (
          <InputElement
-            border={errorMessage ? 'red' : 'gray'}
+            border={errorMessage ? 'red' : colors.steel}
             type={type}
             placeholder={placeholder}
             value={value}

@@ -11,12 +11,12 @@ class SignInButton extends React.Component {
 
       return (
          <div>
-            {token ? (
+            {apiStatus===100 ? (
                <PrimarySignInButton
                   type='submit'
                   value='Submit'
                   onClick={onClickSignIn}
-                  apiStatus={apiStatus}
+                  
                >
                   <Loader type='TailSpin' color='#fff' height={30} width={30} />
                </PrimarySignInButton>
@@ -25,7 +25,7 @@ class SignInButton extends React.Component {
                   type='submit'
                   value='Submit'
                   onClick={onClickSignIn}
-                  apiStatus={apiStatus}
+                  
                >
                   {name}
                </PrimarySignInButton>

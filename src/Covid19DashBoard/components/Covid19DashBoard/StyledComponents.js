@@ -9,7 +9,7 @@ export const Covid19DashBoardMainContainer = styled.div`
 
 export const SignOutBtn = styled.button`
 
-   ${tw`focus:outline-none mr-4  border font-serif rounded-sm`}
+   ${tw`focus:outline-none mr-2  border font-serif rounded-sm`}
 `
 
 export const SignOutBtnContainer = styled.div`

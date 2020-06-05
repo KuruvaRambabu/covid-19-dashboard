@@ -5,28 +5,29 @@ import { observable } from 'mobx'
 import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
 import { getAccessToken } from '../../../Common/utils/StorageUtils'
 import { Redirect, withRouter } from 'react-router-dom'
+import { getFormattedError, getUserDisplayableErrorMessage } from "../../../Common/utils/APIUtils"
 
 @inject('authenticationStore')
 @observer
 class SignInRoute extends React.Component {
-   @observable userName
+   @observable email
    @observable password
    @observable errorMessage
    @observable token
    @observable passwordErrorMessage
-   @observable userNameErrorMessage
+   @observable emailErrorMessage
    @observable token
 
    constructor(props) {
       super(props)
-      this.userName = ''
+      this.email = ''
       this.password = ''
       this.errorMessage = ''
       this.token = false
    }
 
    onChangeUserName = event => {
-      this.userName = event.target.value
+      this.email = event.target.value
    }
 
    onChangePassword = event => {
@@ -37,32 +38,35 @@ class SignInRoute extends React.Component {
       const { history } = this.props
       history.replace(COVID_19_DASHBOARD_PATH)
    }
+   
 
    onSignInFailure = () => {
       const { getUserSignInAPIError: apiError } = this.props.authenticationStore
       if (apiError !== null && apiError !== undefined) {
-         this.errorMessage = apiError
+        
+         this.errorMessage =  getUserDisplayableErrorMessage(apiError)
       }
    }
 
    onClickSignIn = async event => {
       event.preventDefault()
-      if (this.userName === '') {
-         this.userNameErrorMessage = 'Please enter username'
+      if (this.email === '') {
+         this.emailErrorMessage = 'Please enter email'
          this.passwordErrorMessage = ''
       } else if (this.password === '') {
-         this.userNameErrorMessage = ''
+         this.emailErrorMessage = ''
          this.passwordErrorMessage = 'Please enter password'
       } else {
-         this.userNameErrorMessage = ''
+         this.emailErrorMessage = ''
          this.passwordErrorMessage = ''
          this.errorMessage = ''
          this.token = true
          const { userSignIn } = this.props.authenticationStore
 
+         console.log("email", this.email)
          userSignIn(
             {
-               username: this.username,
+               email: this.email,
                password: this.password
             },
             this.onSignInSuccess,
@@ -79,15 +83,16 @@ class SignInRoute extends React.Component {
       return (
          <SignInPage
             getUserSignInAPIStatus={getUserSignInAPIStatus}
-            userName={this.userName}
+            email={this.email}
             password={this.password}
             errorMessage={this.errorMessage}
             onChangePassword={this.onChangePassword}
             onChangeUserName={this.onChangeUserName}
             onClickSignIn={this.onClickSignIn}
             passwordErrorMessage={this.passwordErrorMessage}
-            userNameErrorMessage={this.userNameErrorMessage}
+            emailErrorMessage={this.emailErrorMessage}
             token={this.token}
+            
          />
       )
    }

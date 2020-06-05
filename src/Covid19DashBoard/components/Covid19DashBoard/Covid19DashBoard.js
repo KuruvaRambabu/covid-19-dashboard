@@ -19,7 +19,9 @@ import DistrictWiseCaseAnalysis from '../DistrictWiseCaseAnalysis/DistrictWiseCa
 
 @observer
 class Covid19DashBoard extends React.Component {
+   
    render() {
+
       const {
          onClickSignOut,
          zonalDashboard,

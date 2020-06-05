@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../Header'
-import { ZonalDashboardMainContainer } from './StyledComponents'
+import { ZonalDashboardMainContainer } from './styledComponents'
 import { observer, inject } from 'mobx-react'
 import CumulativeMode from '../CumulativeMode/CumulativeMode'
 import DailyMode from '../DailyMode/DailyMode'
@@ -42,14 +42,24 @@ class ZonalDashboard extends React.Component {
       }
    }
 
+   onClickGotoDistrictPage=(e)=>{
+      
+   }
+
    onChangeCurrentDate = date => {
       if (this.isCumulative) {
+         this.props.covid19DataStore.onChangeCurrentDate(date)
          this.doNetworkCalls()
-         this.props.covid19DataStore.onChangeCurrentDate(date)
+        
       } else {
-         this.networkCallForDailyData()
          this.props.covid19DataStore.onChangeCurrentDate(date)
+         this.networkCallForDailyData()
+         
       }
+   }
+
+   onRetryClick=()=>{
+      this.doNetworkCalls()
    }
 
    networkCallForDailyData = () => {
@@ -99,7 +109,8 @@ class ZonalDashboard extends React.Component {
                   sortCaseValues={this.sortCaseValues}
                   getCovid19DataAPIStatus={getCovid19DataAPIStatus}
                   getCovid19DataAPIError={getCovid19DataAPIError}
-
+                  onRetryClick = {this.onRetryClick}
+                  onClickGotoDistrictPage={this.onClickGotoDistrictPage}
                />
             ) : (
                   <DailyMode
