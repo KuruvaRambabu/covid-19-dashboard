@@ -21,7 +21,6 @@ import { observable, values } from 'mobx'
 @observer
 class Header extends React.Component {
    handleChangeDate = (date) => {
-      
       this.props.onChangeCurrentDate(date)
    }
 
@@ -31,12 +30,13 @@ class Header extends React.Component {
          onClickCumulativeData,
          isDaily,
          isCumulative,
-         startDate
+         startDate,
+         name,changeDataMode
       } = this.props
       console.log('date', startDate.toLocaleDateString())
       return (
          <HeaderMainContainer>
-            <StateName>Andhra Pradesh</StateName>
+            <StateName onClick = {changeDataMode}>Andhra Pradesh /{name} </StateName>
             <React.Fragment>
                <Datelabel>
                   Date :

@@ -10,21 +10,23 @@ import { observer } from 'mobx-react'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import './table.css'
+import { toJS } from "mobx"
+
 
 @observer
 class DataInTableFormatByDistrictWise extends React.Component {
    render() {
-      const { districtWiseData } = this.props
-
+      const { tableData, tableDataAccessor,tableHeaderName } = this.props
+      console.log("table data, now", tableData)
       return (
          <DistrictWiseTableDataContainer>
             <ReactTable
                showPagination={false}
-               defaultPageSize={districtWiseData.length}
+               defaultPageSize={tableData.length}
                columns={[
                   {
-                     Header: 'District',
-                     accessor: 'districtName'
+                     Header: tableHeaderName,
+                     accessor: tableDataAccessor
                   },
                   {
                      Header: 'Recovered',
@@ -43,7 +45,7 @@ class DataInTableFormatByDistrictWise extends React.Component {
                      accessor: 'totalDeaths'
                   }
                ]}
-               data={districtWiseData}
+               data={toJS(tableData)}
                defaultSorted={[
                   {
                      id: 'totalCases',

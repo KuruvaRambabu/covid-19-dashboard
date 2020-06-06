@@ -19,7 +19,7 @@ class Covid19DashBoardRoute extends React.Component {
    // doNetworkCalls() {
    //     this.props.covid19DataStore.getCovid19Data()
    // }
-   componentWillMount() {
+   componentWillUnMount() {
       this.props.covid19DataStore.clearUserSession()
    }
 
@@ -52,9 +52,7 @@ class Covid19DashBoardRoute extends React.Component {
             zonalDashboard={this.zonalDashboard}
             onClickZonalDashboard={this.onClickZonalDashboard}
             districtWiseCaseAnalysis={this.districtWiseCaseAnalysis}
-            onClickDistrictWIseCaseAnalysis={
-               this.onClickDistrictWIseCaseAnalysis
-            }
+            onClickDistrictWIseCaseAnalysis={this.onClickDistrictWIseCaseAnalysis}
             renderCovid19DataUI={this.renderCovid19DataUI}
             onRetryClick={this.onRetryClick}
          />

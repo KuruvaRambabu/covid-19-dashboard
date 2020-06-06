@@ -5,7 +5,7 @@ export const HeaderMainContainer = styled.div`
    ${tw`p-5 flex flex-col justify-around  md:flex-row md:justify-between h-40  md:h-20 flex-flow items-center  `}
 `
 export const StateName = styled.p`
-   ${tw``}
+   ${tw`font-serif text-xl cursor-pointer`}
 `
 export const DatePicker = styled.div`
 

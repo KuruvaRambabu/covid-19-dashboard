@@ -10,6 +10,7 @@ import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/
 import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
 import distrtictButtons from "../../fixtures/districtButtons.json"
 
+
 import {
    ZonalDashboardCasesMapAndGraphContainer,
    CasesAndMapContainer,
@@ -18,9 +19,6 @@ import {
    GraphName,
    ZonalDashboardTableFormatDataAndChartContainer,
    DistrictWiseTableData,
-   TableContainer,
-   TableHeader,
-   TableRow,
    DistrictButtonsContainer,
    ConfirmedCasesBarChartContainer,
    DistrictWIseReportName
@@ -36,13 +34,15 @@ class CumulativeMode extends React.Component {
          activeCases,
          recoveredCases,
          deathCases,
-         districtWiseData,
+         tableData,
          stateCumulativeReportData,
          barChartData,
          sortCaseValues,
          districtWiseConfirmedCasesLineChartData,
          onRetryClick,
-         onClickGotoDistrictPage
+         onClickGotoDistrictPage,
+         tableHeaderName,
+         tableDataAccessor,barChartDataKey
       } = this.props
 
       return (
@@ -91,18 +91,22 @@ class CumulativeMode extends React.Component {
             <ZonalDashboardTableFormatDataAndChartContainer>
                <DistrictWiseTableData>
                   <DataInTableFormatByDistrictWise
-                     districtWiseData={districtWiseData}
+                     tableData={tableData}
+                     tableHeaderName = {tableHeaderName}
+                     tableDataAccessor = {tableDataAccessor}
+
                   />
                </DistrictWiseTableData>
                <ConfirmedCasesBarChartContainer>
                   <DistrictWIseReportName>
                      District Wise Report
                   </DistrictWIseReportName>
-                  <ConfirmedCasesBarChart districtWiseData={barChartData} />
+                  <ConfirmedCasesBarChart
+                  barChartDataKey={barChartDataKey} districtWiseData={barChartData} />
                </ConfirmedCasesBarChartContainer>
             </ZonalDashboardTableFormatDataAndChartContainer>
          </React.Fragment>
-      )
+      ) 
    })
 
    render() {

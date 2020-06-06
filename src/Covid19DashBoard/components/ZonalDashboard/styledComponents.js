@@ -24,7 +24,7 @@ export const ZonalDashboardCasesMapAndGraphContainer = styled.div`
 
 export const CumulativeCasesGraphReportMainContainer = styled.div`
    background: #13263a;
-   ${tw`shadow-lg mb-4 p-4  w-full `}
+   ${tw`shadow-lg p-4  w-full `}
 `
 
 export const CumulativeReportGraphs = styled.div`

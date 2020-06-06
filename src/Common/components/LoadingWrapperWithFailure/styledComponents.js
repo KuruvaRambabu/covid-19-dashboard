@@ -6,7 +6,7 @@ export const LoadingViewContainer = styled.div`
 `
 
 export const FailureViewContainer = styled.div`
-   ${tw`flex flex-col justify-center items-center min-h-screen bg-gray-200`}
+   ${tw`flex flex-col justify-center items-center min-h-screen text-red-500 bg-gray-200`}
 `
 
 export const FailureViewMessage = styled.p`

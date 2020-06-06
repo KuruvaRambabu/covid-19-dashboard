@@ -10,10 +10,12 @@ import {
    Legend
 } from 'recharts'
 import { toJS } from 'mobx'
+import { observer } from "mobx-react"
 
+@observer
 class ConfirmedCasesBarChart extends React.Component {
    render() {
-      const { districtWiseData } = this.props
+      const { districtWiseData,barChartDataKey } = this.props
       return (
          <div style={{ width: '90%', height: 500 }}>
          <ResponsiveContainer>
@@ -30,7 +32,7 @@ class ConfirmedCasesBarChart extends React.Component {
          >
             <CartesianGrid stroke='#ccc' strokeDasharray='5 5' />
             <XAxis type='number' />
-            <YAxis dataKey='districtName' type='category' stroke='white' />
+            <YAxis dataKey={barChartDataKey} type='category' stroke='white' />
             <Tooltip />
             <Legend />
 

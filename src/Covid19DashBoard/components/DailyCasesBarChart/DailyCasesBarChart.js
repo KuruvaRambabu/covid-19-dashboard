@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+   ResponsiveContainer,
    BarChart,
    Bar,
    XAxis,
@@ -17,9 +18,10 @@ class DailyCasesBarChart extends React.Component {
    render() {
       const { stateCumulativeReportData, type, color } = this.props
       return (
+         <div style={{ width: '90%', height: 200 }}>
+         <ResponsiveContainer>
          <BarChart
-            width={500}
-            height={300}
+           
             data={toJS(stateCumulativeReportData)}
             margin={{
                top: 5,
@@ -34,6 +36,8 @@ class DailyCasesBarChart extends React.Component {
             <Legend />
             <Bar dataKey={type} barSize={7} fill={color} />
          </BarChart>
+         </ResponsiveContainer>
+         </div>
       )
    }
 }

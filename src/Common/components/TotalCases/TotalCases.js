@@ -21,22 +21,22 @@ class TotalCases extends React.Component {
       } = this.props
       return (
          <TotalCasesMainContainer>
-            <CaseContainer>
-               <CaseType>Confirmed</CaseType>
+            <CaseContainer color='#e53e3e' >
+               <CaseType  >Confirmed</CaseType>
                <CasesNumber> {confirmedCases} </CasesNumber>
             </CaseContainer>
 
-            <CaseContainer color='orange'>
+            <CaseContainer color="#3182ce">
                <CaseType>Active</CaseType>
                <CasesNumber> {activeCases} </CasesNumber>
             </CaseContainer>
 
-            <CaseContainer color='green'>
+            <CaseContainer color='#48bb78'>
                <CaseType>Recovered</CaseType>
                <CasesNumber> {recoveredCases} </CasesNumber>
             </CaseContainer>
 
-            <CaseContainer color='black'>
+            <CaseContainer color='#595959'>
                <CaseType>Deaths</CaseType>
                <CasesNumber> {deathCases} </CasesNumber>
             </CaseContainer>

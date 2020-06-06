@@ -24,7 +24,7 @@ import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/
 import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
 import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
 
-@observer 
+@observer
 class DailyMode extends React.Component {
    componentDidMount() {
       this.props.networkCallForDailyData()
@@ -32,14 +32,17 @@ class DailyMode extends React.Component {
 
    renderStateDailySuccessUI = observer(() => {
       const {
-         districtWiseData,
+         tableData,
          stateCumulativeReportData,
+         tableHeaderName,
          barChartData,
          confirmedCases,
          activeCases,
          deathCases,
          recoveredCases,
-         stateDailyVerticalGraphData
+         stateDailyVerticalGraphData,
+         tableDataAccessor,
+         barChartDataKey
       } = this.props
       //console.log("statedailt", barChartData)
       return (
@@ -86,7 +89,9 @@ class DailyMode extends React.Component {
             <ZonalDashboardTableFormatDataAndChartContainer>
                <DistrictWiseTableData>
                   <DataInTableFormatByDistrictWise
-                     districtWiseData={districtWiseData}
+                     tableData={tableData}
+                     tableDataAccessor={tableDataAccessor}
+                     tableHeaderName={tableHeaderName}
                   />
                </DistrictWiseTableData>
 
@@ -94,7 +99,9 @@ class DailyMode extends React.Component {
                   <DistrictWIseReportName>
                      District Wise Report
                   </DistrictWIseReportName>
-                  <ConfirmedCasesBarChart districtWiseData={barChartData} />
+                  <ConfirmedCasesBarChart
+                     barChartDataKey={barChartDataKey}
+                     districtWiseData={barChartData} />
                </ConfirmedCasesBarChartContainer>
             </ZonalDashboardTableFormatDataAndChartContainer>
          </React.Fragment>
@@ -119,19 +126,3 @@ class DailyMode extends React.Component {
 
 export default DailyMode
 
-{
-   /* <TableContainer> */
-}
-{
-   /* <TableRow index={1} >
-                                <TableHeader onClick={sortCaseValues} id="districtName" >DistrictName</TableHeader>
-                                <TableHeader onClick={sortCaseValues} id="totalConfirmed" >Confirmed</TableHeader>
-                                <TableHeader onClick={sortCaseValues} id="totalActive">Active</TableHeader>
-                                <TableHeader onClick={sortCaseValues} id="totalRecovered">Recovered</TableHeader>
-                                 <TableHeader onClick={sortCaseValues} id="totalDeaths" >Deaths</TableHeader>
-
-                            </TableRow>
-                            {districtWiseData.map((district, index) => (
-                                <DataInTableFormatByDistrictWise index={index} key={district.district_id} district={district} />
-                            ))} */
-}

@@ -17,7 +17,7 @@ class TotalDistrictsCasesGraph extends React.Component {
       const { stateCumulativeReportData } = this.props
       console.log("confirmedCasesGraph", districtsConfirmedCasesOverTheTime)
       return (
-         <div style={{ width: '100%', height: 300 }}>
+         <div style={{ width: '100%', height: 250 }}>
             <ResponsiveContainer>
                <LineChart
 
@@ -29,7 +29,7 @@ class TotalDistrictsCasesGraph extends React.Component {
                      bottom: 5
                   }}
                >
-                  <CartesianGrid strokeDasharray='3 3' />
+                  
                   <XAxis dataKey='date' />
                   <YAxis />
                   <Tooltip />
@@ -58,8 +58,6 @@ class TotalDistrictsCasesGraph extends React.Component {
                   <Line type='monotone' dataKey="Vishakaptnam" stroke='#b30000' activeDot={{ r: 1 }} />
 
                   <Line type='monotone' dataKey="Srikakulam" stroke='#b30000' activeDot={{ r: 1 }} />
-
-
                </LineChart>
             </ResponsiveContainer>
          </div>

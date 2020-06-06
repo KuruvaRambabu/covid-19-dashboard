@@ -1,2 +1,2 @@
-export const baseURL =  'https://3002b6174b8b.ngrok.io/api/covid_dashboard/'
+export const baseURL =  'https:///2d784c104f47.ngrok.io/api/covid_dashboard/'
 

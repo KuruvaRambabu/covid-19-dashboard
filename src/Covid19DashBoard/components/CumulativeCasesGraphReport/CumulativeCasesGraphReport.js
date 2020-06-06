@@ -18,7 +18,7 @@ class CumulativeCasesGraphReport extends React.Component {
       const { stateCumulativeReportData } = this.props
 
       return (
-         <div style={{ width: '100%', height: 300 }}>
+         <div style={{ width: '100%', height: 200 }}>
             <ResponsiveContainer>
                <LineChart
                   data={toJS(stateCumulativeReportData)}
@@ -29,7 +29,7 @@ class CumulativeCasesGraphReport extends React.Component {
                      bottom: 0
                   }}
                >
-                  <CartesianGrid strokeDasharray='3 3' />
+                 
                   <XAxis dataKey='tillDate' />
                   <YAxis />
                   <Tooltip />
