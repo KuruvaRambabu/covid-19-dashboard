@@ -19,7 +19,7 @@ class ZonalDashboard extends React.Component {
    }
 
    doNetworkCalls = () => {
-      this.props.covid19DataStore.init()
+      this.props.covid19DataStore.init() 
       this.props.covid19DataStore.getStateCumulativeReportData()
       this.props.covid19DataStore.getCovid19Data()
    }
@@ -139,11 +139,12 @@ class ZonalDashboard extends React.Component {
          getCovid19DataAPIStatus,
          getCovid19DataAPIError,
          getStateDailyDataAPIStatus,
-         getStateDailyDataAPIError
+         getStateDailyDataAPIError,
+         getStateCumulativeReportDataAPIStatus,
+         getStateCumulativeReportDataAPIError
       } = this.props.covid19DataStore
       const name = this.props.covid19DataStore.name
-      const selectedDistrictDailyData = this.props.covid19DataStore
-         .selectedDistrictBarChartData
+      const selectedDistrictDailyData = this.props.covid19DataStore.selectedDistrictBarChartData
       const {
          selectedDistrictDailyVerticalGraphData
       } = this.props.covid19DataStore
@@ -180,6 +181,7 @@ class ZonalDashboard extends React.Component {
                         getCovid19DataAPIError={getCovid19DataAPIError}
                         onRetryClick={this.onRetryClick}
                         onClickGotoDistrictPage={this.onClickGotoDistrictPage}
+                        getStateCumulativeReportDataAPIStatus={getStateCumulativeReportDataAPIStatus}
                      />
                   ) : (
                      <DailyMode
@@ -255,47 +257,4 @@ class ZonalDashboard extends React.Component {
 
 export default ZonalDashboard
 
-// {
-//    "districtName": "Chittoor",
-//    "districtId": 3
-// },
-// {
-//    "districtName": "Ananthapur",
-//    "districtId": 4
-// },
-// {
-//    "districtName": "Nellore",
-//    "districtId": 5
-// },
-// {
-//    "districtName": "Krishna",
-//    "districtId": 6
-// },
-// {
-//    "districtName": "Guntur",
-//    "districtId": 7
-// },
-// {
-//    "districtName": "Prakasam",
-//    "districtId": 8
-// },
-// {
-//    "districtName": "West Godavari",
-//    "districtId": 9
-// },
-// {
-//    "districtName": "East Godavari",
-//    "districtId": 10
-// },
-// {
-//    "districtName": "Vijayanagaram",
-//    "districtId": 11
-// },
-// {
-//    "districtName": "Vishakapatnam",
-//    "districtId": 12
-// },
-// {
-//    "districtName": "Srikakulam",
-//    "districtId": 13
-// }
+

@@ -1,3 +1,44 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. Navigation utils path
     src/modeleName/utils/NavigationUtils/index.js
 
@@ -31,7 +72,19 @@ doubts session
 1. getLoading status
 2. 
 3. path parameter -ehich is unique through out the page
-4. query parameter      
+4. query parameter  
+
+planning steps
+
+    1. src/
+    2.Common
+    3. modules and why modules
+    4 .Admin module 
+
+
+ Lets ride App Plan
+ 1. stores
+    -->
 
 
 

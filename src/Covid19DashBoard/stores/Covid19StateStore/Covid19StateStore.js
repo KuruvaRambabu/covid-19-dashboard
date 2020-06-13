@@ -97,7 +97,7 @@ class Covid19DataStore {
          this.covid19Data.push(StateData)
       })
    }
-
+ 
    @action.bound
    getDistrictWiseCaseAnalysisData() {
       const districtAnalysisDataPromise = this.covid19APIService.districtAnalysisData()
@@ -113,10 +113,13 @@ class Covid19DataStore {
    @action.bound
    setDistrictAnalysisDataResponse(response) {
       const dayWiseDistrictReport = response.day_wise_report
+      console.log("before creating model", dayWiseDistrictReport)
       dayWiseDistrictReport.forEach(district => {
          const districtData = new DistrictWiseDataAnalysisModel(district)
          this.districtAnalysisData.push(districtData)
+         
       })
+      console.log("district wise case analysis", this.districtAnalysisData)
    }
 
    @action.bound
@@ -152,6 +155,7 @@ class Covid19DataStore {
 
    @action.bound
    setGetStateCumulativeReportDataAPIStatus(apiStatus) {
+     
       this.getStateCumulativeReportDataAPIStatus = apiStatus
    }
 
