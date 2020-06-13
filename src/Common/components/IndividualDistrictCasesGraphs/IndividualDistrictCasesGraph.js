@@ -21,7 +21,6 @@ class IndividualDistrictCasesGraph extends React.Component {
 
       return (
          <React.Fragment>
-          
             <IndividualDistrictCasesGraphMainContainer>
                <DistrictNameTag>
                   CUMULATIVE CONFIRMED CASES - {name.toUpperCase()}
@@ -37,7 +36,6 @@ class IndividualDistrictCasesGraph extends React.Component {
                      bottom: 5
                   }}
                >
-                  
                   <XAxis dataKey='tillDate' />
                   <YAxis />
                   <Tooltip />

@@ -8,8 +8,7 @@ import CasesAndItsMap from '../../../Common/components/CasesAndItsMap/CasesAndIt
 import CumulativeCasesGraphReport from '../CumulativeCasesGraphReport/CumulativeCasesGraphReport'
 import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/DataInTableFormatByDistrictWise'
 import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
-import distrtictButtons from "../../fixtures/districtButtons.json"
-
+import distrtictButtons from '../../fixtures/districtButtons.json'
 
 import {
    ZonalDashboardCasesMapAndGraphContainer,
@@ -24,7 +23,7 @@ import {
    DistrictWIseReportName
 } from '../ZonalDashboard/styledComponents'
 import TotalDistrictsCasesGraph from '../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph'
-import DistrictButton from "../../../Common/components/DistrcitsButton/DistrictButton"
+import DistrictButton from '../../../Common/components/DistrcitsButton/DistrictButton'
 
 @observer
 class CumulativeMode extends React.Component {
@@ -42,7 +41,8 @@ class CumulativeMode extends React.Component {
          onRetryClick,
          onClickGotoDistrictPage,
          tableHeaderName,
-         tableDataAccessor,barChartDataKey
+         tableDataAccessor,
+         barChartDataKey
       } = this.props
 
       return (
@@ -57,15 +57,15 @@ class CumulativeMode extends React.Component {
                   />
                   <DistrictButtonsContainer>
                      {distrtictButtons.districts.map(district => {
-                        return <DistrictButton
-                           onClickGotoDistrictPage={onClickGotoDistrictPage}
-                          district = {district}
-                          key={district.districtId}
-                        />
+                        return (
+                           <DistrictButton
+                              onClickGotoDistrictPage={onClickGotoDistrictPage}
+                              district={district}
+                              key={district.districtId}
+                           />
+                        )
                      })}
-
                   </DistrictButtonsContainer>
-
 
                   {/* <CasesAndItsMap /> */}
                </CasesAndMapContainer>
@@ -77,9 +77,13 @@ class CumulativeMode extends React.Component {
                      />
                   </CumulativeCasesGraphReportMainContainer>
                   <CumulativeCasesGraphReportMainContainer>
-                     <GraphName>CUMULATIVE DISTRICT CONFIRMED CASES REPORT </GraphName>
+                     <GraphName>
+                        CUMULATIVE DISTRICT CONFIRMED CASES REPORT{' '}
+                     </GraphName>
                      <TotalDistrictsCasesGraph
-                        districtWiseConfirmedCasesLineChartData={districtWiseConfirmedCasesLineChartData}
+                        districtWiseConfirmedCasesLineChartData={
+                           districtWiseConfirmedCasesLineChartData
+                        }
                      />
                      {/* <CumulativeCasesGraphReport 
                            
@@ -92,9 +96,8 @@ class CumulativeMode extends React.Component {
                <DistrictWiseTableData>
                   <DataInTableFormatByDistrictWise
                      tableData={tableData}
-                     tableHeaderName = {tableHeaderName}
-                     tableDataAccessor = {tableDataAccessor}
-
+                     tableHeaderName={tableHeaderName}
+                     tableDataAccessor={tableDataAccessor}
                   />
                </DistrictWiseTableData>
                <ConfirmedCasesBarChartContainer>
@@ -102,15 +105,21 @@ class CumulativeMode extends React.Component {
                      District Wise Report
                   </DistrictWIseReportName>
                   <ConfirmedCasesBarChart
-                  barChartDataKey={barChartDataKey} districtWiseData={barChartData} />
+                     barChartDataKey={barChartDataKey}
+                     districtWiseData={barChartData}
+                  />
                </ConfirmedCasesBarChartContainer>
             </ZonalDashboardTableFormatDataAndChartContainer>
          </React.Fragment>
-      ) 
+      )
    })
 
    render() {
-      const { getCovid19DataAPIStatus, getCovid19DataAPIError, onRetryClick } = this.props
+      const {
+         getCovid19DataAPIStatus,
+         getCovid19DataAPIError,
+         onRetryClick
+      } = this.props
       return (
          <LoadingWrapperWithFailure
             apiStatus={getCovid19DataAPIStatus}
@@ -122,4 +131,4 @@ class CumulativeMode extends React.Component {
    }
 }
 
-export default CumulativeMode;
+export default CumulativeMode

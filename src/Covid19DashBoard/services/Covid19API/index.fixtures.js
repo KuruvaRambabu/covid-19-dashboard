@@ -5,12 +5,12 @@ import stateDailyData from '../../fixtures/stateDailyData'
 import stateDailyGraphsData from '../../fixtures/stateDailyGraphsData'
 class Covid19APIService {
    Covid19DataAPI(date) {
-      console.log("hello iam fixtures", date)
+      console.log('hello iam fixtures', date)
       return new Promise(resolve => {
          setTimeout(() => {
             resolve(cumulativeStateAndDistictData)
          }, 500)
-      }) 
+      })
    }
 
    districtAnalysisData() {

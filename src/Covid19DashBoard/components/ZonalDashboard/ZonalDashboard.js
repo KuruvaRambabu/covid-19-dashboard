@@ -11,8 +11,8 @@ import { observable } from 'mobx'
 class ZonalDashboard extends React.Component {
    @observable isCumulative = true
    @observable isDaily = false
-   @observable modeOfData = "state"
-   @observable districtId;
+   @observable modeOfData = 'state'
+   @observable districtId
 
    componentDidMount() {
       this.doNetworkCalls()
@@ -29,76 +29,76 @@ class ZonalDashboard extends React.Component {
    }
 
    onClickCumulativeData = () => {
-      if (this.modeOfData === "state") {
+      if (this.modeOfData === 'state') {
          if (!this.isCumulative) {
             this.doNetworkCalls()
             this.isCumulative = this.isCumulative ? false : true
             this.isDaily = this.isDaily ? false : true
          }
-      }
-      else {
+      } else {
          if (!this.isCumulative) {
             this.selectedDistrictNetworkCall()
             this.isCumulative = this.isCumulative ? false : true
             this.isDaily = this.isDaily ? false : true
          }
       }
-
    }
 
    onClickDailyData = () => {
-      if (this.modeOfData === "state") {
+      if (this.modeOfData === 'state') {
          if (!this.isDaily) {
             this.networkCallForDailyData()
             this.isCumulative = this.isCumulative ? false : true
             this.isDaily = this.isDaily ? false : true
          }
-      }
-      else {
+      } else {
          if (!this.isDaily) {
             // this.props.covid19DataStore.init()
             // this.props.covid19DataStore.getSelectedDistrictDailyData(this.districtId)
             this.props.covid19DataStore.init()
-            this.props.covid19DataStore.getSelectedDistrictDailyData(this.districtId)
-            this.props.covid19DataStore.getSelectedDistictDailyVerticalGraphsData(this.districtId)
+            this.props.covid19DataStore.getSelectedDistrictDailyData(
+               this.districtId
+            )
+            this.props.covid19DataStore.getSelectedDistictDailyVerticalGraphsData(
+               this.districtId
+            )
             this.isCumulative = this.isCumulative ? false : true
             this.isDaily = this.isDaily ? false : true
          }
-
       }
    }
    selectedDistrictNetworkCall = () => {
       this.props.covid19DataStore.init()
       this.props.covid19DataStore.getDistrictCumulativeData(this.districtId)
-      this.props.covid19DataStore.getDistrictCumulativeGraphData(this.districtId)
-
+      this.props.covid19DataStore.getDistrictCumulativeGraphData(
+         this.districtId
+      )
    }
-   onClickGotoDistrictPage = (e) => {
-      this.modeOfData = "district"
+   onClickGotoDistrictPage = e => {
+      this.modeOfData = 'district'
       this.districtId = e.target.id
       this.selectedDistrictNetworkCall()
    }
 
    onChangeCurrentDate = date => {
-      if (this.modeOfData === "state") {
+      if (this.modeOfData === 'state') {
          if (this.isCumulative) {
             this.props.covid19DataStore.onChangeCurrentDate(date)
             this.doNetworkCalls()
-
          } else {
             this.props.covid19DataStore.onChangeCurrentDate(date)
             this.networkCallForDailyData()
-
          }
-      }
-      else {
+      } else {
          if (this.isCumulative) {
-
             this.props.covid19DataStore.onChangeCurrentDate(date)
             this.props.covid19DataStore.init()
-            this.props.covid19DataStore.getDistrictCumulativeData(this.districtId)
-            this.props.covid19DataStore.getDistrictCumulativeGraphData(this.districtId)
-
+            this.props.covid19DataStore.getDistrictCumulativeData(
+               this.districtId
+            )
+            this.props.covid19DataStore.getDistrictCumulativeGraphData(
+               this.districtId
+            )
          } else {
             this.props.covid19DataStore.onChangeCurrentDate(date)
             this.networkCallForDailyData()
@@ -110,9 +110,9 @@ class ZonalDashboard extends React.Component {
       this.doNetworkCalls()
    }
    changeDataMode = () => {
-      if (this.modeOfData !== "state") {
-         this.modeOfData = "state"
-         this.props.covid19DataStore.onChangeName("state")
+      if (this.modeOfData !== 'state') {
+         this.modeOfData = 'state'
+         this.props.covid19DataStore.onChangeName('state')
          this.doNetworkCalls()
       }
    }
@@ -141,10 +141,13 @@ class ZonalDashboard extends React.Component {
          getStateDailyDataAPIStatus,
          getStateDailyDataAPIError
       } = this.props.covid19DataStore
-      const name = this.props.covid19DataStore.name;
-      const selectedDistrictDailyData = this.props.covid19DataStore.selectedDistrictBarChartData
-      const {selectedDistrictDailyVerticalGraphData} = this.props.covid19DataStore
-      console.log("selected daliy zonal", selectedDistrictDailyData)
+      const name = this.props.covid19DataStore.name
+      const selectedDistrictDailyData = this.props.covid19DataStore
+         .selectedDistrictBarChartData
+      const {
+         selectedDistrictDailyVerticalGraphData
+      } = this.props.covid19DataStore
+      console.log('selected daliy zonal', selectedDistrictDailyData)
       return (
          <ZonalDashboardMainContainer>
             <Header
@@ -156,106 +159,101 @@ class ZonalDashboard extends React.Component {
                startDate={startDate}
                name={name}
                changeDataMode={this.changeDataMode}
-
             />
 
-            {this.modeOfData === "state" ?
+            {this.modeOfData === 'state' ? (
                <React.Fragment>
-                  {this.isCumulative ?
-                     (
-                        <CumulativeMode
-                           confirmedCases={confirmedCases}
-                           activeCases={activeCases}
-                           recoveredCases={recoveredCases}
-                           deathCases={deathCases}
-                           tableData={districtWiseData}
-                           stateCumulativeReportData={stateCumulativeReportData}
-                           barChartData={barChartData}
-                           tableHeaderName="District Name"
-                           tableDataAccessor="districtName"
-                           barChartDataKey="districtName"
-                           sortCaseValues={this.sortCaseValues}
-                           getCovid19DataAPIStatus={getCovid19DataAPIStatus}
-                           getCovid19DataAPIError={getCovid19DataAPIError}
-                           onRetryClick={this.onRetryClick}
-                           onClickGotoDistrictPage={this.onClickGotoDistrictPage}
-                        />
-                     ) : (
-                        <DailyMode
-                           confirmedCases={confirmedCases}
-                           activeCases={activeCases}
-                           recoveredCases={recoveredCases}
-                           deathCases={deathCases}
-                           tableData={districtWiseData}
-                           tableHeaderName="District Name"
-                           tableDataAccessor="districtName"
-                           barChartDataKey="districtName"
-                           stateCumulativeReportData={stateCumulativeReportData}
-                           barChartData={barChartData}
-                           sortCaseValues={this.sortCaseValues}
-                           getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
-                           getStateDailyDataAPIError={getStateDailyDataAPIError}
-                           networkCallForDailyData={this.networkCallForDailyData}
-                           stateDailyVerticalGraphData={stateDailyVerticalGraphData}
-                        />
-
-                     )}
+                  {this.isCumulative ? (
+                     <CumulativeMode
+                        confirmedCases={confirmedCases}
+                        activeCases={activeCases}
+                        recoveredCases={recoveredCases}
+                        deathCases={deathCases}
+                        tableData={districtWiseData}
+                        stateCumulativeReportData={stateCumulativeReportData}
+                        barChartData={barChartData}
+                        tableHeaderName='District Name'
+                        tableDataAccessor='districtName'
+                        barChartDataKey='districtName'
+                        sortCaseValues={this.sortCaseValues}
+                        getCovid19DataAPIStatus={getCovid19DataAPIStatus}
+                        getCovid19DataAPIError={getCovid19DataAPIError}
+                        onRetryClick={this.onRetryClick}
+                        onClickGotoDistrictPage={this.onClickGotoDistrictPage}
+                     />
+                  ) : (
+                     <DailyMode
+                        confirmedCases={confirmedCases}
+                        activeCases={activeCases}
+                        recoveredCases={recoveredCases}
+                        deathCases={deathCases}
+                        tableData={districtWiseData}
+                        tableHeaderName='District Name'
+                        tableDataAccessor='districtName'
+                        barChartDataKey='districtName'
+                        stateCumulativeReportData={stateCumulativeReportData}
+                        barChartData={barChartData}
+                        sortCaseValues={this.sortCaseValues}
+                        getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
+                        getStateDailyDataAPIError={getStateDailyDataAPIError}
+                        networkCallForDailyData={this.networkCallForDailyData}
+                        stateDailyVerticalGraphData={
+                           stateDailyVerticalGraphData
+                        }
+                     />
+                  )}
                </React.Fragment>
-               :
+            ) : (
                <React.Fragment>
-                  {this.isCumulative ?
-                     (
-                        <CumulativeMode
-                           confirmedCases={confirmedCases}
-                           activeCases={activeCases}
-                           recoveredCases={recoveredCases}
-                           deathCases={deathCases}
-                           tableData={districtWiseData}
-                           stateCumulativeReportData={stateCumulativeReportData}
-                           barChartData={barChartData}
-                           tableHeaderName="Mandal Name"
-                           tableDataAccessor="mandalName"
-                           barChartDataKey="mandalName"
-                           sortCaseValues={this.sortCaseValues}
-                           getCovid19DataAPIStatus={getCovid19DataAPIStatus}
-                           getCovid19DataAPIError={getCovid19DataAPIError}
-                           onRetryClick={this.onRetryClick}
-                           onClickGotoDistrictPage={this.onClickGotoDistrictPage}
-                        />) :
+                  {this.isCumulative ? (
+                     <CumulativeMode
+                        confirmedCases={confirmedCases}
+                        activeCases={activeCases}
+                        recoveredCases={recoveredCases}
+                        deathCases={deathCases}
+                        tableData={districtWiseData}
+                        stateCumulativeReportData={stateCumulativeReportData}
+                        barChartData={barChartData}
+                        tableHeaderName='Mandal Name'
+                        tableDataAccessor='mandalName'
+                        barChartDataKey='mandalName'
+                        sortCaseValues={this.sortCaseValues}
+                        getCovid19DataAPIStatus={getCovid19DataAPIStatus}
+                        getCovid19DataAPIError={getCovid19DataAPIError}
+                        onRetryClick={this.onRetryClick}
+                        onClickGotoDistrictPage={this.onClickGotoDistrictPage}
+                     />
+                  ) : (
                      <DailyMode
                         confirmedCases={confirmedCases}
                         activeCases={activeCases}
                         recoveredCases={recoveredCases}
                         deathCases={deathCases}
                         tableData={selectedDistrictDailyData}
-                        tableHeaderName="Mandal Name"
-                        tableDataAccessor="mandalName"
-                        barChartDataKey="mandalName"
-                        stateCumulativeReportData={selectedDistrictDailyVerticalGraphData}
+                        tableHeaderName='Mandal Name'
+                        tableDataAccessor='mandalName'
+                        barChartDataKey='mandalName'
+                        stateCumulativeReportData={
+                           selectedDistrictDailyVerticalGraphData
+                        }
                         barChartData={selectedDistrictDailyData}
                         sortCaseValues={this.sortCaseValues}
                         getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
                         getStateDailyDataAPIError={getStateDailyDataAPIError}
                         networkCallForDailyData={this.networkCallForDailyData}
-                        stateDailyVerticalGraphData={selectedDistrictDailyVerticalGraphData}
+                        stateDailyVerticalGraphData={
+                           selectedDistrictDailyVerticalGraphData
+                        }
                      />
-                  }
+                  )}
                </React.Fragment>
-
-            }
+            )}
          </ZonalDashboardMainContainer>
       )
    }
 }
 
 export default ZonalDashboard
-
-
-
-
-
-
-
 
 // {
 //    "districtName": "Chittoor",

@@ -10,14 +10,13 @@ import { observer } from 'mobx-react'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import './table.css'
-import { toJS } from "mobx"
-
+import { toJS } from 'mobx'
 
 @observer
 class DataInTableFormatByDistrictWise extends React.Component {
    render() {
-      const { tableData, tableDataAccessor,tableHeaderName } = this.props
-      console.log("table data, now", tableData)
+      const { tableData, tableDataAccessor, tableHeaderName } = this.props
+      console.log('table data, now', tableData)
       return (
          <DistrictWiseTableDataContainer>
             <ReactTable

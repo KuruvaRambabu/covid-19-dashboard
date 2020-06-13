@@ -6,7 +6,7 @@ import endpoints from '../endPoints'
 
 class AuthenticationService {
    api
-   constructor() { 
+   constructor() {
       this.api = create({
          baseURL: baseUrl
       })

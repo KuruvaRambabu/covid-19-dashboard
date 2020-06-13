@@ -6,12 +6,11 @@ export const TotalCasesMainContainer = styled.div`
 `
 
 export const CaseContainer = styled.div`
-background:${props=>props.color};
+   background: ${props => props.color};
    ${tw`w-full font-bold font-serif hover:border text-xl md:w-1/2 lg:w-1/4 h-20 flex shadow-lg flex-col justify-center items-center`}
 `
 
 export const CaseType = styled.p`
-
    ${tw``}
 `
 

@@ -1,8 +1,6 @@
 import React from 'react'
 import { InputElement } from './StyledComponents'
-import { colors } from "../../themes/Colors"
-
-
+import { colors } from '../../themes/Colors'
 
 class InputField extends React.Component {
    render() {

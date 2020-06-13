@@ -81,7 +81,7 @@ class SignInPage extends React.Component {
 
                   <SignInButton
                      token={token}
-                     apiStatus = {getUserSignInAPIStatus}
+                     apiStatus={getUserSignInAPIStatus}
                      onClickSignIn={onClickSignIn}
                      name={strings.LoginButtonName}
                   />

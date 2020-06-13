@@ -101,7 +101,8 @@ class DailyMode extends React.Component {
                   </DistrictWIseReportName>
                   <ConfirmedCasesBarChart
                      barChartDataKey={barChartDataKey}
-                     districtWiseData={barChartData} />
+                     districtWiseData={barChartData}
+                  />
                </ConfirmedCasesBarChartContainer>
             </ZonalDashboardTableFormatDataAndChartContainer>
          </React.Fragment>
@@ -125,4 +126,3 @@ class DailyMode extends React.Component {
 }
 
 export default DailyMode
-

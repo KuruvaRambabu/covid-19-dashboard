@@ -29,7 +29,6 @@ class CumulativeCasesGraphReport extends React.Component {
                      bottom: 0
                   }}
                >
-                 
                   <XAxis dataKey='tillDate' />
                   <YAxis />
                   <Tooltip />
@@ -60,7 +59,7 @@ class CumulativeCasesGraphReport extends React.Component {
                   />
                </LineChart>
             </ResponsiveContainer>
-            </div>
+         </div>
       )
    }
 }

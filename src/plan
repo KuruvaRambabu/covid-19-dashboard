@@ -27,6 +27,11 @@ Evening session
 5  .if any id is changed then automatically the side effect is need to trigger for that we use autorun and reactiohs
 
 
+doubts session
+1. getLoading status
+2. 
+3. path parameter -ehich is unique through out the page
+4. query parameter      
 
 
 

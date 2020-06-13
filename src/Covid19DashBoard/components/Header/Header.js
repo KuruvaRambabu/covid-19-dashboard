@@ -1,6 +1,6 @@
 import React from 'react'
 import strings from '../../i18n/strings.json'
-import {format } from "date-fns"
+import { format } from 'date-fns'
 
 import {
    HeaderMainContainer,
@@ -20,7 +20,7 @@ import { observable, values } from 'mobx'
 
 @observer
 class Header extends React.Component {
-   handleChangeDate = (date) => {
+   handleChangeDate = date => {
       this.props.onChangeCurrentDate(date)
    }
 
@@ -31,12 +31,15 @@ class Header extends React.Component {
          isDaily,
          isCumulative,
          startDate,
-         name,changeDataMode
+         name,
+         changeDataMode
       } = this.props
       console.log('date', startDate.toLocaleDateString())
       return (
          <HeaderMainContainer>
-            <StateName onClick = {changeDataMode}>Andhra Pradesh /{name} </StateName>
+            <StateName onClick={changeDataMode}>
+               Andhra Pradesh /{name}{' '}
+            </StateName>
             <React.Fragment>
                <Datelabel>
                   Date :
@@ -46,7 +49,6 @@ class Header extends React.Component {
                         // onSelect={this.onSelectDate}
                         selected={startDate}
                         dateFormat='yyyy-MM-dd'
-                       
                      />
                   </DatePicker>
                </Datelabel>

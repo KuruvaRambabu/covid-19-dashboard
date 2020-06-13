@@ -13,6 +13,6 @@ export const TableHeader = styled.td`
 `
 
 export const DistrictWiseTableDataContainer = styled.div`
-width:100%;
+   width: 100%;
    ${tw`text-white bg-gray-800 font-serif text-center  shadow-lg `}
 `

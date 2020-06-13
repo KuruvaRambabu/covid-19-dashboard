@@ -19,24 +19,23 @@ class DailyCasesBarChart extends React.Component {
       const { stateCumulativeReportData, type, color } = this.props
       return (
          <div style={{ width: '90%', height: 200 }}>
-         <ResponsiveContainer>
-         <BarChart
-           
-            data={toJS(stateCumulativeReportData)}
-            margin={{
-               top: 5,
-               right: 30,
-               left: 20,
-               bottom: 5
-            }}
-         >
-            <XAxis dataKey='date' />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey={type} barSize={7} fill={color} />
-         </BarChart>
-         </ResponsiveContainer>
+            <ResponsiveContainer>
+               <BarChart
+                  data={toJS(stateCumulativeReportData)}
+                  margin={{
+                     top: 5,
+                     right: 30,
+                     left: 20,
+                     bottom: 5
+                  }}
+               >
+                  <XAxis dataKey='date' />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey={type} barSize={7} fill={color} />
+               </BarChart>
+            </ResponsiveContainer>
          </div>
       )
    }

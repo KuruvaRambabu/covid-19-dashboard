@@ -8,7 +8,6 @@ export const StateName = styled.p`
    ${tw`font-serif text-xl cursor-pointer`}
 `
 export const DatePicker = styled.div`
-
    ${tw` text-black `}
 `
 export const CasesTypecontainer = styled.div`

@@ -5,8 +5,11 @@ import { observable } from 'mobx'
 import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
 import { getAccessToken } from '../../../Common/utils/StorageUtils'
 import { Redirect, withRouter } from 'react-router-dom'
-import { getFormattedError, getUserDisplayableErrorMessage } from "../../../Common/utils/APIUtils"
-import { goToCoivd19_DashBoard } from "../../utils/NavigationModule/NavigationModule"
+import {
+   getFormattedError,
+   getUserDisplayableErrorMessage
+} from '../../../Common/utils/APIUtils'
+import { goToCoivd19_DashBoard } from '../../utils/NavigationModule/NavigationModule'
 
 @inject('authenticationStore')
 @observer
@@ -36,18 +39,15 @@ class SignInRoute extends React.Component {
    }
 
    onSignInSuccess = () => {
-      
       const { history } = this.props
       goToCoivd19_DashBoard(history)
       //history.replace(COVID_19_DASHBOARD_PATH)
    }
-   
 
    onSignInFailure = () => {
       const { getUserSignInAPIError: apiError } = this.props.authenticationStore
       if (apiError !== null && apiError !== undefined) {
-        
-         this.errorMessage =  getUserDisplayableErrorMessage(apiError)
+         this.errorMessage = getUserDisplayableErrorMessage(apiError)
       }
    }
 
@@ -66,7 +66,7 @@ class SignInRoute extends React.Component {
          this.token = true
          const { userSignIn } = this.props.authenticationStore
 
-         console.log("email", this.email)
+         console.log('email', this.email)
          userSignIn(
             {
                email: this.email,
@@ -95,7 +95,6 @@ class SignInRoute extends React.Component {
             passwordErrorMessage={this.passwordErrorMessage}
             emailErrorMessage={this.emailErrorMessage}
             token={this.token}
-            
          />
       )
    }
