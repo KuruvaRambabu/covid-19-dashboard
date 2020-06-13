@@ -1,3 +1,78 @@
+1. Navigation utils path
+    src/modeleName/utils/NavigationUtils/index.js
+
+2. single responsibility to a component
+3. Encapsulate --> do allow the cchildren to 
+4. composable
+5. Reusable : DRY Principle don't repeat again 
+    1. if there is any third party library use it
+    2. dont repeat the code again again just make it as a common component
+    3. 
+5. component should be pure or almost pure
+6. Testable
+7. Meaningful 
+    1. component naming
+    2. Avoid comments
+
+
+Evening session
+
+1. what is state 
+    ---> statte is an object that containes the data that your application is deafling with 
+
+2. Domain state ---> data that comes from back end it will be storedin stores
+
+3 . stores and models are most useful for  managing the data
+4 .model manages the specific component data 
+5  .if any id is changed then automatically the side effect is need to trigger for that we use autorun and reactiohs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sign-in-page
     stores
         ->observable variables

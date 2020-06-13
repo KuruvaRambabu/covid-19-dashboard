@@ -15,7 +15,6 @@ import {
 import Covid19DashBoardRoute from './Covid19DashBoard/routes/Covid19DashBoardRoute'
 
 const App = () => {
-   console.log('app', stores)
    return (
       <Provider {...stores}>
          <Router basename={process.env.PUBLIC_URL}>

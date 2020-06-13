@@ -6,6 +6,7 @@ import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
 import { getAccessToken } from '../../../Common/utils/StorageUtils'
 import { Redirect, withRouter } from 'react-router-dom'
 import { getFormattedError, getUserDisplayableErrorMessage } from "../../../Common/utils/APIUtils"
+import { goToCoivd19_DashBoard } from "../../utils/NavigationModule/NavigationModule"
 
 @inject('authenticationStore')
 @observer
@@ -35,8 +36,10 @@ class SignInRoute extends React.Component {
    }
 
    onSignInSuccess = () => {
+      
       const { history } = this.props
-      history.replace(COVID_19_DASHBOARD_PATH)
+      goToCoivd19_DashBoard(history)
+      //history.replace(COVID_19_DASHBOARD_PATH)
    }
    
 
