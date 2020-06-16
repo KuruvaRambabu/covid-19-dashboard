@@ -66,7 +66,6 @@ class SignInRoute extends React.Component {
          this.token = true
          const { userSignIn } = this.props.authenticationStore
 
-         console.log('email', this.email)
          userSignIn(
             {
                email: this.email,
@@ -81,6 +80,7 @@ class SignInRoute extends React.Component {
    render() {
       const { getUserSignInAPIStatus } = this.props.authenticationStore
       if (getAccessToken()) {
+         
          return <Redirect to={{ pathname: COVID_19_DASHBOARD_PATH }} />
       }
       return (

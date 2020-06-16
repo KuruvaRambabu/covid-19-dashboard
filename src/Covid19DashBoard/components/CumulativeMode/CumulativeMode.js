@@ -124,7 +124,6 @@ class CumulativeMode extends React.Component {
          getStateCumulativeReportDataAPIError
       } = this.props
 
-      console.log("Kuruva Rambabu", getStateCumulativeReportDataAPIStatus)
       return getLoadingStatus(getCovid19DataAPIStatus, getStateCumulativeReportDataAPIStatus)
 
    }
@@ -146,7 +145,6 @@ class CumulativeMode extends React.Component {
       } = this.props
       return (
          <LoadingWrapperWithFailure
-
             apiStatus={this.loadingStatusView()}
             apiError={getCovid19DataAPIError}
             onRetryClick={onRetryClick}

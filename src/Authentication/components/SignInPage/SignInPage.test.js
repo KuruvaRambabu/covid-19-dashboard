@@ -7,7 +7,7 @@ describe('Test cases for SignInForm', () => {
    it('should test typed userName', () => {
       const userName = 'test-user'
       const { getByPlaceholderText } = render(
-         <SignInPage userName={userName} onChangeUserName={() => {}} />
+         <SignInPage email={userName} onChangeUserName={() => {}} />
       )
       const userNameField = getByPlaceholderText(
          strings.userNamePlaceholderText
@@ -28,7 +28,7 @@ describe('Test cases for SignInForm', () => {
 
    it('should render given username error message', () => {
       const { getByText } = render(
-         <SignInPage userNameErrorMessage='Invalid username' />
+         <SignInPage emailErrorMessage='Invalid username' />
       )
 
       getByText(/invalid username/i)

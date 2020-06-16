@@ -44,7 +44,6 @@ class DailyMode extends React.Component {
          tableDataAccessor,
          barChartDataKey
       } = this.props
-      //console.log("statedailt", barChartData)
       return (
          <React.Fragment>
             <ZonalDashboardCasesMapAndGraphContainer>
@@ -114,7 +113,6 @@ class DailyMode extends React.Component {
          getStateDailyDataAPIStatus,
          getStateDailyDataAPIError
       } = this.props
-      console.log('in daily model ', getStateDailyDataAPIStatus)
       return (
          <LoadingWrapperWithFailure
             apiStatus={getStateDailyDataAPIStatus}

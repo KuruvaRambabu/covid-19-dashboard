@@ -1,0 +1,112 @@
+{
+    "total_recovered": 0,
+    "total_confirmed": 0,
+    "total_deaths": 0,
+    "district_name": "Kurnool",
+    "mandals": [
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 0,
+            "total_deaths": 0,
+            "mandal_name": "Kallur",
+            "district_id": "kdp"
+        },
+        {
+            "total_active": 30,
+            "total_recovered": 0,
+            "total_confirmed": 30,
+            "total_deaths": 1,
+            "mandal_name": "Kurnool",
+            "district_id": "knl"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 40,
+            "total_deaths": 0,
+            "mandal_name": "Kodumur",
+            "district_id": "nlr"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 50,
+            "total_deaths": 0,
+            "mandal_name": "Nandyala",
+            "district_id": "chtr"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 60,
+            "total_confirmed": 60,
+            "total_deaths": 0,
+            "mandal_name": "Belagal",
+            "district_id": "atp"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 70,
+            "total_deaths": 0,
+            "mandal_name": "Gudur",
+            "district_id": "vskp"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 10,
+            "total_deaths": 0,
+            "mandal_name": "Adoni",
+            "district_id": "wg"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 15,
+            "total_deaths": 0,
+            "mandal_name": "Yemmiganur",
+            "district_id": "krsn"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 1,
+            "total_deaths": 0,
+            "mandal_name": "Alagadda",
+            "district_id": "krsn"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 1,
+            "total_deaths": 0,
+            "mandal_name": "Panyam",
+            "district_id": "krsn"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 1,
+            "total_deaths": 0,
+            "mandal_name": "Koyilakuntla",
+            "district_id": "krsn"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 1,
+            "total_deaths": 0,
+            "mandal_name": "Dhone",
+            "district_id": "krsn"
+        },
+        {
+            "total_active": 0,
+            "total_recovered": 0,
+            "total_confirmed": 1,
+            "total_deaths": 0,
+            "mandal_name": "Bethamcherla",
+            "district_id": "krsn"
+        }
+    ]
+}

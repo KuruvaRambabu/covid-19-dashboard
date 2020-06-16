@@ -3,9 +3,15 @@ import districtAnalysisData from '../../fixtures/districtAnalysisData.json'
 import stateDatawithDates from '../../fixtures/stateDataWithDates.json'
 import stateDailyData from '../../fixtures/stateDailyData'
 import stateDailyGraphsData from '../../fixtures/stateDailyGraphsData'
+import selectedDistrictCovidData from "../../fixtures/selectedDistrictCovidData.json"
+import selectedDistrictGraphData from "../../fixtures/selectedDistrictGraphData.json"
+import selectedDistrictDailyData from "../../fixtures/selectedDistrictDailyData.json"
+import selectedDistrictDailyGraphData from "../../fixtures/selectedDistrictDailyGraphData.json"
+
+
 class Covid19APIService {
    Covid19DataAPI(date) {
-      console.log('hello iam fixtures', date)
+
       return new Promise(resolve => {
          setTimeout(() => {
             resolve(cumulativeStateAndDistictData)
@@ -41,6 +47,36 @@ class Covid19APIService {
       return new Promise(resolve => {
          setTimeout(() => {
             resolve(stateDailyGraphsData)
+         }, 500)
+      })
+   }
+   districtCumulativeDataAPI() {
+      return new Promise(resolve => {
+         setTimeout(() => {
+            resolve(selectedDistrictCovidData)
+         }, 500)
+      })
+   }
+
+   getDistrictCumulativeGraphDataAPI(id) {
+      return new Promise(resolve => {
+         setTimeout(() => {
+            resolve(selectedDistrictGraphData)
+         }, 500)
+      })
+   }
+   selectedDistrictDailyDataAPI(id) {
+      return new Promise(resolve => {
+         setTimeout(() => {
+            resolve(selectedDistrictDailyData)
+         }, 500)
+      })
+   }
+
+   selectedDistrictDailyVerticalGraphAPI(id) {
+      return new Promise(resolve => {
+         setTimeout(() => {
+            resolve(selectedDistrictDailyGraphData)
          }, 500)
       })
    }

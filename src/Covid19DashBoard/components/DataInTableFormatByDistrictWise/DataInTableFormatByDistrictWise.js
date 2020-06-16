@@ -16,7 +16,6 @@ import { toJS } from 'mobx'
 class DataInTableFormatByDistrictWise extends React.Component {
    render() {
       const { tableData, tableDataAccessor, tableHeaderName } = this.props
-      console.log('table data, now', tableData)
       return (
          <DistrictWiseTableDataContainer>
             <ReactTable

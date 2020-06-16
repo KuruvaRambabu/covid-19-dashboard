@@ -148,7 +148,7 @@ class ZonalDashboard extends React.Component {
       const {
          selectedDistrictDailyVerticalGraphData
       } = this.props.covid19DataStore
-      console.log('selected daliy zonal', selectedDistrictDailyData)
+      
       return (
          <ZonalDashboardMainContainer>
             <Header

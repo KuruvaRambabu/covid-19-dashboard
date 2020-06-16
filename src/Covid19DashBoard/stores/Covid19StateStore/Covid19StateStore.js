@@ -97,7 +97,7 @@ class Covid19DataStore {
          this.covid19Data.push(StateData)
       })
    }
- 
+
    @action.bound
    getDistrictWiseCaseAnalysisData() {
       const districtAnalysisDataPromise = this.covid19APIService.districtAnalysisData()
@@ -113,13 +113,13 @@ class Covid19DataStore {
    @action.bound
    setDistrictAnalysisDataResponse(response) {
       const dayWiseDistrictReport = response.day_wise_report
-      console.log("before creating model", dayWiseDistrictReport)
+
       dayWiseDistrictReport.forEach(district => {
          const districtData = new DistrictWiseDataAnalysisModel(district)
          this.districtAnalysisData.push(districtData)
-         
+
       })
-      console.log("district wise case analysis", this.districtAnalysisData)
+
    }
 
    @action.bound
@@ -129,6 +129,7 @@ class Covid19DataStore {
 
    @action.bound
    setGetDistrictWiseCaseAnalysisDataAPIError(error) {
+      console.log("im store", error)
       this.getDistrictWiseCaseAnalysisDataAPIError = error
    }
 
@@ -155,7 +156,6 @@ class Covid19DataStore {
 
    @action.bound
    setGetStateCumulativeReportDataAPIStatus(apiStatus) {
-     
       this.getStateCumulativeReportDataAPIStatus = apiStatus
    }
 
@@ -171,6 +171,7 @@ class Covid19DataStore {
 
    @action.bound
    onChangeCurrentDate(date) {
+      console.log(date)
       this.currentDate = date
    }
 
@@ -236,7 +237,9 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetStateDailyVerticalGraphDataAPIError(error) {}
+   setGetStateDailyVerticalGraphDataAPIError(error) { 
+      this.getStateDailyVerticalGraphDataAPIError = error
+   }
 
    @action.bound
    setGetStateDailyVerticalGraphDataAPIResponse(response) {
@@ -262,7 +265,7 @@ class Covid19DataStore {
       if (type === '') {
          return data
       } else {
-         let sortedData = data.slice().sort(function(a, b) {
+         let sortedData = data.slice().sort(function (a, b) {
             return b[type] - a[type]
          })
          return sortedData
@@ -311,12 +314,13 @@ class Covid19DataStore {
             this.setGetDistrictCumulativeGraphDataAPIResponse(response)
          })
          .catch(error => {
-            this.getStateCumulativeReportDataAPIError(error)
+            this.setGetStateCumulativeReportDataAPIError(error)
          })
    }
 
    @action.bound
    setGetDistrictCumulativeGraphDataAPIResponse(response) {
+
       this.name = response.district_name
       const cumulativeReport = response.district_statistics
       cumulativeReport.forEach(district => {
@@ -342,11 +346,12 @@ class Covid19DataStore {
    }
    @action.bound
    setGetSelectedDistrictDailyDataAPIResponse(response) {
+
       this.totalDeathCases = response.total_deaths
       this.totalRecoveredCases = response.total_recovered
       this.totalActiveCases = response.total_active
       this.totalConfirmedCases = response.total_confirmed
-      const data = response.districts
+      const data = response.mandals
 
       data.forEach(mandal => {
          const mandalName = new CumulativeMandalModel(mandal)
@@ -369,7 +374,7 @@ class Covid19DataStore {
    }
    @action.bound
    setGetSelectedDistrictDailyVerticalGraphData(response) {
-      console.log('selected district daily response', response)
+
       const data = response.day_wise_report
       data.forEach(district => {
          const stateData = new StateDailyVerticalGraphModel(district)
@@ -381,16 +386,16 @@ class Covid19DataStore {
       this.name = name
    }
 
-   @computed
-   get districtsConfirmedCasesData() {
-      return this.districtAnalysisData.day_wise_report
-   }
+   // @computed
+   // get districtsConfirmedCasesData() {
+   //    return this.districtAnalysisData.day_wise_report
+   // }
 
    @computed
    get barChartData() {
       const type = 'totalConfirmed'
       const data = this.covid19Data
-      let sortedData = data.slice().sort(function(a, b) {
+      let sortedData = data.slice().sort(function (a, b) {
          return b[type] - a[type]
       })
       return sortedData
@@ -400,7 +405,7 @@ class Covid19DataStore {
    get selectedDistrictBarChartData() {
       const type = 'totalConfirmed'
       const data = this.selectedDistrictDailyData
-      let sortedData = data.slice().sort(function(a, b) {
+      let sortedData = data.slice().sort(function (a, b) {
          return b[type] - a[type]
       })
       return sortedData

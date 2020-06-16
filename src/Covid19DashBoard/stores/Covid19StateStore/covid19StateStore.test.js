@@ -4,7 +4,7 @@ import {
    API_SUCCESS,
    API_FETCHING
 } from '@ib/api-constants'
-import Covid19APIService from '../../services/Covid19API/Covid19API'
+import Covid19APIService from '../../services/Covid19API/index.fixtures'
 
 import cumulativeStateAndDistictData from '../../fixtures/covid19StateAndDistrictData.json'
 import districtAnalysisData from '../../fixtures/districtAnalysisData.json'
@@ -13,6 +13,12 @@ import Covid19DataStore from '.'
 import covid19StateAndDistrictDataModel from '../models/covid19StateAndDistrictDataModel/covid19StateAndDistrictDataModel'
 import stateDailyData from '../../fixtures/stateDailyData.json'
 import stateDailyVerticalGraphsData from '../../fixtures/stateDailyGraphsData.json'
+import selectedDistrictCovidData from "../../fixtures/selectedDistrictCovidData.json"
+import selectedDistrictGraphData from "../../fixtures/selectedDistrictGraphData.json"
+import selectedDistrictDailyData from "../../fixtures/selectedDistrictDailyData.json"
+import selectedDistrictDailyGraphData from "../../fixtures/selectedDistrictDailyGraphData.json"
+
+
 
 describe('Test for covid19 data store', () => {
    let covid19DataStore
@@ -45,7 +51,7 @@ describe('Test for covid19 data store', () => {
    })
 
    it('should test covid 19 data fetching state', () => {
-      const mockLoadingPromise = new Promise(function(resolve, reject) {})
+      const mockLoadingPromise = new Promise(function (resolve, reject) { })
       const mockcovid19DataAPI = jest.fn()
       mockcovid19DataAPI.mockReturnValue(mockLoadingPromise)
       covid19APIService.Covid19DataAPI = mockcovid19DataAPI
@@ -54,7 +60,7 @@ describe('Test for covid19 data store', () => {
       expect(covid19DataStore.getCovid19DataAPIStatus).toBe(API_FETCHING)
    })
    it('should test district analysis data fetching state', () => {
-      const mockLoadingPromise = new Promise(function(resolve, reject) {})
+      const mockLoadingPromise = new Promise(function (resolve, reject) { })
       const mockDistrictAnalysisDataAPI = jest.fn()
       mockDistrictAnalysisDataAPI.mockReturnValue(mockLoadingPromise)
       covid19APIService.districtAnalysisData = mockDistrictAnalysisDataAPI
@@ -66,7 +72,7 @@ describe('Test for covid19 data store', () => {
    })
 
    it('sholud test covid19data succes state', async () => {
-      const mockSuccessPromise = new Promise(function(resolve, reject) {
+      const mockSuccessPromise = new Promise(function (resolve, reject) {
          resolve(cumulativeStateAndDistictData)
       })
 
@@ -80,7 +86,7 @@ describe('Test for covid19 data store', () => {
    })
 
    it('should test districtwise data analysis success state', async () => {
-      const mockSuccessPromise = new Promise(function(resolve, reject) {
+      const mockSuccessPromise = new Promise(function (resolve, reject) {
          resolve(districtAnalysisData)
       })
 
@@ -95,7 +101,7 @@ describe('Test for covid19 data store', () => {
    })
 
    it('should test the cumulative data failure state', async () => {
-      const mockFailurePromise = new Promise(function(resolve, reject) {
+      const mockFailurePromise = new Promise(function (resolve, reject) {
          reject(new Error('error'))
       })
 
@@ -109,7 +115,7 @@ describe('Test for covid19 data store', () => {
    })
 
    it('should test disrtictwise data analysis failure state', async () => {
-      const mockFailurePromise = new Promise(function(resolve, reject) {
+      const mockFailurePromise = new Promise(function (resolve, reject) {
          reject(new Error('error'))
       })
 
@@ -153,9 +159,12 @@ describe('Test for covid19 data store', () => {
          { totalConfirmed: 60 },
          { totalConfirmed: 10 }
       ]
+      const type = ""
       covid19DataStore.covid19Data = data
       expect(covid19DataStore.barChartData).toStrictEqual(sortedData)
    })
+
+
 
    it('should test the total districts in a table format by sorted order', () => {
       const initailData = [
@@ -271,7 +280,7 @@ describe('Test for covid19 data store', () => {
       expect(covid19DataStore.totalDistrictCases).toStrictEqual(expectedOutput)
    })
    it('should test data fetching state of cumulative report data', () => {
-      const mockLoadingPromise = new Promise(function(resolve, reject) {})
+      const mockLoadingPromise = new Promise(function (resolve, reject) { })
       const cumulativeReportDataAPI = jest.fn()
       cumulativeReportDataAPI.mockReturnValue(mockLoadingPromise)
       covid19APIService.stateCumulativeReportData = cumulativeReportDataAPI
@@ -282,7 +291,7 @@ describe('Test for covid19 data store', () => {
       )
    })
    it('should test the success state of cumulative report data', async () => {
-      const mockSuccessPromise = new Promise(function(resolve, reject) {
+      const mockSuccessPromise = new Promise(function (resolve, reject) {
          resolve(stateDataWithDates)
       })
 
@@ -297,7 +306,7 @@ describe('Test for covid19 data store', () => {
    })
 
    it('should test the failure state of cumulative report data', async () => {
-      const mockFailurePromise = new Promise(function(resolve, reject) {
+      const mockFailurePromise = new Promise(function (resolve, reject) {
          reject(new Error('error'))
       })
 
@@ -314,7 +323,7 @@ describe('Test for covid19 data store', () => {
       )
    })
    it('should test the data fetching state of stateDailyData', () => {
-      const mockLoadingPromise = new Promise(function(resolve, reject) {})
+      const mockLoadingPromise = new Promise(function (resolve, reject) { })
       const StateDailyData = jest.fn()
       StateDailyData.mockReturnValue(mockLoadingPromise)
       covid19APIService.stateDailyData = StateDailyData
@@ -336,7 +345,7 @@ describe('Test for covid19 data store', () => {
    })
 
    it('should test the failure state of stateDailyData', async () => {
-      const mockFailurePromise = new Promise(function(resolve, reject) {
+      const mockFailurePromise = new Promise(function (resolve, reject) {
          reject(new Error('error'))
       })
 
@@ -348,8 +357,26 @@ describe('Test for covid19 data store', () => {
       expect(covid19DataStore.getStateDailyDataAPIStatus).toBe(API_FAILED)
    })
 
+
+
+
+
+   it('should test the failure state of stateDailyVerticalGraphData', async () => {
+      const mockFailurePromise = new Promise(function (resolve, reject) {
+         reject(new Error('error'))
+      })
+
+      const stateDailyGraphsDataAPI = jest.fn()
+      stateDailyGraphsDataAPI.mockReturnValue(mockFailurePromise)
+      covid19APIService.stateDailyVerticalGraphsAPI = stateDailyGraphsDataAPI
+
+      await covid19DataStore.getStateDailyVerticalGraphData()
+      expect(covid19DataStore.getStateDailyVerticalGraphDataAPIStauts).toBe(
+         API_FAILED
+      )
+   })
    it('should test the state daily graphs data fetching state ', () => {
-      const mockLoadingPromise = new Promise(() => {})
+      const mockLoadingPromise = new Promise(() => { })
       const stateDailyGraphsDataAPI = jest.fn()
       stateDailyGraphsDataAPI.mockReturnValue(mockLoadingPromise)
       covid19APIService.stateDailyVerticalGraphsAPI = stateDailyGraphsDataAPI
@@ -359,7 +386,6 @@ describe('Test for covid19 data store', () => {
          API_FETCHING
       )
    })
-
    it('should test the data success state of statedailyVerticalGraph data', async () => {
       const mockSuccessPromise = new Promise((resolve, reject) => {
          resolve(stateDailyVerticalGraphsData)
@@ -375,18 +401,162 @@ describe('Test for covid19 data store', () => {
       )
    })
 
-   it('should test the failure state of stateDailyVerticalGraphData', async () => {
-      const mockFailurePromise = new Promise(function(resolve, reject) {
-         reject(new Error('error'))
+   it("should test fetching state of selected district data", () => {
+      const mockLoadingPromise = new Promise(() => { })
+      const selectedDistrictCovidDataAPI = jest.fn()
+      selectedDistrictCovidDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.districtCumulativeDataAPI = selectedDistrictCovidDataAPI
+      covid19DataStore.getDistrictCumulativeData()
+      expect(covid19DataStore.getCovid19DataAPIStatus).toBe(API_FETCHING)
+   })
+
+   it("should test the success state of selected district covid19 data ", async () => {
+      const mockSuccessPromise = new Promise(resolve => {
+         resolve(selectedDistrictCovidData)
       })
 
-      const stateDailyGraphsDataAPI = jest.fn()
-      stateDailyGraphsDataAPI.mockReturnValue(mockFailurePromise)
-      covid19APIService.stateDailyVerticalGraphsAPI = stateDailyGraphsDataAPI
-
-      await covid19DataStore.getStateDailyVerticalGraphData()
-      expect(covid19DataStore.getStateDailyVerticalGraphDataAPIStauts).toBe(
-         API_FAILED
-      )
+      const selectedDistrictCovidDataAPI = jest.fn()
+      selectedDistrictCovidDataAPI.mockReturnValue(mockSuccessPromise)
+      covid19APIService.districtCumulativeDataAPI = selectedDistrictCovidDataAPI
+      await covid19DataStore.getDistrictCumulativeData()
+      expect(covid19DataStore.getCovid19DataAPIStatus).toBe(API_SUCCESS)
    })
+
+   it("should test the failure state of selected district covid 19 data", async () => {
+      const mockFailurePromise = new Promise((reject, resolve) => {
+         reject(new Error("error"))
+      })
+      const selectedDistrictCovidDataAPI = jest.fn()
+      selectedDistrictCovidDataAPI.mockReturnValue(mockFailurePromise)
+      covid19APIService.districtCumulativeDataAPI = selectedDistrictCovidDataAPI
+      await covid19DataStore.getDistrictCumulativeData()
+      expect(covid19DataStore.getCovid19DataAPIStatus).toBe(API_FAILED)
+      expect(covid19DataStore.getCovid19DataAPIError).toEqual(expect.any(String))
+   })
+
+   it("should test the data fetching state of selected district graph data", () => {
+      const mockLoadingPromise = new Promise(() => { })
+      const selectedDistrictGraphDataAPI = jest.fn()
+      selectedDistrictGraphDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.getDistrictCumulativeGraphDataAPI = selectedDistrictGraphDataAPI
+      covid19DataStore.getDistrictCumulativeGraphData()
+      expect(covid19DataStore.getStateCumulativeReportDataAPIStatus).toBe(API_FETCHING)
+   })
+
+   it("should test the success state of selected district graph data", async () => {
+      const mockSuccessPromise = new Promise((resolve, reject) => {
+         resolve(selectedDistrictGraphData)
+      })
+      const selectedDistrictGraphDataAPI = jest.fn()
+      selectedDistrictGraphDataAPI.mockReturnValue(mockSuccessPromise)
+      covid19APIService.getDistrictCumulativeGraphDataAPI = selectedDistrictGraphDataAPI
+      await covid19DataStore.getDistrictCumulativeGraphData()
+      expect(covid19DataStore.getStateCumulativeReportDataAPIStatus).toBe(API_SUCCESS)
+   })
+
+   it("should test the failure state of selcted district graph data", async () => {
+      const mockFailurePromise = new Promise((resolve, reject) => {
+         reject(new Error("error"))
+      })
+      const selectedDistrictGraphDataAPI = jest.fn()
+      selectedDistrictGraphDataAPI.mockReturnValue(mockFailurePromise)
+      covid19APIService.getDistrictCumulativeGraphDataAPI = selectedDistrictGraphDataAPI
+      await covid19DataStore.getDistrictCumulativeGraphData()
+      expect(covid19DataStore.getStateCumulativeReportDataAPIStatus).toBe(API_FAILED)
+      expect(covid19DataStore.getStateCumulativeReportDataAPIError).toEqual(expect.any(String))
+   })
+
+   it("should test the data fetching state of selected district daily data", () => {
+      const mockLoadingPromise = new Promise(() => { })
+      const selectedDistrictDailyDataAPI = jest.fn()
+      selectedDistrictDailyDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.selectedDistrictDailyDataAPI = selectedDistrictDailyDataAPI
+      covid19DataStore.getSelectedDistrictDailyData()
+      expect(covid19DataStore.getStateDailyDataAPIStatus).toBe(API_FETCHING)
+   })
+
+   it("should test the data succes state of selected district daily data", async () => {
+      const mockLoadingPromise = new Promise((resolve, reject) => {
+         resolve(selectedDistrictDailyData)
+      })
+      const selectedDistrictDailyDataAPI = jest.fn()
+      selectedDistrictDailyDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.selectedDistrictDailyDataAPI = selectedDistrictDailyDataAPI
+      await covid19DataStore.getSelectedDistrictDailyData()
+      expect(covid19DataStore.getStateDailyDataAPIStatus).toBe(API_SUCCESS)
+   })
+   it("should test the data failure state of selected district daily data", async () => {
+      const mockLoadingPromise = new Promise((resolve, reject) => {
+         reject(new Error("error"))
+      })
+      const selectedDistrictDailyDataAPI = jest.fn()
+      selectedDistrictDailyDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.selectedDistrictDailyDataAPI = selectedDistrictDailyDataAPI
+      await covid19DataStore.getSelectedDistrictDailyData()
+      expect(covid19DataStore.getStateDailyDataAPIStatus).toBe(API_FAILED)
+      expect(covid19DataStore.getStateDailyDataAPIError).toEqual(expect.any(String))
+   })
+   it("should test the data fetching state of selected district daily vertical graph data", () => {
+      const mockLoadingPromise = new Promise(() => { })
+      const selectedDistrictDailyVerticalGraphDataAPI = jest.fn()
+      selectedDistrictDailyVerticalGraphDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.selectedDistrictDailyVerticalGraphAPI = selectedDistrictDailyVerticalGraphDataAPI
+      covid19DataStore.getSelectedDistictDailyVerticalGraphsData()
+      expect(covid19DataStore.getStateDailyVerticalGraphDataAPIStauts).toBe(API_FETCHING)
+   })
+   it("should test the data success state of selected district daily vertical graph data", async () => {
+      const mockLoadingPromise = new Promise((resolve, reject) => {
+         resolve(selectedDistrictDailyGraphData)
+      })
+      const selectedDistrictDailyVerticalGraphDataAPI = jest.fn()
+      selectedDistrictDailyVerticalGraphDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.selectedDistrictDailyVerticalGraphAPI = selectedDistrictDailyVerticalGraphDataAPI
+      await covid19DataStore.getSelectedDistictDailyVerticalGraphsData()
+      expect(covid19DataStore.getStateDailyVerticalGraphDataAPIStauts).toBe(API_SUCCESS)
+   })
+   it("should test the data failure state of selected district daily vertical graph data", async () => {
+      const mockLoadingPromise = new Promise((resolve, reject) => {
+         reject(new Error("error"))
+      })
+      const selectedDistrictDailyVerticalGraphDataAPI = jest.fn()
+      selectedDistrictDailyVerticalGraphDataAPI.mockReturnValue(mockLoadingPromise)
+      covid19APIService.selectedDistrictDailyVerticalGraphAPI = selectedDistrictDailyVerticalGraphDataAPI
+      
+      await covid19DataStore.getSelectedDistictDailyVerticalGraphsData()
+      expect(covid19DataStore.getStateDailyVerticalGraphDataAPIStauts).toBe(API_FAILED)
+      expect(covid19DataStore.getStateDailyVerticalGraphDataAPIError).toEqual(expect.any(String))
+   })
+
+   it("should the onChangeCurrentDate method ", () => {
+      covid19DataStore.currentDate = new Date()
+      const date ="2020-05-15T15:59:33.729Z"
+      covid19DataStore.onChangeCurrentDate(date)
+      expect(covid19DataStore.currentDate).toBe(date)
+   })
+
+   it("should test the given mandals in descending order by confirmed cases",()=>{
+      const data = [
+         { totalConfirmed: 90 },
+         { totalConfirmed: 60 },
+         { totalConfirmed: 180 },
+         { totalConfirmed: 200 },
+         { totalConfirmed: 10 }
+      ]
+      const sortedData = [
+         { totalConfirmed: 200 },
+         { totalConfirmed: 180 },
+         { totalConfirmed: 90 },
+         { totalConfirmed: 60 },
+         { totalConfirmed: 10 }
+      ]
+      
+      covid19DataStore.selectedDistrictDailyData = data
+      expect(covid19DataStore.selectedDistrictBarChartData).toStrictEqual(sortedData)
+   })
+   it("should test the name of the selected type",()=>{
+      const name = "Kurnool"
+      covid19DataStore.onChangeName(name)
+      expect(covid19DataStore.name).toBe(name)
+   })
+
 })

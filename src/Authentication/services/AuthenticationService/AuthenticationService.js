@@ -11,7 +11,7 @@ class AuthenticationService {
          baseURL: baseUrl
       })
    }
-   singnInAPI(requestObject) {
+   signInAPI(requestObject) {
       return networkCallWithApisauce(
          this.api,
          endpoints.signIn,

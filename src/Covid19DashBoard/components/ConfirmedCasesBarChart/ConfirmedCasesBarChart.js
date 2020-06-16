@@ -18,7 +18,6 @@ import { observer } from 'mobx-react'
 class ConfirmedCasesBarChart extends React.Component {
    render() {
       const { districtWiseData, barChartDataKey } = this.props
-      console.log('confirmed cases data', districtWiseData, barChartDataKey)
       return (
          <div style={{ width: '90%', height: 500 }}>
             <ResponsiveContainer>

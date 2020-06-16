@@ -1,11 +1,10 @@
 import signInAccessToken from '../../fixtures/getUserSignInRepsonse.json'
 
 class AuthenticationService {
-   singnInAPI(requestObject) {
+
+   signInAPI(requestObject) {
       return new Promise(resolve => {
-         setTimeout(() => {
             resolve(signInAccessToken)
-         }, 3000)
       })
    }
 }

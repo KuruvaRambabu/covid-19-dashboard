@@ -14,7 +14,6 @@ import districtsConfirmedCasesOverTheTime from '../../fixtures/districtsConfirme
 class TotalDistrictsCasesGraph extends React.Component {
    render() {
       const { stateCumulativeReportData } = this.props
-      console.log('confirmedCasesGraph', districtsConfirmedCasesOverTheTime)
       return (
          <div style={{ width: '100%', height: 250 }}>
             <ResponsiveContainer>
