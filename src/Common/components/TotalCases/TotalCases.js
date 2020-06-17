@@ -7,11 +7,7 @@ import {
 } from './StyledComponents'
 
 class TotalCases extends React.Component {
-   constructor(props) {
-      super(props)
-      this.typeOfcases = ['Confirmed', 'Active', 'Recovered', 'Deaths']
-   }
-
+  
    render() {
       const {
          confirmedCases,

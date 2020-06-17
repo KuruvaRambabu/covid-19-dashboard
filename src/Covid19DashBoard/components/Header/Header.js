@@ -34,7 +34,6 @@ class Header extends React.Component {
          name,
          changeDataMode
       } = this.props
-      console.log('date', startDate.toLocaleDateString())
       return (
          <HeaderMainContainer>
             <StateName onClick={changeDataMode}>

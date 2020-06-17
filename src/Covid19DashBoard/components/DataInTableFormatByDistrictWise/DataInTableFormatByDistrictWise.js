@@ -17,7 +17,7 @@ class DataInTableFormatByDistrictWise extends React.Component {
    render() {
       const { tableData, tableDataAccessor, tableHeaderName } = this.props
       return (
-         <DistrictWiseTableDataContainer>
+         <DistrictWiseTableDataContainer data-testid ="dataInTheTableFormat">
             <ReactTable
                showPagination={false}
                defaultPageSize={tableData.length}

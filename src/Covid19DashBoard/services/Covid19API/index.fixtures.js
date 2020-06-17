@@ -3,11 +3,10 @@ import districtAnalysisData from '../../fixtures/districtAnalysisData.json'
 import stateDatawithDates from '../../fixtures/stateDataWithDates.json'
 import stateDailyData from '../../fixtures/stateDailyData'
 import stateDailyGraphsData from '../../fixtures/stateDailyGraphsData'
-import selectedDistrictCovidData from "../../fixtures/selectedDistrictCovidData.json"
-import selectedDistrictGraphData from "../../fixtures/selectedDistrictGraphData.json"
-import selectedDistrictDailyData from "../../fixtures/selectedDistrictDailyData.json"
-import selectedDistrictDailyGraphData from "../../fixtures/selectedDistrictDailyGraphData.json"
-
+import selectedDistrictCovidData from '../../fixtures/selectedDistrictCovidData.json'
+import selectedDistrictGraphData from '../../fixtures/selectedDistrictGraphData.json'
+import selectedDistrictDailyData from '../../fixtures/selectedDistrictDailyData.json'
+import selectedDistrictDailyGraphData from '../../fixtures/selectedDistrictDailyGraphData.json'
 
 class Covid19APIService {
    Covid19DataAPI(date) {
@@ -44,6 +43,7 @@ class Covid19APIService {
    }
 
    stateDailyVerticalGraphsAPI() {
+     
       return new Promise(resolve => {
          setTimeout(() => {
             resolve(stateDailyGraphsData)

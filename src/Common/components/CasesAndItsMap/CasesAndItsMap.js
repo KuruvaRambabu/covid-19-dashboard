@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { observer } from 'mobx-react'
 
@@ -9,29 +9,32 @@ import {
    UnOrderedList,
    ListItems,
    CasesNameContainer,
-   AnchorTag
+  
 } from './styledComponents'
 import { observable } from 'mobx'
 
 @observer
 class CasesAndItsMap extends React.Component {
    @observable currentCaseOnMap = 'confirmed'
+
    async componentDidMount() {
-      const url =
-         'https://cors-anywhere.herokuapp.com/' + 'https://is.gd/kurnool'
-      try {
-         const response = await fetch(url)
-         console.log('kurnool coordinates', response)
-         const data = await response.json()
-         console.log(data)
-      } catch (e) {
-         console.error(e)
-      }
+      // const url =
+      //    'https://cors-anywhere.herokuapp.com/' + 'https://is.gd/kurnool'
+      // try {
+      //    const response = await fetch(url)
+      //    console.log('kurnool coordinates', response)
+      //    const data = await response.json()
+      //    console.log(data)
+      // } catch (e) {
+      //    console.error(e)
+      // }
    }
+
    changeCaseTypeOnMap = e => {
       this.currentCaseOnMap = e.target.id
    }
    render() {
+
       return (
          <CasesAndItsMapMainContainer>
             <CasesNameContainer>
@@ -68,10 +71,10 @@ class CasesAndItsMap extends React.Component {
                   </ListItems>
                </UnOrderedList>
             </CasesNameContainer>
-            <MapComponent />
+            {/* <MapComponent /> */}
          </CasesAndItsMapMainContainer>
       )
    }
 }
 
-export default CasesAndItsMap
+export default CasesAndItsMap;

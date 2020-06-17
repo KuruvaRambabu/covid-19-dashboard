@@ -41,13 +41,13 @@ class Covid19DashBoard extends React.Component {
             </SignOutBtnContainer>
             <ZonalAndDistrictWiseContainer>
                <ZonalWiseBtn
-                  color={zonalDashboard}
+                  color={zonalDashboard ? "yes":""}
                   onClick={onClickZonalDashboard}
                >
                   {strings.zonalWiseBtnName}
                </ZonalWiseBtn>
                <DistrictWiseBtn
-                  color={districtWiseCaseAnalysis}
+                  color={zonalDashboard ? "":"yes"}
                   onClick={onClickDistrictWIseCaseAnalysis}
                >
                   {strings.districtWIseCaseAnalysis}

@@ -15,18 +15,16 @@ class ZonalDashboard extends React.Component {
    @observable districtId
 
    componentDidMount() {
+    
       this.doNetworkCalls()
    }
 
    doNetworkCalls = () => {
-      this.props.covid19DataStore.init() 
+      this.props.covid19DataStore.init()
       this.props.covid19DataStore.getStateCumulativeReportData()
       this.props.covid19DataStore.getCovid19Data()
    }
 
-   sortCaseValues = e => {
-      this.props.covid19DataStore.sortBySelectedCase(e.target.id)
-   }
 
    onClickCumulativeData = () => {
       if (this.modeOfData === 'state') {
@@ -144,11 +142,12 @@ class ZonalDashboard extends React.Component {
          getStateCumulativeReportDataAPIError
       } = this.props.covid19DataStore
       const name = this.props.covid19DataStore.name
-      const selectedDistrictDailyData = this.props.covid19DataStore.selectedDistrictBarChartData
+      const selectedDistrictDailyData = this.props.covid19DataStore
+         .selectedDistrictBarChartData
       const {
          selectedDistrictDailyVerticalGraphData
       } = this.props.covid19DataStore
-      
+
       return (
          <ZonalDashboardMainContainer>
             <Header
@@ -181,7 +180,9 @@ class ZonalDashboard extends React.Component {
                         getCovid19DataAPIError={getCovid19DataAPIError}
                         onRetryClick={this.onRetryClick}
                         onClickGotoDistrictPage={this.onClickGotoDistrictPage}
-                        getStateCumulativeReportDataAPIStatus={getStateCumulativeReportDataAPIStatus}
+                        getStateCumulativeReportDataAPIStatus={
+                           getStateCumulativeReportDataAPIStatus
+                        }
                      />
                   ) : (
                      <DailyMode
@@ -256,5 +257,3 @@ class ZonalDashboard extends React.Component {
 }
 
 export default ZonalDashboard
-
-

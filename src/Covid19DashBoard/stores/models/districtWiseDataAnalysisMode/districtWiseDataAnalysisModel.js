@@ -8,7 +8,7 @@ class DistrictWiseDataAnalysisModel {
    totalConfirmed
    totalDeaths
    districtName
-   districtId 
+   districtId
    districtStats
 
    constructor(data) {

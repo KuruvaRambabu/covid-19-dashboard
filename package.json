@@ -110,8 +110,9 @@
          "src/Authentication/**/*.{ts,tsx,js,jsx}",
          "src/Covid19DashBoard/**/*.{ts,tsx,js,jsx}",
          "src/Common/**/*.{ts,tsx,js,jsx}",
-         "!src/*.{ts,tsx,js,jsx}"
-
+         "!src/*.{ts,tsx,js,jsx}",
+         "!src/Common/components/Button/*.{ts,tsx,js,jsx}",
+         "!src/Common/components/CasesAndItsMap/*.{ts,tsx,js,jsx}"
       ]
    }
 }

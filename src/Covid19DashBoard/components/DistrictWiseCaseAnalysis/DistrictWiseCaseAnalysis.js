@@ -36,7 +36,7 @@ class DistrictWiseCaseAnalysis extends React.Component {
          getDistrictWiseCaseAnalysisDataAPIStatus,
          getDistrictWiseCaseAnalysisDataAPIError
       } = this.props.covid19DataStore
-      console.log(getDistrictWiseCaseAnalysisDataAPIStatus)
+    
       return (
          <DistrictWiseCaseAnalysisMainContainer>
             <LoadingWrapperWithFailure
@@ -52,37 +52,3 @@ class DistrictWiseCaseAnalysis extends React.Component {
 
 export default DistrictWiseCaseAnalysis
 
-// <DistrictWiseCaseAnalysisMainContainer>
-// {districtsdata.map(district => (
-//     <IndividualDistrictCasesGraph district={district} />
-// ))}
-// </DistrictWiseCaseAnalysisMainContainer>
-// )
-
-{
-   /* <LoadingWrapperWithFailure
-                    apiStatus={getCovid19DataAPIStatus}
-                    apiError={getCovid19DataAPIError}
-                    onRetryClick={this.onRetryClick}
-                    renderSuccessUI={this.renderDistrictAnalysisDataUI}
-                /> */
-}
-//    componentDidMount() {
-//         this.doNetworkCall()
-//     }
-
-//     renderDistrictAnalysisDataUI = observer(() => {
-//         alert("hi")
-//         const districtsdata = this.props.covid19DataStore.districtAnalysisData.day_wise_report
-//         return districtsdata.map(district => (
-//             <IndividualDistrictCasesGraph district={district} />
-//         ))
-//     })
-
-//     doNetworkCall = () => {
-//         this.props.covid19DataStore.getDistrictWiseCaseAnalysisData()
-//     }
-
-//     onRetryClick = () => {
-//         this.doNetworkCall()
-//     }

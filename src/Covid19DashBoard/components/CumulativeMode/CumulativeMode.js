@@ -24,8 +24,8 @@ import {
 } from '../ZonalDashboard/styledComponents'
 import TotalDistrictsCasesGraph from '../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph'
 import DistrictButton from '../../../Common/components/DistrcitsButton/DistrictButton'
-import { getLoadingStatus, isAPIFailed } from "@ib/api-utils"
-import { stat } from "fs"
+import { getLoadingStatus, isAPIFailed } from '@ib/api-utils'
+import { stat } from 'fs'
 
 @observer
 class CumulativeMode extends React.Component {
@@ -124,18 +124,13 @@ class CumulativeMode extends React.Component {
          getStateCumulativeReportDataAPIError
       } = this.props
 
-      return getLoadingStatus(getCovid19DataAPIStatus, getStateCumulativeReportDataAPIStatus)
-
+      return getLoadingStatus(
+         getCovid19DataAPIStatus,
+         getStateCumulativeReportDataAPIStatus
+      )
    }
 
-   APiFailure = () => {
-      const {
-         getCovid19DataAPIError,
-         getStateCumulativeReportDataAPIError
-      } = this.props
-      return isAPIFailed(getCovid19DataAPIError,getStateCumulativeReportDataAPIError)
-   }
-
+   
    render() {
       const {
          getCovid19DataAPIStatus,

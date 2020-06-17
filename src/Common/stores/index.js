@@ -2,7 +2,6 @@ import AuthenticationStore from '../../Authentication/stores/AuthenticationStore
 //import AuthenticationService from '../../Authentication/services/AuthenticationService'
 import AuthenticationService from '../../Authentication/services/AuthenticationService/index.fixutes'
 
-
 //import Covid19APIService from "../../Covid19DashBoard/services/Covid19API/Covid19API";
 import Covid19DataStore from '../../Covid19DashBoard/stores/Covid19StateStore/'
 import Covid19APIService from '../../Covid19DashBoard/services/Covid19API/index.fixtures'

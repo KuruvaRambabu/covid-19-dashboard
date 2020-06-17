@@ -18,7 +18,7 @@ class DailyCasesBarChart extends React.Component {
    render() {
       const { stateCumulativeReportData, type, color } = this.props
       return (
-         <div style={{ width: '90%', height: 200 }}>
+         <div data-testid = "dailyCasesBarChartData"style={{ width: '90%', height: 200 }}>
             <ResponsiveContainer>
                <BarChart
                   data={toJS(stateCumulativeReportData)}

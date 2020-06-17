@@ -117,9 +117,7 @@ class Covid19DataStore {
       dayWiseDistrictReport.forEach(district => {
          const districtData = new DistrictWiseDataAnalysisModel(district)
          this.districtAnalysisData.push(districtData)
-
       })
-
    }
 
    @action.bound
@@ -129,7 +127,7 @@ class Covid19DataStore {
 
    @action.bound
    setGetDistrictWiseCaseAnalysisDataAPIError(error) {
-      console.log("im store", error)
+
       this.getDistrictWiseCaseAnalysisDataAPIError = error
    }
 
@@ -171,7 +169,6 @@ class Covid19DataStore {
 
    @action.bound
    onChangeCurrentDate(date) {
-      console.log(date)
       this.currentDate = date
    }
 
@@ -207,6 +204,7 @@ class Covid19DataStore {
 
    @action.bound
    setGetStateDailyDataAPIResponse(response) {
+
       this.totalDeathCases = response.total_deaths
       this.totalRecoveredCases = response.total_confirmed
       this.totalActiveCases = response.total_active
@@ -237,7 +235,7 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetStateDailyVerticalGraphDataAPIError(error) { 
+   setGetStateDailyVerticalGraphDataAPIError(error) {
       this.getStateDailyVerticalGraphDataAPIError = error
    }
 
@@ -252,6 +250,7 @@ class Covid19DataStore {
 
    @action.bound
    setGetStateDailyDataAPIError(error) {
+console.log("errro message", error)
       this.getStateDailyDataAPIError = error
    }
 
@@ -320,7 +319,6 @@ class Covid19DataStore {
 
    @action.bound
    setGetDistrictCumulativeGraphDataAPIResponse(response) {
-
       this.name = response.district_name
       const cumulativeReport = response.district_statistics
       cumulativeReport.forEach(district => {
@@ -346,7 +344,6 @@ class Covid19DataStore {
    }
    @action.bound
    setGetSelectedDistrictDailyDataAPIResponse(response) {
-
       this.totalDeathCases = response.total_deaths
       this.totalRecoveredCases = response.total_recovered
       this.totalActiveCases = response.total_active
@@ -374,7 +371,6 @@ class Covid19DataStore {
    }
    @action.bound
    setGetSelectedDistrictDailyVerticalGraphData(response) {
-
       const data = response.day_wise_report
       data.forEach(district => {
          const stateData = new StateDailyVerticalGraphModel(district)
