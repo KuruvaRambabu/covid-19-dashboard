@@ -19,7 +19,10 @@ class ConfirmedCasesBarChart extends React.Component {
    render() {
       const { districtWiseData, barChartDataKey } = this.props
       return (
-         <div data-testid="confirmedCasesBarChart" style={{ width: '90%', height: 500 }}>
+         <div
+            data-testid='confirmedCasesBarChart'
+            style={{ width: '90%', height: 500 }}
+         >
             <ResponsiveContainer>
                <ComposedChart
                   layout='vertical'

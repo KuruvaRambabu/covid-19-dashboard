@@ -6,20 +6,16 @@ import {
    setAccessToken,
    clearUserSession
 } from '../../../Common/utils/StorageUtils'
-import AuthenticationService from "../../services/AuthenticationService"
+import AuthenticationService from "../../services/AuthenticationService/index.fixutes"
 
-type AuthenticationServiceTypes  = {
-   authenticationService:AuthenticationService
-   signInAPI:Function
-}
 
 class AuthenticationStore {
    @observable getUserSignInAPIError!:string|null
    @observable getUserSignInAPIStatus!:number
    @observable accessToken! :string
-   authAPIService:AuthenticationServiceTypes
+   authAPIService:AuthenticationService
 
-   constructor(authAPIService:AuthenticationServiceTypes) {
+   constructor(authAPIService:AuthenticationService) {
       this.authAPIService = authAPIService
       this.init()
    }

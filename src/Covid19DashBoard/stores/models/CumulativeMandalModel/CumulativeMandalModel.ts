@@ -1,11 +1,11 @@
 class CumulativeMandalModel {
-   totalActive
-   totalRecovered
-   totalConfirmed
-   totalDeaths
-   mandalName
-
-   constructor(data) {
+   totalActive:number
+   totalRecovered:number
+   totalConfirmed:number
+   totalDeaths:number
+   mandalName:string
+   mandalId:number
+   constructor(data:any) {
       this.totalActive = data.total_active
       this.totalRecovered = data.total_recovered
       this.totalConfirmed = data.total_confirmed

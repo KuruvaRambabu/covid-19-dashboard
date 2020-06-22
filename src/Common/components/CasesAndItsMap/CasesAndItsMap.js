@@ -8,8 +8,7 @@ import {
    CasesAndItsMapMainContainer,
    UnOrderedList,
    ListItems,
-   CasesNameContainer,
-  
+   CasesNameContainer
 } from './styledComponents'
 import { observable } from 'mobx'
 
@@ -34,7 +33,6 @@ class CasesAndItsMap extends React.Component {
       this.currentCaseOnMap = e.target.id
    }
    render() {
-
       return (
          <CasesAndItsMapMainContainer>
             <CasesNameContainer>
@@ -77,4 +75,4 @@ class CasesAndItsMap extends React.Component {
    }
 }
 
-export default CasesAndItsMap;
+export default CasesAndItsMap

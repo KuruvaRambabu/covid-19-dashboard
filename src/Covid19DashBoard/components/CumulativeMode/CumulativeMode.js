@@ -130,7 +130,6 @@ class CumulativeMode extends React.Component {
       )
    }
 
-   
    render() {
       const {
          getCovid19DataAPIStatus,

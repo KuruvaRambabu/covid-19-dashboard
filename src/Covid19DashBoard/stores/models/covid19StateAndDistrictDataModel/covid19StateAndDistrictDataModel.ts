@@ -1,12 +1,12 @@
 class Covid19StateAndDistrictDataModel {
-   totalActive
-   totalRecovered
-   totalConfirmed
-   totalDeaths
-   districtName
-   districtId
+   totalActive:number
+   totalRecovered:number
+   totalConfirmed:number
+   totalDeaths:number
+   districtName:string
+   districtId:number
 
-   constructor(data) {
+   constructor(data:any) {
       this.totalActive = data.total_active
       this.totalRecovered = data.total_recovered
       this.totalConfirmed = data.total_confirmed

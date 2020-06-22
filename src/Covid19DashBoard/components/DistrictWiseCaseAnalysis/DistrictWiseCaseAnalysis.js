@@ -36,7 +36,7 @@ class DistrictWiseCaseAnalysis extends React.Component {
          getDistrictWiseCaseAnalysisDataAPIStatus,
          getDistrictWiseCaseAnalysisDataAPIError
       } = this.props.covid19DataStore
-    
+
       return (
          <DistrictWiseCaseAnalysisMainContainer>
             <LoadingWrapperWithFailure
@@ -51,4 +51,3 @@ class DistrictWiseCaseAnalysis extends React.Component {
 }
 
 export default DistrictWiseCaseAnalysis
-

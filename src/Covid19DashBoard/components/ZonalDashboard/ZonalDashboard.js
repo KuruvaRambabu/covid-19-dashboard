@@ -15,7 +15,6 @@ class ZonalDashboard extends React.Component {
    @observable districtId
 
    componentDidMount() {
-    
       this.doNetworkCalls()
    }
 
@@ -24,7 +23,6 @@ class ZonalDashboard extends React.Component {
       this.props.covid19DataStore.getStateCumulativeReportData()
       this.props.covid19DataStore.getCovid19Data()
    }
-
 
    onClickCumulativeData = () => {
       if (this.modeOfData === 'state') {

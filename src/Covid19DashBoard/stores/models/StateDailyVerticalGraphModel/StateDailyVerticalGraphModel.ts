@@ -1,10 +1,10 @@
 class StateDailyVerticalGraphModel {
-   totalActive
-   totalRecovered
-   totalConfirmed
-   totalDeaths
-   date
-   constructor(data) {
+   totalActive:number   
+   totalRecovered:number
+   totalConfirmed:number
+   totalDeaths:number
+   date:string
+   constructor(data:any) {
       this.totalActive = data.total_active
       this.totalRecovered = data.total_recovered
       this.totalConfirmed = data.total_confirmed

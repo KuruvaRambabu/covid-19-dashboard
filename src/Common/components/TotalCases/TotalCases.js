@@ -7,7 +7,6 @@ import {
 } from './StyledComponents'
 
 class TotalCases extends React.Component {
-  
    render() {
       const {
          confirmedCases,
