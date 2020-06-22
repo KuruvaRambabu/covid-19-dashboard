@@ -1,5 +1,5 @@
 import React from 'react'
-import SignInPage from '../../components/SignInPage/'
+import SignInPage from '../../components/SignInPage'
 import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
 import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
@@ -10,38 +10,43 @@ import {
    getUserDisplayableErrorMessage
 } from '../../../Common/utils/APIUtils'
 import { goToCoivd19_DashBoard } from '../../utils/NavigationModule/NavigationModule'
+import AuthenticationStore from "../../stores/AuthenticationStore"
+
+
+type AuthenticationStoreType = {
+   authenticationStore:AuthenticationStore
+}
+
 
 @inject('authenticationStore')
 @observer
-class SignInRoute extends React.Component {
-   @observable email
-   @observable password
-   @observable errorMessage
-   @observable token
-   @observable passwordErrorMessage
-   @observable emailErrorMessage
-   @observable token
+class SignInRoute extends React.Component <AuthenticationStoreType> {
+   @observable email:string
+   @observable password:string
+   @observable errorMessage:string
+   @observable passwordErrorMessage:string
+   @observable emailErrorMessage:string
 
-   constructor(props) {
+   constructor(props:AuthenticationStoreType) {
       super(props)
       this.email = ''
       this.password = ''
       this.errorMessage = ''
-      this.token = false
+      this.passwordErrorMessage=""
+      this.emailErrorMessage=""
    }
 
-   onChangeUserName = event => {
+   onChangeUserName = (event:React.ChangeEvent<HTMLInputElement>) => {
       this.email = event.target.value
    }
 
-   onChangePassword = event => {
+   onChangePassword = (event:React.ChangeEvent<HTMLInputElement>) => {
       this.password = event.target.value
    }
 
    onSignInSuccess = () => {
-      const { history } = this.props
+      const { history }:any = this.props
       goToCoivd19_DashBoard(history)
-      //history.replace(COVID_19_DASHBOARD_PATH)
    }
 
    onSignInFailure = () => {
@@ -63,7 +68,6 @@ class SignInRoute extends React.Component {
          this.emailErrorMessage = ''
          this.passwordErrorMessage = ''
          this.errorMessage = ''
-         this.token = true
          const { userSignIn } = this.props.authenticationStore
 
          userSignIn(
@@ -93,7 +97,6 @@ class SignInRoute extends React.Component {
             onClickSignIn={this.onClickSignIn}
             passwordErrorMessage={this.passwordErrorMessage}
             emailErrorMessage={this.emailErrorMessage}
-            token={this.token}
          />
       )
    }

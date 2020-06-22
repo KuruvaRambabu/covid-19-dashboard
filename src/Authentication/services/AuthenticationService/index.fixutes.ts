@@ -1,7 +1,7 @@
 import signInAccessToken from '../../fixtures/getUserSignInRepsonse.json'
 
 class AuthenticationService {
-   signInAPI(requestObject) {
+   signInAPI(requestObject:object) {
       return new Promise(resolve => {
          resolve(signInAccessToken)
       })

@@ -48,39 +48,6 @@ describe('Test cases for covi19 dash board route', () => {
       jest.resetAllMocks()
    })
 
-   // it("should test the sign out button click ", async() => {
-   //    const history = createMemoryHistory();
-   //    const route = COVID_19_DASHBOARD_PATH
-   //    history.push(route);
-
-   //    const mockSignOutBtn = jest.fn()
-   //    const { getByRole,getByTestId,queryByRole, debug, getByText } = render(
-   //       <Provider
-   //          authenticationStore={authenticationStore}
-   //          covid19DataStore={covid19DataStore}
-   //       >
-   //          <Router history={history}>
-   //             <Route path={COVID_19_DASHBOARD_PATH}>
-   //                <Covid19DashBoardRoute />
-   //             </Route>
-   //             <Route path={COVID_19_SIGN_IN_PAGE_PATH}>
-   //                <LocationDisplay />
-   //             </Route>
-   //          </Router>
-   //       </Provider>
-   //    )
-
-   //    const clickOnSignOutBtn = getByRole("button", { name:strings.signOutBtnName })
-   //    fireEvent.click(clickOnSignOutBtn)
-
-   //    await waitFor(() => {
-   //       debug()
-   //       expect(getByTestId("location-display")).toHaveTextContent(
-   //          COVID_19_SIGN_IN_PAGE_PATH
-   //       );
-   //    });
-
-   // })
 
    it('should test the data loading state of covi19DashBoard Route ', () => {
       const {

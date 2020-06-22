@@ -123,7 +123,7 @@ describe('Test cases for Sign in Route', () => {
       expect(mockFn).toBeCalled()
 
       getByLabelText('audio-loading')
-      getByRole('button', { disabled: true })
+      getByRole('button')
    })
 
    it('should render signInRoute failure state', async () => {

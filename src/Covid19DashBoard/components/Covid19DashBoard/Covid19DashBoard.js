@@ -25,11 +25,7 @@ class Covid19DashBoard extends React.Component {
          zonalDashboard,
          onClickZonalDashboard,
          districtWiseCaseAnalysis,
-         onClickDistrictWIseCaseAnalysis,
-         renderCovid19DataUI,
-         getCovid19DataAPIError,
-         getCovid19DataAPIStatus,
-         onRetryClick
+         onClickDistrictWIseCaseAnalysis
       } = this.props
 
       return (

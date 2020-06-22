@@ -1,7 +1,14 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import InputField from '../InputField/index'
+
+import imageUrls from '../../../Common/ImageUrls/ImageUrls.json'
+import { Typo12SteelHKGrotesk } from '../../../StyleGuide/Typos'
+import SignInButton from '../../../Common/components/Button/SignInButton'
+
+
 import strings from '../../i18n/strings.json'
+
+import InputField from '../InputField/index'
 
 import {
    SignInPageMainContainer,
@@ -10,16 +17,28 @@ import {
    CompanyLogo,
    Heading,
    ImageContainer,
-   PrimarySignInButton,
    ErrorMessage,
    DontHaveAccount
 } from './StyledComponents'
-import imageUrls from '../../../Common/ImageUrls/ImageUrls.json'
-import { Typo12SteelHKGrotesk } from '../../../StyleGuide/Typos'
-import SignInButton from '../../../Common/components/Button/SignInButton'
+
+
+
+type SignInPageTypes ={
+   email:string
+   password:string
+   errorMessage:string
+   onChangePassword:Function
+   onClickSignIn :Function
+   onChangeUserName:Function
+   getUserSignInAPIStatus:number
+   passwordErrorMessage:string
+   emailErrorMessage:string
+}
+
+
 
 @observer
-class SignInPage extends React.Component {
+class SignInPage extends React.Component <SignInPageTypes>{
    render() {
       const {
          email,
@@ -28,7 +47,6 @@ class SignInPage extends React.Component {
          onChangePassword,
          onChangeUserName,
          onClickSignIn,
-         token,
          getUserSignInAPIStatus,
          passwordErrorMessage,
          emailErrorMessage
@@ -80,7 +98,6 @@ class SignInPage extends React.Component {
                   </Typo12SteelHKGrotesk>
 
                   <SignInButton
-                     token={token}
                      apiStatus={getUserSignInAPIStatus}
                      onClickSignIn={onClickSignIn}
                      name={strings.LoginButtonName}

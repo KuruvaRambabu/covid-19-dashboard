@@ -4,10 +4,16 @@ import { observer } from 'mobx-react'
 import Loader from 'react-loader-spinner'
 import { PrimarySignInButton } from './styledComponents'
 
+type SignInButtonTypes = {
+   onClickSignIn:()=>void
+   apiStatus:number
+   name:string
+   
+}
 @observer
-class SignInButton extends React.Component {
+class SignInButton extends React.Component <SignInButtonTypes> {
    render() {
-      const { onClickSignIn, apiStatus, token, name, type } = this.props
+      const { onClickSignIn, apiStatus,  name } = this.props
 
       return (
          <div>

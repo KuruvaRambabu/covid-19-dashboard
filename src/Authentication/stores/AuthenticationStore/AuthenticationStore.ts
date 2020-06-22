@@ -6,14 +6,20 @@ import {
    setAccessToken,
    clearUserSession
 } from '../../../Common/utils/StorageUtils'
+import AuthenticationService from "../../services/AuthenticationService"
+
+type AuthenticationServiceTypes  = {
+   authenticationService:AuthenticationService
+   signInAPI:Function
+}
 
 class AuthenticationStore {
-   @observable getUserSignInAPIError
-   @observable getUserSignInAPIStatus
-   @observable accessToken
-   authAPIService
+   @observable getUserSignInAPIError!:string|null
+   @observable getUserSignInAPIStatus!:number
+   @observable accessToken! :string
+   authAPIService:AuthenticationServiceTypes
 
-   constructor(authAPIService) {
+   constructor(authAPIService:AuthenticationServiceTypes) {
       this.authAPIService = authAPIService
       this.init()
    }
@@ -26,7 +32,7 @@ class AuthenticationStore {
    }
 
    @action.bound
-   userSignIn(request, onSuccess, onFailure) {
+   userSignIn(request:object, onSuccess:Function, onFailure:Function) {
      
       const userSignInPromise = this.authAPIService.signInAPI(request)
       return bindPromiseWithOnSuccess(userSignInPromise)
@@ -41,20 +47,19 @@ class AuthenticationStore {
    }
 
    @action.bound
-   setUserSignInAPIResponse(response) {
+   setUserSignInAPIResponse(response:any) {
       setAccessToken(response.access_token)
       this.accessToken = getAccessToken()
-      console.log('authentication store', this.accesToken)
    }
 
    @action.bound
-   setGetUserSignInAPIError(apiError) {
+   setGetUserSignInAPIError(apiError:string) {
       console.log(apiError)
       this.getUserSignInAPIError = apiError
    }
 
    @action.bound
-   setGetUserSignInAPIStatus(apiStatus) {
+   setGetUserSignInAPIStatus(apiStatus:number) {
       this.getUserSignInAPIStatus = apiStatus
    }
 

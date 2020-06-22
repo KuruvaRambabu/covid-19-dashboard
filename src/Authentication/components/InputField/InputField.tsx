@@ -2,7 +2,15 @@ import React from 'react'
 import { InputElement } from './StyledComponents'
 import { colors } from '../../themes/Colors'
 
-class InputField extends React.Component {
+type InputFieldTypes = {
+   type:string
+   placeholder:string
+   value:string
+   onChangeField :any
+   errorMessage:string
+}
+
+class InputField extends React.Component <InputFieldTypes>  {
    render() {
       const {
          type,

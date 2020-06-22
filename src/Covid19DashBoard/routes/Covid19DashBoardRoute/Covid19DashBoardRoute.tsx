@@ -4,14 +4,24 @@ import { observable, action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import ZonalDashboard from '../../components/ZonalDashboard'
 import DistrictWiseCaseAnalysis from '../../components/DistrictWiseCaseAnalysis/DistrictWiseCaseAnalysis'
+import AuthenticationStore from "../../../Authentication/stores/AuthenticationStore"
+import Covid19DataStore from "../../stores/Covid19StateStore"
+
+
+type storeTypes = {
+   covid19DataStore:Covid19DataStore
+   authenticationStore:AuthenticationStore
+}
+
+
 
 @inject('authenticationStore', 'covid19DataStore')
 @observer
-class Covid19DashBoardRoute extends React.Component {
+class Covid19DashBoardRoute extends React.Component <storeTypes>{
    @observable zonalDashboard = true
    @observable districtWiseCaseAnalysis = false
 
-   componentWillUnMount() {
+   componentWillUnmount() {
       this.props.covid19DataStore.clearUserSession()
    }
 
@@ -47,8 +57,6 @@ class Covid19DashBoardRoute extends React.Component {
             onClickDistrictWIseCaseAnalysis={
                this.onClickDistrictWIseCaseAnalysis
             }
-            renderCovid19DataUI={this.renderCovid19DataUI}
-            onRetryClick={this.onRetryClick}
          />
       )
    }
