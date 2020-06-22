@@ -5,13 +5,21 @@ import { observer, inject } from 'mobx-react'
 import CumulativeMode from '../CumulativeMode/CumulativeMode'
 import DailyMode from '../DailyMode/DailyMode'
 import { observable } from 'mobx'
+import Covid19DataStore from "../../stores/Covid19StateStore"
 
-@inject('covid19DataStore')
+
+interface ZonalDashboardTypes {
+   covid19DataStore:Covid19DataStore
+}
+
+
+
+
 @observer
-class ZonalDashboard extends React.Component {
-   @observable isCumulative = true
-   @observable isDaily = false
-   @observable modeOfData = 'state'
+class ZonalDashboard extends React.Component <ZonalDashboardTypes>{
+   @observable isCumulative:boolean = true
+   @observable isDaily:boolean = false
+   @observable modeOfData:string = 'state'
    @observable districtId
 
    componentDidMount() {
@@ -49,8 +57,7 @@ class ZonalDashboard extends React.Component {
          }
       } else {
          if (!this.isDaily) {
-            // this.props.covid19DataStore.init()
-            // this.props.covid19DataStore.getSelectedDistrictDailyData(this.districtId)
+          
             this.props.covid19DataStore.init()
             this.props.covid19DataStore.getSelectedDistrictDailyData(
                this.districtId
@@ -126,22 +133,18 @@ class ZonalDashboard extends React.Component {
       const deathCases = this.props.covid19DataStore.totalDeathCases
       const districtWiseData = this.props.covid19DataStore.totalDistrictCases
       const barChartData = this.props.covid19DataStore.barChartData
-      const stateCumulativeReportData = this.props.covid19DataStore
-         .stateCumulativeReport
+      const stateCumulativeReportData = this.props.covid19DataStore.stateCumulativeReport
       const startDate = this.props.covid19DataStore.currentDate
-      const stateDailyVerticalGraphData = this.props.covid19DataStore
-         .stateDailyVerticalGraphData
+      const stateDailyVerticalGraphData = this.props.covid19DataStore.stateDailyVerticalGraphData
       const {
          getCovid19DataAPIStatus,
          getCovid19DataAPIError,
          getStateDailyDataAPIStatus,
          getStateDailyDataAPIError,
          getStateCumulativeReportDataAPIStatus,
-         getStateCumulativeReportDataAPIError
       } = this.props.covid19DataStore
       const name = this.props.covid19DataStore.name
-      const selectedDistrictDailyData = this.props.covid19DataStore
-         .selectedDistrictBarChartData
+      const selectedDistrictDailyData = this.props.covid19DataStore.selectedDistrictBarChartData
       const {
          selectedDistrictDailyVerticalGraphData
       } = this.props.covid19DataStore
@@ -173,7 +176,6 @@ class ZonalDashboard extends React.Component {
                         tableHeaderName='District Name'
                         tableDataAccessor='districtName'
                         barChartDataKey='districtName'
-                        sortCaseValues={this.sortCaseValues}
                         getCovid19DataAPIStatus={getCovid19DataAPIStatus}
                         getCovid19DataAPIError={getCovid19DataAPIError}
                         onRetryClick={this.onRetryClick}
@@ -194,7 +196,6 @@ class ZonalDashboard extends React.Component {
                         barChartDataKey='districtName'
                         stateCumulativeReportData={stateCumulativeReportData}
                         barChartData={barChartData}
-                        sortCaseValues={this.sortCaseValues}
                         getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
                         getStateDailyDataAPIError={getStateDailyDataAPIError}
                         networkCallForDailyData={this.networkCallForDailyData}
@@ -218,7 +219,6 @@ class ZonalDashboard extends React.Component {
                         tableHeaderName='Mandal Name'
                         tableDataAccessor='mandalName'
                         barChartDataKey='mandalName'
-                        sortCaseValues={this.sortCaseValues}
                         getCovid19DataAPIStatus={getCovid19DataAPIStatus}
                         getCovid19DataAPIError={getCovid19DataAPIError}
                         onRetryClick={this.onRetryClick}
@@ -238,7 +238,6 @@ class ZonalDashboard extends React.Component {
                            selectedDistrictDailyVerticalGraphData
                         }
                         barChartData={selectedDistrictDailyData}
-                        sortCaseValues={this.sortCaseValues}
                         getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
                         getStateDailyDataAPIError={getStateDailyDataAPIError}
                         networkCallForDailyData={this.networkCallForDailyData}

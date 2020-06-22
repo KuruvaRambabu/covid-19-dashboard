@@ -99,10 +99,6 @@ export const ZonalDashboardTableFormatDataAndChartContainer = styled.div`
 export const TableContainer = styled.div`
    ${tw`w-full  `}
 `
-export const TableRow = styled.tr`
-   background: ${props => (props.index % 2 === 0 ? '#1f1f2e' : '#001133')};
-   ${tw`h-16 shadow-lg `}
-`
 
 export const TableHeader = styled.th`
    transition: 0.5s all ease-out;

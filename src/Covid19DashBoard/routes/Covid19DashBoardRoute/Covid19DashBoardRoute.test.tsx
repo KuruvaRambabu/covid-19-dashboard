@@ -3,40 +3,24 @@ import {
    render,
    fireEvent,
    waitFor,
-   getByLabelText,
-   getByRole,
-   findAllByText,
-   wait
 } from '@testing-library/react'
 import { Provider } from 'mobx-react'
-import { createMemoryHistory } from 'history'
-import strings from '../../i18n/strings'
 
-
-import Covid19DataStore from '../../stores/Covid19StateStore'
-import Covid19APIService from '../../services/Covid19API/index.fixtures'
-import Covid19DashBoardRoute from '.'
-import Covid19DashBoard from '../../components/Covid19DashBoard'
 import AuthenticationStore from '../../../Authentication/stores/AuthenticationStore'
 import AuthenticationService from '../../../Authentication/services/AuthenticationService/index.fixutes'
 
-import cumulativeStateAndDistictData from '../../fixtures/covid19StateAndDistrictData.json'
 import districtAnalysisData from '../../fixtures/districtAnalysisData.json'
-import stateDataWithDates from '../../fixtures/stateDataWithDates.json'
+import Covid19APIService from '../../services/Covid19API/index.fixtures'
+import Covid19DataStore from '../../stores/Covid19StateStore'
 
+import Covid19DashBoardRoute from '.'
 
-import { withRouter, Router, Route } from "react-router-dom"
-import { COVID_19_DASHBOARD_PATH, COVID_19_SIGN_IN_PAGE_PATH } from "../../../Common/routes/RouteConstants"
-
-const LocationDisplay = withRouter(({ location }) => (
-   <div data-testid="location-display">{location.pathname}</div>
-));
 
 describe('Test cases for covi19 dash board route', () => {
-   let covid19DataStore
-   let covid19APIService
-   let authenticationStore
-   let authenticationService
+   let covid19DataStore:Covid19DataStore
+   let covid19APIService:Covid19APIService
+   let authenticationStore:AuthenticationStore
+   let authenticationService:AuthenticationService
    beforeEach(() => {
       covid19APIService = new Covid19APIService()
       covid19DataStore = new Covid19DataStore(covid19APIService)
@@ -49,6 +33,8 @@ describe('Test cases for covi19 dash board route', () => {
    })
 
 
+
+   //FixMe that props for covid19DashBoard route are not passing through provider
    it('should test the data loading state of covi19DashBoard Route ', () => {
       const {
          getByLabelText,
@@ -82,7 +68,7 @@ describe('Test cases for covi19 dash board route', () => {
             covid19DataStore={covid19DataStore}
          >
             <Covid19DashBoardRoute />
-         </Provider>
+         </Provider> 
       )
       const districtAnalysisPage = getByRole('button', {
          name: 'District wise Case Analysis'

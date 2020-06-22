@@ -1,5 +1,12 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+
+import strings from '../../i18n/strings.json'
+
+import ZonalDashboard from '../ZonalDashboard'
+import DistrictWiseCaseAnalysis from '../DistrictWiseCaseAnalysis/DistrictWiseCaseAnalysis'
+
+
 import {
    Covid19DashBoardMainContainer,
    SignOutBtn,
@@ -8,24 +15,28 @@ import {
    ZonalWiseBtn,
    DistrictWiseBtn
 } from './StyledComponents'
+import Covid19DataStore from "../../stores/Covid19StateStore"
 
-import strings from '../../i18n/strings.json'
-
-import ZonalDashboard from '../ZonalDashboard'
-
-import { observable, toJS } from 'mobx'
-import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
-import DistrictWiseCaseAnalysis from '../DistrictWiseCaseAnalysis/DistrictWiseCaseAnalysis'
+interface Covid19DashBoardTypes  {
+   onClickSignOut:()=>void
+   zonalDashboard:boolean
+   onClickZonalDashboard:()=>void
+   districtWiseCaseAnalysis:boolean
+   onClickDistrictWIseCaseAnalysis:()=>void
+   covid19DataStore:Covid19DataStore
+}
+   
 
 @observer
-class Covid19DashBoard extends React.Component {
+class Covid19DashBoard extends React.Component <Covid19DashBoardTypes>{
    render() {
       const {
          onClickSignOut,
          zonalDashboard,
          onClickZonalDashboard,
          districtWiseCaseAnalysis,
-         onClickDistrictWIseCaseAnalysis
+         onClickDistrictWIseCaseAnalysis,
+         covid19DataStore
       } = this.props
 
       return (
@@ -51,7 +62,7 @@ class Covid19DashBoard extends React.Component {
             </ZonalAndDistrictWiseContainer>
 
             {zonalDashboard && !districtWiseCaseAnalysis ? (
-               <ZonalDashboard />
+               <ZonalDashboard covid19DataStore={covid19DataStore}/>
             ) : (
                <DistrictWiseCaseAnalysis />
             )}
