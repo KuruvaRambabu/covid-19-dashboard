@@ -2,7 +2,7 @@ import React from 'react'
 
 import { observer } from 'mobx-react'
 
-import MapComponent from '../MapComponent/MapComponent'
+//import MapComponent from '../MapComponent/MapComponent'
 
 import {
    CasesAndItsMapMainContainer,

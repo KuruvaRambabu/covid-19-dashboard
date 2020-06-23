@@ -1,7 +1,13 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
+import TotalCases from '../../../Common/components/TotalCases'
+import CasesAndItsMap from '../../../Common/components/CasesAndItsMap/CasesAndItsMap'
+import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
+
+import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/DataInTableFormatByDistrictWise'
 import DailyCasesBarChart from '../DailyCasesBarChart/DailyCasesBarChart'
+import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
 
 import {
    ZonalDashboardCasesMapAndGraphContainer,
@@ -11,21 +17,31 @@ import {
    GraphName,
    ZonalDashboardTableFormatDataAndChartContainer,
    DistrictWiseTableData,
-   TableContainer,
-   TableHeader,
-   TableRow,
    ConfirmedCasesBarChartContainer,
    DistrictWIseReportName
 } from '../ZonalDashboard/styledComponents'
 
-import TotalCases from '../../../Common/components/TotalCases'
-import CasesAndItsMap from '../../../Common/components/CasesAndItsMap/CasesAndItsMap'
-import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/DataInTableFormatByDistrictWise'
-import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
-import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
+
+interface DailyModeTypes {
+   tableData: Array<object>
+   tableHeaderName: string
+   barChartData: Array<object>
+   confirmedCases: number
+   activeCases: number
+   deathCases: number
+   recoveredCases: number
+   stateDailyVerticalGraphData: Array<object>
+   tableDataAccessor: string
+   barChartDataKey: string
+   networkCallForDailyData: Function
+   getStateDailyDataAPIStatus: number
+   getStateDailyDataAPIError: object | null
+   onRetryClick: () => void
+}
+
 
 @observer
-class DailyMode extends React.Component {
+class DailyMode extends React.Component<DailyModeTypes>{
    componentDidMount() {
       this.props.networkCallForDailyData()
    }
@@ -33,11 +49,9 @@ class DailyMode extends React.Component {
    renderStateDailySuccessUI = observer(() => {
       const {
          tableData,
-         stateCumulativeReportData,
          tableHeaderName,
          barChartData,
          confirmedCases,
-         activeCases,
          deathCases,
          recoveredCases,
          stateDailyVerticalGraphData,
@@ -111,13 +125,15 @@ class DailyMode extends React.Component {
    render() {
       const {
          getStateDailyDataAPIStatus,
-         getStateDailyDataAPIError
+         getStateDailyDataAPIError,
+         onRetryClick
       } = this.props
       return (
          <LoadingWrapperWithFailure
             apiStatus={getStateDailyDataAPIStatus}
             apiError={getStateDailyDataAPIError}
             renderSuccessUI={this.renderStateDailySuccessUI}
+            onRetryClick={onRetryClick}
          />
       )
    }

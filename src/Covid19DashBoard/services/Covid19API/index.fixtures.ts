@@ -25,7 +25,7 @@ class Covid19APIService {
       })
    }
 
-   stateCumulativeReportData(date:object) {
+   stateCumulativeReportData() {
       return new Promise(resolve => {
          setTimeout(() => {
             resolve(stateDatawithDates)
@@ -48,7 +48,7 @@ class Covid19APIService {
          }, 500)
       })
    }
-   districtCumulativeDataAPI() {
+   districtCumulativeDataAPI(date, id) {
       return new Promise(resolve => {
          setTimeout(() => {
             resolve(selectedDistrictCovidData)
@@ -63,7 +63,7 @@ class Covid19APIService {
          }, 500)
       })
    }
-   selectedDistrictDailyDataAPI(id) {
+   selectedDistrictDailyDataAPI(date,id) {
       return new Promise(resolve => {
          setTimeout(() => {
             resolve(selectedDistrictDailyData)

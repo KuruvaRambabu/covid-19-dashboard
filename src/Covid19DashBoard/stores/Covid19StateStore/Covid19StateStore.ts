@@ -1,9 +1,9 @@
-import { observable, action, computed, toJS } from 'mobx'
+import { observable, action, computed} from 'mobx'
 import { API_INITIAL } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { format } from 'date-fns'
 
-import Covid19APIService from "../../services/Covid19API/Covid19API"
+import Covid19APIService from "../../services/Covid19API/index.fixtures"
 
 import Covid19StateAndDistrictDataModel from '../models/covid19StateAndDistrictDataModel/covid19StateAndDistrictDataModel'
 import CumulativeDataReportModel from '../models/CumulativeDataReportModel/CumulativeDataReportModel'

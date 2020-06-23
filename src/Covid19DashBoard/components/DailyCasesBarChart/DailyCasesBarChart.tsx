@@ -5,16 +5,20 @@ import {
    Bar,
    XAxis,
    YAxis,
-   CartesianGrid,
    Tooltip,
    Legend,
-   ReferenceLine
 } from 'recharts'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
+interface DailyCasesBarChartTypes{
+   stateCumulativeReportData:Array<object>
+   type:string
+   color:string
+}
+
 @observer
-class DailyCasesBarChart extends React.Component {
+class DailyCasesBarChart extends React.Component <DailyCasesBarChartTypes>{
    render() {
       const { stateCumulativeReportData, type, color } = this.props
       return (

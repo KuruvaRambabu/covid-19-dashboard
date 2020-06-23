@@ -5,7 +5,7 @@ import HomePage from './Common/components/HomePage'
 
 import './App.css'
 import SignInRoute from './Authentication/routes/SignInRoute'
-import { Provider, observer } from 'mobx-react'
+import { Provider } from 'mobx-react'
 import stores from './Common/stores'
 import { ProtectedRoute } from './Common/components/ProtectedRoute/ProtectedRoute'
 import {

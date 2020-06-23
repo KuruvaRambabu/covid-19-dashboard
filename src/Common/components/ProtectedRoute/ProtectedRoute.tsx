@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import { COVID_19_SIGN_IN_PAGE_PATH } from '../../routes/RouteConstants'
-import { getAccessToken } from '../../utils/StorageUtils'
 
 export const ProtectedRoute = inject('authenticationStore')(
    observer(({ component: Component, authenticationStore, ...rest }) => {
@@ -11,7 +10,7 @@ export const ProtectedRoute = inject('authenticationStore')(
       return (
          <Route
             {...rest}
-            render={props => {
+            render={(props: any) => {
                if (accessToken) {
                   return <Component />
                } else {

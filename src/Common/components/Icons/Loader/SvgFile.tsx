@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 
-class Loader extends Component {
+
+interface LoaderTypes {
+   width:number
+   height:number
+   fill:string
+}
+
+class Loader extends Component <LoaderTypes> {
    static defaultProps = {
       width: 100,
       height: 100,

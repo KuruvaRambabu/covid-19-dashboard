@@ -1,14 +1,20 @@
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+import { observer } from 'mobx-react'
 
 import IndividualDistrictCasesGraph from '../../../Common/components/IndividualDistrictCasesGraphs/IndividualDistrictCasesGraph'
 import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
 
 import { DistrictWiseCaseAnalysisMainContainer } from './StyledComponents'
+import Covid19DataStore from "../../stores/Covid19StateStore"
 
-@inject('covid19DataStore')
+interface DistrictWiseCaseAnalysisTypes {
+   covid19DataStore: Covid19DataStore
+}
+
+
+
 @observer
-class DistrictWiseCaseAnalysis extends React.Component {
+class DistrictWiseCaseAnalysis extends React.Component <DistrictWiseCaseAnalysisTypes> {
    componentDidMount() {
       this.doNetworkCall()
    }

@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 import { PrimarySignInButton } from './styledComponents'
 
 type SignInButtonTypes = {
-   onClickSignIn:()=>void
+   onClickSignIn:any
    apiStatus:number
    name:string
    

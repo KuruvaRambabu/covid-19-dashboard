@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
-import { boolean } from "@storybook/addon-knobs"
 
 type borerType ={
    border:string

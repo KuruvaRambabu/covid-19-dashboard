@@ -6,7 +6,6 @@ import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
 import { getAccessToken } from '../../../Common/utils/StorageUtils'
 import { Redirect, withRouter } from 'react-router-dom'
 import {
-   getFormattedError,
    getUserDisplayableErrorMessage
 } from '../../../Common/utils/APIUtils'
 import { goToCoivd19_DashBoard } from '../../utils/NavigationModule/NavigationModule'

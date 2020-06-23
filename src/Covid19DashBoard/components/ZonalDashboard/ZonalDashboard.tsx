@@ -197,7 +197,6 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
                            tableHeaderName='District Name'
                            tableDataAccessor='districtName'
                            barChartDataKey='districtName'
-                           stateCumulativeReportData={stateCumulativeReportData}
                            barChartData={barChartData}
                            getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
                            getStateDailyDataAPIError={getStateDailyDataAPIError}
@@ -205,6 +204,7 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
                            stateDailyVerticalGraphData={
                               stateDailyVerticalGraphData
                            }
+                           onRetryClick={this.onRetryClick}
                         />
                      )}
                </React.Fragment>
@@ -240,9 +240,6 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
                               tableHeaderName='Mandal Name'
                               tableDataAccessor='mandalName'
                               barChartDataKey='mandalName'
-                              stateCumulativeReportData={
-                                 selectedDistrictDailyVerticalGraphData
-                              }
                               barChartData={selectedDistrictDailyData}
                               getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
                               getStateDailyDataAPIError={getStateDailyDataAPIError}
@@ -250,6 +247,7 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
                               stateDailyVerticalGraphData={
                                  selectedDistrictDailyVerticalGraphData
                               }
+                              onRetryClick={this.onRetryClick}
                            />
                         )}
                   </React.Fragment>

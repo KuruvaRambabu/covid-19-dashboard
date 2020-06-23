@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import tw from 'tailwind.macro'
 
 export const Typo12SteelHKGrotesk = styled.label`
    font-family: HKGrotesk;

@@ -64,7 +64,7 @@ class Covid19DashBoard extends React.Component <Covid19DashBoardTypes>{
             {zonalDashboard && !districtWiseCaseAnalysis ? (
                <ZonalDashboard covid19DataStore={covid19DataStore}/>
             ) : (
-               <DistrictWiseCaseAnalysis />
+               <DistrictWiseCaseAnalysis  covid19DataStore={covid19DataStore}/>
             )}
          </Covid19DashBoardMainContainer>
       )

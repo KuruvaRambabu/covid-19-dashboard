@@ -3,20 +3,24 @@ import {
    Line,
    XAxis,
    YAxis,
-   CartesianGrid,
    Tooltip,
    Legend
 } from 'recharts'
 import React from 'react'
+
 import {
    IndividualDistrictCasesGraphMainContainer,
    DistrictNameTag
 } from './StyledComponents'
 
-class IndividualDistrictCasesGraph extends React.Component {
+interface IndividualDistrictCasesGraphTypes {
+   district:any
+}
+
+class IndividualDistrictCasesGraph extends React.Component <IndividualDistrictCasesGraphTypes>{
    render() {
       let { district } = this.props
-      const name = district.districtName
+      const name:string = district.districtName
       district = district.districtStats
 
       return (

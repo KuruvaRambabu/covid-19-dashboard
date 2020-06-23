@@ -9,16 +9,16 @@ export default {
 }
 
 export const SignInButtonWithoutLoading = () => (
-   <SignInButton onClickSignIn={action('clicked')} token={false} />
-)
-
-export const SignInButtonWithLoading = () => (
    <SignInButton
-      size={select('size', ['small', 'medium', 'large'], 'large')}
-      token={true}
-   />
+    apiStatus={200}  name ="button"
+   onClickSignIn={action('clicked')} />
 )
 
-SignInButtonWithLoading.story = {
-   decorators: [withKnobs]
-}
+// export const SignInButtonWithLoading = () => (
+//    <SignInButton
+//    />
+// )
+
+// SignInButtonWithLoading.story = {
+//    decorators: [withKnobs]
+// }
