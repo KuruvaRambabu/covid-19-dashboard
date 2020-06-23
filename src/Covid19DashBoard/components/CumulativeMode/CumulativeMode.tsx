@@ -1,14 +1,16 @@
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+import { getLoadingStatus } from '@ib/api-utils'
+import { observer } from 'mobx-react'
 
 import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
+import distrtictButtons from '../../fixtures/districtButtons.json'
+import DistrictButton from '../../../Common/components/DistrcitsButton/DistrictButton'
 import TotalCases from '../../../Common/components/TotalCases'
-import CasesAndItsMap from '../../../Common/components/CasesAndItsMap/CasesAndItsMap'
 
 import CumulativeCasesGraphReport from '../CumulativeCasesGraphReport/CumulativeCasesGraphReport'
 import DataInTableFormatByDistrictWise from '../DataInTableFormatByDistrictWise/DataInTableFormatByDistrictWise'
+import TotalDistrictsCasesGraph from '../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph'
 import ConfirmedCasesBarChart from '../ConfirmedCasesBarChart/ConfirmedCasesBarChart'
-import distrtictButtons from '../../fixtures/districtButtons.json'
 
 import {
    ZonalDashboardCasesMapAndGraphContainer,
@@ -22,13 +24,30 @@ import {
    ConfirmedCasesBarChartContainer,
    DistrictWIseReportName
 } from '../ZonalDashboard/styledComponents'
-import TotalDistrictsCasesGraph from '../TotalDistrictsCasesGraph/TotalDistrictsCasesGraph'
-import DistrictButton from '../../../Common/components/DistrcitsButton/DistrictButton'
-import { getLoadingStatus, isAPIFailed } from '@ib/api-utils'
-import { stat } from 'fs'
+
+interface CumulativeModeTypes {
+   confirmedCases: number
+   activeCases: number
+   recoveredCases: number
+   tableData: Array<object>
+   deathCases: number
+   stateCumulativeReportData: Array<object>
+   barChartData: Array<object>
+   onRetryClick: () => void
+   onClickGotoDistrictPage: Function
+   tableHeaderName: string
+   tableDataAccessor: string
+   barChartDataKey: string
+   getCovid19DataAPIStatus: number
+   getStateCumulativeReportDataAPIStatus: number
+   getCovid19DataAPIError: object | null
+}
+
+
+
 
 @observer
-class CumulativeMode extends React.Component {
+class CumulativeMode extends React.Component<CumulativeModeTypes> {
    renderCumulativeCovid19DataUI = observer(() => {
       const {
          confirmedCases,
@@ -38,9 +57,7 @@ class CumulativeMode extends React.Component {
          tableData,
          stateCumulativeReportData,
          barChartData,
-         sortCaseValues,
-         districtWiseConfirmedCasesLineChartData,
-         onRetryClick,
+         
          onClickGotoDistrictPage,
          tableHeaderName,
          tableDataAccessor,
@@ -83,9 +100,9 @@ class CumulativeMode extends React.Component {
                         CUMULATIVE DISTRICT CONFIRMED CASES REPORT{' '}
                      </GraphName>
                      <TotalDistrictsCasesGraph
-                        districtWiseConfirmedCasesLineChartData={
-                           districtWiseConfirmedCasesLineChartData
-                        }
+                        // districtWiseConfirmedCasesLineChartData={
+                        //    districtWiseConfirmedCasesLineChartData
+                        // }
                      />
                      {/* <CumulativeCasesGraphReport 
                            
@@ -120,8 +137,7 @@ class CumulativeMode extends React.Component {
       const {
          getCovid19DataAPIStatus,
          getStateCumulativeReportDataAPIStatus,
-         getCovid19DataAPIError,
-         getStateCumulativeReportDataAPIError
+
       } = this.props
 
       return getLoadingStatus(
@@ -132,10 +148,8 @@ class CumulativeMode extends React.Component {
 
    render() {
       const {
-         getCovid19DataAPIStatus,
          getCovid19DataAPIError,
          onRetryClick,
-         getStateCumulativeReportDataAPIStatus
       } = this.props
       return (
          <LoadingWrapperWithFailure

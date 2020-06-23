@@ -1,7 +1,14 @@
 import React from 'react'
 import { DistrictBtn } from './styledComponent'
 
-class DistrictButton extends React.Component {
+interface DistrictBtnTypes{
+   district:any
+   onClickGotoDistrictPage:any
+
+}
+
+
+class DistrictButton extends React.Component <DistrictBtnTypes>{
    render() {
       const { district, onClickGotoDistrictPage } = this.props
 

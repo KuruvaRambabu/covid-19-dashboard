@@ -7,15 +7,19 @@ import {
    YAxis,
    CartesianGrid,
    Tooltip,
-   Legend,
-   Area,
-   Line
+   Legend
 } from 'recharts'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
+interface ConfirmedCasesBarChartTypes {
+   districtWiseData:Array<object>
+   barChartDataKey:string
+}
+
+
 @observer
-class ConfirmedCasesBarChart extends React.Component {
+class ConfirmedCasesBarChart extends React.Component <ConfirmedCasesBarChartTypes> {
    render() {
       const { districtWiseData, barChartDataKey } = this.props
       return (

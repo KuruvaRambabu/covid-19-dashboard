@@ -5,15 +5,18 @@ import {
    Line,
    XAxis,
    YAxis,
-   CartesianGrid,
    Tooltip,
    Legend
 } from 'recharts'
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
 
+interface CumulativeCasesGraphReportTypes{
+   stateCumulativeReportData:Array<object>
+}
+
 @observer
-class CumulativeCasesGraphReport extends React.Component {
+class CumulativeCasesGraphReport extends React.Component <CumulativeCasesGraphReportTypes> {
    render() {
       const { stateCumulativeReportData } = this.props
 

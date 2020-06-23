@@ -1,4 +1,6 @@
 import React from 'react'
+import { observer } from "mobx-react"
+
 import {
    CaseContainer,
    CaseType,
@@ -6,7 +8,15 @@ import {
    TotalCasesMainContainer
 } from './StyledComponents'
 
-class TotalCases extends React.Component {
+interface TotalCasesTypes{
+   confirmedCases:number
+   deathCases:number
+   activeCases:number
+   recoveredCases:number
+}
+
+@observer
+class TotalCases extends React.Component <TotalCasesTypes> {
    render() {
       const {
          confirmedCases,

@@ -1,19 +1,23 @@
 import React from 'react'
-import {
-   TableContainer,
-   TableRow,
-   TableHeader,
-   DistrictWiseTableDataContainer
-} from './StyledComponents'
 import { observer } from 'mobx-react'
-
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import './table.css'
 import { toJS } from 'mobx'
 
+import {
+   DistrictWiseTableDataContainer
+} from './StyledComponents'
+
+interface DataInTableFormatByDistrictWiseTypes {
+   tableData: Array<object>
+   tableDataAccessor: string
+   tableHeaderName: string
+}
+
+
 @observer
-class DataInTableFormatByDistrictWise extends React.Component {
+class DataInTableFormatByDistrictWise extends React.Component<DataInTableFormatByDistrictWiseTypes> {
    render() {
       const { tableData, tableDataAccessor, tableHeaderName } = this.props
       return (

@@ -8,8 +8,18 @@ import { getUserDisplayableErrorMessage } from '../../utils/APIUtils'
 import LoadingView from './LoadingView'
 import FailureView from './FailureView'
 
+
+interface LoadingWrapperWithFailureTypes {
+   apiStatus:number
+   renderSuccessUI:any
+   onRetryClick:()=>void
+   apiError:object | null
+}
+
+
+
 @observer
-class LoadingWrapperWithFailure extends React.Component {
+class LoadingWrapperWithFailure extends React.Component <LoadingWrapperWithFailureTypes> {
    render() {
       const {
          apiStatus,

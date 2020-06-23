@@ -11,15 +11,15 @@ import {
 } from '@testing-library/react'
 import { Provider } from 'mobx-react'
 import { createMemoryHistory } from 'history'
-import strings from '../../i18n/strings'
+import strings from '../../i18n/strings.json'
 
 import Covid19DataStore from '../../stores/Covid19StateStore'
 import Covid19APIService from '../../services/Covid19API/index.fixtures'
 
 import cumulativeStateAndDistictData from '../../fixtures/covid19StateAndDistrictData.json'
 import stateDataWithDates from '../../fixtures/stateDataWithDates.json'
-import stateDailyData from '../../fixtures/stateDailyData'
-import stateDailyGraphsData from '../../fixtures/stateDailyGraphsData'
+import stateDailyData from '../../fixtures/stateDailyData.json'
+import stateDailyGraphsData from '../../fixtures/stateDailyGraphsData.json'
 import ZonalDashboard from '.'
 import { Router } from 'react-router-dom'
 import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
@@ -58,8 +58,8 @@ describe('test cases for zonal dash board', () => {
       covid19APIService.stateCumulativeReportData = mockDistrictAnalysisDataAPI
 
       const { getAllByText, getByTestId } = render(
-         <Provider covid19DataStore={covid19DataStore}>
-            <ZonalDashboard />
+         <Provider >
+            <ZonalDashboard covid19DataStore={covid19DataStore} />
          </Provider>
       )
 
@@ -81,9 +81,7 @@ describe('test cases for zonal dash board', () => {
       mockCovid19DataAPI.mockReturnValue(mockLoadingPromise)
       covid19APIService.Covid19DataAPI = mockCovid19DataAPI
       const { getByLabelText, getByText, findAllByText } = render(
-         <Provider covid19DataStore={covid19DataStore}>
-            <ZonalDashboard />
-         </Provider>
+            <ZonalDashboard  covid19DataStore={covid19DataStore}/>
       )
 
       waitFor(() => {
@@ -112,9 +110,9 @@ describe('test cases for zonal dash board', () => {
       covid19APIService.stateCumulativeReportData = mockDistrictAnalysisDataAPI
 
       const { getByText } = render(
-         <Provider covid19DataStore={covid19DataStore}>
-            <ZonalDashboard />
-         </Provider>
+         
+            <ZonalDashboard  covid19DataStore={covid19DataStore}/>
+        
       )
 
       await waitFor(() => {
@@ -143,9 +141,7 @@ describe('test cases for zonal dash board', () => {
 
          getByRole
       } = render(
-         <Provider covid19DataStore={covid19DataStore}>
-            <ZonalDashboard />
-         </Provider>
+            <ZonalDashboard  covid19DataStore={covid19DataStore}/>
       )
       const dailyModeBtn = getByRole('button', {
          name: 'Daily'
@@ -182,9 +178,7 @@ describe('test cases for zonal dash board', () => {
          findAllByTestId,
          getByRole
       } = render(
-         <Provider covid19DataStore={covid19DataStore}>
-            <ZonalDashboard />
-         </Provider>
+            <ZonalDashboard covid19DataStore={covid19DataStore} />
       )
       const dailyModeBtn = getByRole('button', {
          name: 'Daily'
@@ -225,9 +219,7 @@ describe('test cases for zonal dash board', () => {
       covid19APIService.stateCumulativeReportData = mockDistrictAnalysisDataAPI
 
       const { getAllByText, getByTestId, getByRole } = render(
-         <Provider covid19DataStore={covid19DataStore}>
-            <ZonalDashboard />
-         </Provider>
+            <ZonalDashboard covid19DataStore={covid19DataStore} />
       )
       const dailyModeBtn = getByRole('button', {
          name: 'Daily'
@@ -270,9 +262,7 @@ describe('test cases for zonal dash board', () => {
       covid19APIService.stateDailyVerticalGraphsAPI = mockStateDailyGraphData
 
       const { getByText, getByRole } = render(
-         <Provider covid19DataStore={covid19DataStore}>
-            <ZonalDashboard />
-         </Provider>
+            <ZonalDashboard  covid19DataStore={covid19DataStore}/>
       )
       const dailyModeBtn = getByRole('button', {
          name: 'Daily'

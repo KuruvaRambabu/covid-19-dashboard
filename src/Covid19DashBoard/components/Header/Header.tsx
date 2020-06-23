@@ -1,6 +1,7 @@
 import React from 'react'
-import strings from '../../i18n/strings.json'
-import { format } from 'date-fns'
+import 'react-datepicker/dist/react-datepicker.css'
+import { observer } from 'mobx-react'
+import ReactDatePicker from 'react-datepicker'
 
 import {
    HeaderMainContainer,
@@ -10,19 +11,26 @@ import {
    CumulativeBtn,
    DailyBtn,
    Datelabel,
-   ZonalAndDistrictWiseContainer
+   
 } from './StyledComponents'
-import { observer } from 'mobx-react'
-import ReactDatePicker from 'react-datepicker'
-import subDays from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import { observable, values } from 'mobx'
+
+interface HeaderTypes {
+   onClickDailyData:()=>void
+   onClickCumulativeData:()=>void
+   isDaily:boolean
+   isCumulative:boolean
+   startDate:Date
+   name:string
+   changeDataMode:()=>void
+   onChangeCurrentDate:Function
+}
+
 
 @observer
-class Header extends React.Component {
-   handleChangeDate = date => {
-      this.props.onChangeCurrentDate(date)
-   }
+class Header extends React.Component <HeaderTypes> {
+   // handleChangeDate = (date:Date) => {
+   //    this.props.onChangeCurrentDate(date)
+   // }
 
    render() {
       const {
@@ -32,7 +40,8 @@ class Header extends React.Component {
          isCumulative,
          startDate,
          name,
-         changeDataMode
+         changeDataMode,
+         onChangeCurrentDate
       } = this.props
       return (
          <HeaderMainContainer>
@@ -44,7 +53,7 @@ class Header extends React.Component {
                   Date :
                   <DatePicker>
                      <ReactDatePicker
-                        onChange={this.handleChangeDate}
+                        onChange={onChangeCurrentDate}
                         // onSelect={this.onSelectDate}
                         selected={startDate}
                         dateFormat='yyyy-MM-dd'
