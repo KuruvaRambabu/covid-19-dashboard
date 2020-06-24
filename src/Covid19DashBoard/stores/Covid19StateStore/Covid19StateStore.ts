@@ -1,9 +1,9 @@
 import { observable, action, computed} from 'mobx'
-import { API_INITIAL } from '@ib/api-constants'
+import { API_INITIAL, APIStatus } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { format } from 'date-fns'
 
-import Covid19APIService from "../../services/Covid19API/index.fixtures"
+import Covid19Service from "../../services/Covid19API"
 
 import Covid19StateAndDistrictDataModel from '../models/covid19StateAndDistrictDataModel/covid19StateAndDistrictDataModel'
 import CumulativeDataReportModel from '../models/CumulativeDataReportModel/CumulativeDataReportModel'
@@ -15,33 +15,33 @@ import DistrictCumulativeGraphDataModel from '../models/DistrictCumulativeGraphD
 
 
 class Covid19DataStore {
-   @observable covid19Data: any
-   @observable getCovid19DataAPIStatus!: number
-   @observable getCovid19DataAPIError!: object | null
-   @observable getDistrictWiseCaseAnalysisDataAPIStatus!: number
-   @observable getDistrictWiseCaseAnalysisDataAPIError!: object | null
+
+   @observable covid19Data!:( Array<Covid19StateAndDistrictDataModel | CumulativeMandalModel>)
+   @observable getCovid19DataAPIStatus!: APIStatus
+   @observable getCovid19DataAPIError!: Error | null
+   @observable getDistrictWiseCaseAnalysisDataAPIStatus!: APIStatus
+   @observable getDistrictWiseCaseAnalysisDataAPIError!: Error | null
    @observable sortByCase!: string
-   @observable districtAnalysisData: any
+   @observable districtAnalysisData!: any
    @observable totalConfirmedCases!: number
    @observable totalActiveCases!: number
    @observable totalDeathCases!: number
    @observable totalRecoveredCases!: number
    @observable currentDate: Date
-   @observable stateCumulativeReportData: any
-   @observable getStateCumulativeReportDataAPIStatus!: number
-   @observable getStateCumulativeReportDataAPIError!: object | null
-   @observable stateDailyData: any
+   @observable stateCumulativeReportData!:Array<CumulativeDataReportModel | DistrictCumulativeGraphDataModel>
+   @observable getStateCumulativeReportDataAPIStatus!: APIStatus
+   @observable getStateCumulativeReportDataAPIError!: Error | null
    @observable getStateDailyDataAPIStatus!: number
-   @observable getStateDailyDataAPIError!: object | null
-   @observable stateDailyVerticalGraphData: any
-   @observable getStateDailyVerticalGraphDataAPIStauts!: number
-   @observable getStateDailyVerticalGraphDataAPIError!: object | null
-   @observable selectedDistrictDailyData: any
-   @observable selectedDistrictDailyVerticalGraphData: any
+   @observable getStateDailyDataAPIError!: Error | null
+   @observable stateDailyVerticalGraphData!: Array<StateDailyVerticalGraphModel>
+   @observable getStateDailyVerticalGraphDataAPIStauts!: APIStatus
+   @observable getStateDailyVerticalGraphDataAPIError!: Error | null
+   @observable selectedDistrictDailyData!: Array <CumulativeMandalModel>
+   @observable selectedDistrictDailyVerticalGraphData!: Array <StateDailyVerticalGraphModel>
    @observable name: string
-   covid19APIService: Covid19APIService
+   covid19APIService: Covid19Service
 
-   constructor(covid19APIService: Covid19APIService) {
+   constructor(covid19APIService:Covid19Service) {
       this.covid19APIService = covid19APIService
       this.currentDate = new Date()
       this.name = "state"
@@ -62,7 +62,6 @@ class Covid19DataStore {
       this.getDistrictWiseCaseAnalysisDataAPIError = null
       this.districtAnalysisData = []
       this.stateCumulativeReportData = []
-      this.stateDailyData = []
       this.getStateDailyDataAPIError = null
       this.getStateDailyDataAPIStatus = API_INITIAL
       this.stateDailyVerticalGraphData = []
@@ -147,7 +146,7 @@ class Covid19DataStore {
       this.totalConfirmedCases = response.total_confirmed
       const data = response.districts
       data.forEach((district:object) => {
-         const StateData:Covid19StateAndDistrictDataModel = new Covid19StateAndDistrictDataModel(district)
+         const StateData = new Covid19StateAndDistrictDataModel(district)
          this.covid19Data.push(StateData)
       })
    }
@@ -180,7 +179,7 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetDistrictWiseCaseAnalysisDataAPIError(error: object | null) {
+   setGetDistrictWiseCaseAnalysisDataAPIError(error: Error | null) {
       this.getDistrictWiseCaseAnalysisDataAPIError = error
    }
 
@@ -211,12 +210,12 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetStateCumulativeReportDataAPIError(error:object | null) {
+   setGetStateCumulativeReportDataAPIError(error:Error | null) {
       this.getStateCumulativeReportDataAPIError = error
    }
 
    @action.bound
-   setCovid19DataAPIError(error:object | null) {
+   setCovid19DataAPIError(error:Error | null) {
       this.getCovid19DataAPIError = error
    }
 
@@ -287,7 +286,7 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetStateDailyVerticalGraphDataAPIError(error:object | null) {
+   setGetStateDailyVerticalGraphDataAPIError(error:Error | null) {
       this.getStateDailyVerticalGraphDataAPIError = error
    }
 
@@ -301,7 +300,7 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetStateDailyDataAPIError(error:object | null) {
+   setGetStateDailyDataAPIError(error:Error | null) {
       this.getStateDailyDataAPIError = error
    }
 

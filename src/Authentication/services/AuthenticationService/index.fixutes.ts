@@ -1,10 +1,11 @@
 import signInAccessToken from '../../fixtures/getUserSignInRepsonse.json'
+import AuthService from "."
+import { resolveWithTimeout } from "../../../Common/utils/TestUtils"
 
-class AuthenticationService {
-   signInAPI(requestObject:object) {
-      return new Promise(resolve => {
-         resolve(signInAccessToken)
-      })
+class AuthenticationService implements AuthService {
+
+   signInAPI(requestObject) {
+      return resolveWithTimeout(signInAccessToken)
    }
 }
 

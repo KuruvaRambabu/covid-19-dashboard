@@ -7,7 +7,6 @@ import {
    apiErrorProblems
 } from '../constants/APIConstants'
 
-
 import { getAccessToken } from './StorageUtils'
 
 export const networkCallWithApisauce = async (

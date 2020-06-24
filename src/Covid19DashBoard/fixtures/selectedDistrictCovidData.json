@@ -11,7 +11,7 @@
         "total_confirmed": 90,
         "total_deaths": 0,
         "mandal_name": "Kallur",
-        "district_id": "kdp"
+        "mandal_id": 1
       },
       {
         "total_active": 30,
@@ -19,7 +19,7 @@
         "total_confirmed": 30,
         "total_deaths": 1,
         "mandal_name": "Kurnool",
-        "district_id": "knl"
+        "mandal_id": 2
       },
       {
         "total_active": 0,
@@ -27,7 +27,7 @@
         "total_confirmed": 40,
         "total_deaths": 0,
         "mandal_name": "Kodumur",
-        "district_id": "nlr"
+        "mandal_id": 3
       },
       {
         "total_active": 0,
@@ -35,7 +35,7 @@
         "total_confirmed": 50,
         "total_deaths": 0,
         "mandal_name": "Nandyala",
-        "district_id": "chtr"
+        "mandal_id": 4
       },
       {
         "total_active": 0,
@@ -43,7 +43,7 @@
         "total_confirmed": 60,
         "total_deaths": 0,
         "mandal_name": "Belagal",
-        "district_id": "atp"
+        "mandal_id": 5
       },
       {
         "total_active": 0,
@@ -51,7 +51,7 @@
         "total_confirmed": 70,
         "total_deaths": 0,
         "mandal_name": "Gudur",
-        "district_id": "vskp"
+        "mandal_id": 6
       },
       {
         "total_active": 0,
@@ -59,7 +59,7 @@
         "total_confirmed": 10,
         "total_deaths": 0,
         "mandal_name": "Adoni",
-        "district_id": "wg"
+        "mandal_id": 7
       },
       {
         "total_active": 0,
@@ -67,7 +67,7 @@
         "total_confirmed": 15,
         "total_deaths": 0,
         "mandal_name": "Yemmiganur",
-        "district_id": "krsn"
+        "mandal_id": 8
       },
       {
         "total_active": 0,
@@ -75,7 +75,7 @@
         "total_confirmed": 1,
         "total_deaths": 0,
         "mandal_name": "Alagadda",
-        "district_id": "krsn"
+        "mandal_id": 9
       }
       ,
       {
@@ -84,7 +84,7 @@
         "total_confirmed": 1,
         "total_deaths": 0,
         "mandal_name": "Panyam",
-        "district_id": "krsn"
+        "mandal_id": 10
       },
       {
         "total_active": 0,
@@ -92,7 +92,7 @@
         "total_confirmed": 1,
         "total_deaths": 0,
         "mandal_name": "Koyilakuntla",
-        "district_id": "krsn"
+        "mandal_id": 11
       },
       {
         "total_active": 0,
@@ -100,7 +100,7 @@
         "total_confirmed": 1,
         "total_deaths": 0,
         "mandal_name": "Dhone",
-        "district_id": "krsn"
+        "mandal_id": 12
       },
       {
         "total_active": 0,
@@ -108,7 +108,7 @@
         "total_confirmed": 1,
         "total_deaths": 0,
         "mandal_name": "Bethamcherla",
-        "district_id": "krsn"
+        "mandal_id": 13
       }
 
 

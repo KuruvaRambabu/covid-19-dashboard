@@ -3,17 +3,17 @@ import { networkCallWithApisauce } from '../../../Common/utils/APIUtils'
 import { apiMethods } from '../../../Common/constants/APIConstants'
 import { baseURL } from '../../routes/RouteConstants/RouteConstants'
 import endpoints from '../endpoints'
+import Covid19Service from "."
 
-class Covid19APIService {
-   api:ApisauceInstance
+class Covid19APIService implements Covid19Service {
+   api:Record <string, any>
    constructor() {
       this.api = create({
          baseURL: baseURL
       })
    }
 
-   Covid19DataAPI(date:object) {
-      console.log('service', date)
+   Covid19DataAPI(date) {
       return networkCallWithApisauce(
          this.api,
          endpoints.cumulativeStateWiseReport,

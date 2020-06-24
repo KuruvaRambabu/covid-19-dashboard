@@ -33,16 +33,14 @@
             "total_recovered": 12,
             "total_confirmed": 17,
             "total_deaths": 2,
-            "till_date": "2020-05-05"
+            "date": "2020-05-05"
         },
         {
             "total_active": 17,
             "total_recovered": 5,
             "total_confirmed": 18,
             "total_deaths": 4,
-            "state_name": "Andhra Pradesh",
-            "date": "2020-05-06",
-            "state_id": "AP"
+            "date": "2020-05-06"
         },
         {
             "total_active": 1,
@@ -50,7 +48,8 @@
             "total_confirmed": 20,
             "total_deaths": 6,
             "date": "2020-05-07"
-        },  {
+        },
+        {
             "total_active": 10,
             "total_recovered": 7,
             "total_confirmed": 0,

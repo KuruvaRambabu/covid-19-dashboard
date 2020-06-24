@@ -1,21 +1,22 @@
 import { observable, action } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { API_INITIAL } from '@ib/api-constants'
+import { API_INITIAL, APIStatus } from '@ib/api-constants'
+
 import {
    getAccessToken,
    setAccessToken,
    clearUserSession
 } from '../../../Common/utils/StorageUtils'
-import AuthenticationService from "../../services/AuthenticationService/index.fixutes"
+import AuthService from "../../services/AuthenticationService"
 
 
 class AuthenticationStore {
-   @observable getUserSignInAPIError!:string|null
-   @observable getUserSignInAPIStatus!:number
+   @observable getUserSignInAPIError!:Error|null
+   @observable getUserSignInAPIStatus!:APIStatus
    @observable accessToken! :string
-   authAPIService:AuthenticationService
+   authAPIService:AuthService
 
-   constructor(authAPIService:AuthenticationService) {
+   constructor(authAPIService:AuthService) {
       this.authAPIService = authAPIService
       this.init()
    }
@@ -28,7 +29,7 @@ class AuthenticationStore {
    }
 
    @action.bound
-   userSignIn(request:object, onSuccess:Function, onFailure:Function) {
+   userSignIn(request, onSuccess:()=>void, onFailure:()=>void) {
      
       const userSignInPromise = this.authAPIService.signInAPI(request)
       return bindPromiseWithOnSuccess(userSignInPromise)
@@ -49,7 +50,7 @@ class AuthenticationStore {
    }
 
    @action.bound
-   setGetUserSignInAPIError(apiError:string) {
+   setGetUserSignInAPIError(apiError:Error|null) {
       console.log(apiError)
       this.getUserSignInAPIError = apiError
    }

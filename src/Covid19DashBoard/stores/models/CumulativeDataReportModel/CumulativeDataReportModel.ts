@@ -3,7 +3,7 @@ class CumulativeDataReportModel {
    totalRecovered:number
    totalConfirmed:number
    totalDeaths:number
-   stateName:string
+   stateName:string 
    tillDate:string
    constructor(data:any ) {
       this.totalActive = data.total_active
