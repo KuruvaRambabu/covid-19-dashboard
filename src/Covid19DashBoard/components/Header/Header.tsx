@@ -22,7 +22,7 @@ interface HeaderTypes {
    startDate:Date
    name:string
    changeDataMode:()=>void
-   onChangeCurrentDate:Function
+   onChangeCurrentDate:(date:Date)=>void
 }
 
 
@@ -50,13 +50,14 @@ class Header extends React.Component <HeaderTypes> {
             </StateName>
             <React.Fragment>
                <Datelabel>
-                  Date :
+                  Date : 
                   <DatePicker>
                      <ReactDatePicker
                         onChange={onChangeCurrentDate}
                         // onSelect={this.onSelectDate}
                         selected={startDate}
                         dateFormat='yyyy-MM-dd'
+                        className="bg-gray-800 text-white text-xl rounded focus:outline-none focus:shadow-outline"
                      />
                   </DatePicker>
                </Datelabel>

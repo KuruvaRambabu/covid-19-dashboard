@@ -23,7 +23,7 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
    @observable isCumulative: boolean = true
    @observable isDaily: boolean = false
    @observable modeOfData: string = 'state'
-   @observable districtId
+   @observable districtId!: number
 
    componentDidMount() {
       this.doNetworkCalls()

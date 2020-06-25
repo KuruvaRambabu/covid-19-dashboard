@@ -16,7 +16,7 @@ export const StateName = styled.p`
    ${tw`font-serif text-xl cursor-pointer`}
 `
 export const DatePicker = styled.div`
-   ${tw` text-black `}
+   ${tw` ml-2`}
 `
 export const CasesTypecontainer = styled.div`
    ${tw`flex`}
