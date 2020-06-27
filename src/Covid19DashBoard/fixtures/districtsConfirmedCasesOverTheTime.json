@@ -62,8 +62,119 @@
             "Vijayanagaram": 50,
             "Vishakapatnam": 40,
             "Srikakulam": 50,
-            "date": "2020-06-01"
+            "date": "2020-06-04"
+        },
+        {
+            "Kurnool": 60,
+            "Kadapa": 60,
+            "Nellore": 60,
+            "Chittoor": 60,
+            "Ananthapur": 60,
+            "Krishna": 40,
+            "Guntur": 60,
+            "Prakasham": 60,
+            "West Godavari": 60,
+            "East Godavari": 70,
+            "Vijayanagaram": 50,
+            "Vishakapatnam": 40,
+            "Srikakulam": 50,
+            "date": "2020-06-05"
+        },
+        {
+            "Kurnool": 60,
+            "Kadapa": 60,
+            "Nellore": 60,
+            "Chittoor": 60,
+            "Ananthapur": 60,
+            "Krishna": 40,
+            "Guntur": 60,
+            "Prakasham": 60,
+            "West Godavari": 60,
+            "East Godavari": 70,
+            "Vijayanagaram": 50,
+            "Vishakapatnam": 40,
+            "Srikakulam": 50,
+            "date": "2020-06-06"
+        },
+        {
+            "Kurnool": 60,
+            "Kadapa": 60,
+            "Nellore": 60,
+            "Chittoor": 60,
+            "Ananthapur": 60,
+            "Krishna": 40,
+            "Guntur": 60,
+            "Prakasham": 60,
+            "West Godavari": 60,
+            "East Godavari": 70,
+            "Vijayanagaram": 50,
+            "Vishakapatnam": 40,
+            "Srikakulam": 50,   
+            "date": "2020-06-07"
+        },
+        {
+            "Kurnool": 60,
+            "Kadapa": 60,
+            "Nellore": 60,
+            "Chittoor": 60,
+            "Ananthapur": 60,
+            "Krishna": 40,
+            "Guntur": 60,
+            "Prakasham": 60,
+            "West Godavari": 60,
+            "East Godavari": 70,
+            "Vijayanagaram": 50,
+            "Vishakapatnam": 40,
+            "Srikakulam": 50,
+            "date": "2020-06-08"
         }
-
+        ,{
+            "Kurnool": 80,
+            "Kadapa": 80,
+            "Nellore": 80,
+            "Chittoor": 80,
+            "Ananthapur": 80,
+            "Krishna": 70,
+            "Guntur": 80,
+            "Prakasham": 80,
+            "West Godavari": 80,
+            "East Godavari": 90,
+            "Vijayanagaram": 90,
+            "Vishakapatnam": 70,
+            "Srikakulam": 70,
+            "date": "2020-06-09 "
+        }
+        ,{
+            "Kurnool": 10,
+            "Kadapa": 10,
+            "Nellore": 10,
+            "Chittoor": 10,
+            "Ananthapur": 10,
+            "Krishna": 10,
+            "Guntur": 5,
+            "Prakasham": 30,
+            "West Godavari": 5,
+            "East Godavari": 5,
+            "Vijayanagaram": 30,
+            "Vishakapatnam": 20,
+            "Srikakulam": 20,
+            "date": "2020-06-09 "
+        }
+        ,{
+            "Kurnool": 80,
+            "Kadapa": 80,
+            "Nellore": 80,
+            "Chittoor": 80,
+            "Ananthapur": 80,
+            "Krishna": 70,
+            "Guntur": 80,
+            "Prakasham": 80,
+            "West Godavari": 80,
+            "East Godavari": 90,
+            "Vijayanagaram": 90,
+            "Vishakapatnam": 70,
+            "Srikakulam": 70,
+            "date": "2020-06-09 "
+        }
     ]
 }

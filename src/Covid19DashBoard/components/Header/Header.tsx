@@ -57,7 +57,7 @@ class Header extends React.Component <HeaderTypes> {
                         // onSelect={this.onSelectDate}
                         selected={startDate}
                         dateFormat='yyyy-MM-dd'
-                        className="bg-gray-800 text-white text-xl rounded focus:outline-none focus:shadow-outline"
+                        className="bg-gray-800 text-white text-xl rounded focus:outline-none focus focus:shadow-outline"
                      />
                   </DatePicker>
                </Datelabel>

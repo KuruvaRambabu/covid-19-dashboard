@@ -5,7 +5,7 @@ import { colors } from '../../themes/Colors'
 export const SignInPageMainContainer = styled.div`
     
     ${tw`min-h-screen w-full flex justify-center items-center`}
-    background:${colors.iceBlue}
+    background:black;
 `
 export const SignInCardContanier = styled.div`
    @media only screen and (max-width: 767px) {
@@ -18,12 +18,12 @@ export const SignInCardContanier = styled.div`
       width: 400px;
    }
 
-   ${tw`  flex flex-col justify-center items-center `};
+   ${tw`  flex  rounded shadow flex-col justify-center items-center `};
    background: ${colors.white};
 `
 
 export const Form = styled.form`
-   ${tw`flex flex-col  w-4/5  justify-center `};
+   ${tw`flex flex-col  w-4/5   justify-center `};
 `
 export const CompanyLogo = styled.img`
    ${tw`w-full h-20`}
@@ -48,7 +48,7 @@ export const PrimarySignInButton = styled.button`
 `
 
 export const ErrorMessage = styled.span`
-   ${tw`text-red-500 text-center h-4 `}
+   ${tw`text-red-500 text-center h-6  `}
 `
 export const DontHaveAccount = styled.p`
    color: ${colors.darkBlueGrey};

@@ -15,7 +15,6 @@ import Covid19Service from "./index"
 import { resolveWithTimeout } from "../../../Common/utils/TestUtils"
 
 
-
 class Covid19FixtureService implements Covid19Service {
 
    Covid19DataAPI(date) {

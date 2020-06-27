@@ -9,6 +9,7 @@ export default {
 
 export const userNameField = () => (
     <InputField
+    validate
         value=""
         onChangeField
         errorMessage={""}
@@ -19,6 +20,7 @@ export const userNameField = () => (
 
 export const passwordField = () => (
     <InputField
+    validate
         type={strings.passwordInputFieldType}
         placeholder={strings.passwordPlaceholderText}
         value='hi'

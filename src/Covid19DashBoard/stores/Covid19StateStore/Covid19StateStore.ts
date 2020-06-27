@@ -196,7 +196,7 @@ class Covid19DataStore {
    }
 
    @action.bound
-   setGetStateCumulativeReportDataAPIResponse(response:any) {
+   setGetStateCumulativeReportDataAPIResponse(response) {
       const cumulativeReport = response.day_wise_report
       cumulativeReport.forEach((district:object) => {
          const stateData:CumulativeDataReportModel = new CumulativeDataReportModel(district)

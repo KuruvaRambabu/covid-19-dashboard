@@ -4,84 +4,112 @@ import { observer, inject } from 'mobx-react'
 import { observable } from 'mobx'
 import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
 import { getAccessToken } from '../../../Common/utils/StorageUtils'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect, withRouter, RouteComponentProps } from 'react-router-dom'
 import {
    getUserDisplayableErrorMessage
 } from '../../../Common/utils/APIUtils'
 import { goToCoivd19_DashBoard } from '../../utils/NavigationModule/NavigationModule'
 import AuthenticationStore from "../../stores/AuthenticationStore"
+import { ValidateUserName, ValidatePassword } from "../../../Common/components/Validation/ValidateUserName"
 
 
-type AuthenticationStoreType = {
-   authenticationStore:AuthenticationStore
+interface AuthenticationRouteProps extends RouteComponentProps { }
+
+
+interface InjectedProps extends AuthenticationRouteProps {
+   authenticationStore: AuthenticationStore
 }
 
 
 @inject('authenticationStore')
 @observer
-class SignInRoute extends React.Component <AuthenticationStoreType> {
-   @observable email:string
-   @observable password:string
-   @observable errorMessage:string
-   @observable passwordErrorMessage:string
-   @observable emailErrorMessage:string
+class SignInRoute extends React.Component<AuthenticationRouteProps> {
+   @observable email: string
+   @observable password: string
+   @observable errorMessage: string
+   @observable passwordErrorMessage: string
+   @observable emailErrorMessage: string
+   private signInref: React.RefObject<HTMLInputElement>;
 
-   constructor(props:AuthenticationStoreType) {
+   constructor(props) {
       super(props)
       this.email = ''
       this.password = ''
       this.errorMessage = ''
-      this.passwordErrorMessage=""
-      this.emailErrorMessage=""
+      this.passwordErrorMessage = ""
+      this.emailErrorMessage = ""
+      this.signInref = React.createRef()
+
    }
 
-   onChangeUserName = (event:React.ChangeEvent<HTMLInputElement>) => {
+   getInjectedProps = (): InjectedProps => this.props as InjectedProps
+
+
+   getAuthenticationStore = () => {
+      return this.getInjectedProps().authenticationStore
+   }
+
+   onChangeUserName = (event: React.ChangeEvent<HTMLInputElement>) => {
       this.email = event.target.value
+      this.checkUserNameValidation()
    }
 
-   onChangePassword = (event:React.ChangeEvent<HTMLInputElement>) => {
+   onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
       this.password = event.target.value
+      this.checkPasswordValidation()
    }
 
    onSignInSuccess = () => {
-      const { history }:any = this.props
+      const { history } = this.props
       goToCoivd19_DashBoard(history)
    }
 
    onSignInFailure = () => {
-      const { getUserSignInAPIError: apiError } = this.props.authenticationStore
+      const { getUserSignInAPIError: apiError } = this.getAuthenticationStore()
+
       if (apiError !== null && apiError !== undefined) {
          this.errorMessage = getUserDisplayableErrorMessage(apiError)
       }
    }
 
-   onClickSignIn = async event => {
+   onClickSignIn = (event: React.FormEvent) => {
       event.preventDefault()
-      if (this.email === '') {
-         this.emailErrorMessage = 'Please enter email'
-         this.passwordErrorMessage = ''
-      } else if (this.password === '') {
-         this.emailErrorMessage = ''
-         this.passwordErrorMessage = 'Please enter password'
+      if (this.email === '' || this.password === '') {
+         this.checkUserNameValidation()
+         this.checkPasswordValidation()
       } else {
-         this.emailErrorMessage = ''
-         this.passwordErrorMessage = ''
-         this.errorMessage = ''
-         const { userSignIn } = this.props.authenticationStore
+         if (this.emailErrorMessage || this.passwordErrorMessage) {
+            this.checkUserNameValidation()
+            this.checkPasswordValidation()
+         }
+         else {
+            this.errorMessage = ''
+            const { userSignIn } = this.getAuthenticationStore()
+            userSignIn(
+               {
+                  email: this.email,
+                  password: this.password
+               },
+               this.onSignInSuccess,
+               this.onSignInFailure
+            )
+         }
 
-         userSignIn(
-            {
-               email: this.email,
-               password: this.password
-            },
-            this.onSignInSuccess,
-            this.onSignInFailure
-         )
       }
    }
 
+   checkUserNameValidation = () => {
+      const res = ValidateUserName(this.email)
+      this.emailErrorMessage = res.errorMessage
+   }
+
+   checkPasswordValidation = () => {
+      const res = ValidatePassword(this.password)
+      this.passwordErrorMessage = res.errorMessage
+
+   }
    render() {
-      const { getUserSignInAPIStatus } = this.props.authenticationStore
+      const { getUserSignInAPIStatus } = this.getAuthenticationStore()
       if (getAccessToken()) {
          return <Redirect to={{ pathname: COVID_19_DASHBOARD_PATH }} />
       }
@@ -96,6 +124,8 @@ class SignInRoute extends React.Component <AuthenticationStoreType> {
             onClickSignIn={this.onClickSignIn}
             passwordErrorMessage={this.passwordErrorMessage}
             emailErrorMessage={this.emailErrorMessage}
+            validateUserName={this.checkUserNameValidation}
+            validatePassword={this.checkPasswordValidation}
          />
       )
    }

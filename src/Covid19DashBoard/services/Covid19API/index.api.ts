@@ -4,12 +4,14 @@ import { apiMethods } from '../../../Common/constants/APIConstants'
 import { baseURL } from '../../routes/RouteConstants/RouteConstants'
 import endpoints from '../endpoints'
 import Covid19Service from "."
+import Config from "../../../Common/constants/EnvironmentConstants"
+
 
 class Covid19APIService implements Covid19Service {
    api:Record <string, any>
    constructor() {
       this.api = create({
-         baseURL: baseURL
+         baseURL: Config.BASE_URL
       })
    }
 
@@ -39,6 +41,7 @@ class Covid19APIService implements Covid19Service {
          apiMethods.get
       )
    }
+
    stateDailyData(date) {
       return networkCallWithApisauce(
          this.api,
@@ -47,6 +50,7 @@ class Covid19APIService implements Covid19Service {
          apiMethods.post
       )
    }
+
    stateDailyVerticalGraphsAPI() {
       return networkCallWithApisauce(
          this.api,
@@ -55,6 +59,7 @@ class Covid19APIService implements Covid19Service {
          apiMethods.get
       )
    }
+   
    districtCumulativeDataAPI(date, id) {
       return networkCallWithApisauce(
          this.api,

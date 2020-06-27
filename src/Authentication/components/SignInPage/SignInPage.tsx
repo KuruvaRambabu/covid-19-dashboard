@@ -1,7 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import imageUrls from '../../../Common/ImageUrls/ImageUrls.json'
 import { Typo12SteelHKGrotesk } from '../../../StyleGuide/Typos'
 import SignInButton from '../../../Common/components/Button/SignInButton'
 
@@ -14,31 +13,33 @@ import {
    SignInPageMainContainer,
    SignInCardContanier,
    Form,
-   CompanyLogo,
    Heading,
    ImageContainer,
    ErrorMessage,
    DontHaveAccount
 } from './StyledComponents'
+import IbHubsLogo from "../../../Common/components/Icons/IbHubsLogo/IbHubsLogo"
 
 
 
-type SignInPageTypes ={
-   email:string
-   password:string
-   errorMessage:string
-   onChangePassword:Function
-   onClickSignIn :Function
-   onChangeUserName:Function
-   getUserSignInAPIStatus:number
-   passwordErrorMessage:string
-   emailErrorMessage:string
+type SignInPageTypes = {
+   email: string
+   password: string
+   errorMessage: string
+   onChangePassword: Function
+   onClickSignIn: (event: React.FormEvent) => any
+   onChangeUserName: Function
+   getUserSignInAPIStatus: number
+   passwordErrorMessage: string
+   emailErrorMessage: string
+   validateUserName: Function
+   validatePassword: Function
 }
 
 
 
 @observer
-class SignInPage extends React.Component <SignInPageTypes>{
+class SignInPage extends React.Component<SignInPageTypes>{
    render() {
       const {
          email,
@@ -49,17 +50,16 @@ class SignInPage extends React.Component <SignInPageTypes>{
          onClickSignIn,
          getUserSignInAPIStatus,
          passwordErrorMessage,
-         emailErrorMessage
+         emailErrorMessage,
+         validateUserName,
+         validatePassword
       } = this.props
 
       return (
          <SignInPageMainContainer>
             <SignInCardContanier>
                <ImageContainer>
-                  <CompanyLogo
-                     src={imageUrls.ibhubsLogo}
-                     alt={strings.altForCompanyLogo}
-                  />
+                  <IbHubsLogo />
                </ImageContainer>
 
                <Heading>{strings.hiTherePleaseSignUp}</Heading>
@@ -73,12 +73,13 @@ class SignInPage extends React.Component <SignInPageTypes>{
                         value={email}
                         placeholder={strings.userNamePlaceholderText}
                         errorMessage={emailErrorMessage}
+                        validate={validateUserName}
                      />
                      {emailErrorMessage ? (
                         <ErrorMessage>{emailErrorMessage}</ErrorMessage>
                      ) : (
-                        ''
-                     )}
+                           ''
+                        )}
                   </Typo12SteelHKGrotesk>
 
                   <Typo12SteelHKGrotesk>
@@ -89,12 +90,13 @@ class SignInPage extends React.Component <SignInPageTypes>{
                         placeholder={strings.passwordPlaceholderText}
                         value={password}
                         errorMessage={passwordErrorMessage}
+                        validate={validatePassword}
                      />
                      {passwordErrorMessage ? (
                         <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
                      ) : (
-                        ''
-                     )}
+                           ''
+                        )}
                   </Typo12SteelHKGrotesk>
 
                   <SignInButton
@@ -106,13 +108,15 @@ class SignInPage extends React.Component <SignInPageTypes>{
                   {errorMessage ? (
                      <ErrorMessage>{errorMessage}</ErrorMessage>
                   ) : (
-                     ''
-                  )}
+                        ''
+                     )}
                </Form>
                <DontHaveAccount>
                   {strings.dontHaveanAccountText}
                </DontHaveAccount>
             </SignInCardContanier>
+            
+
          </SignInPageMainContainer>
       )
    }

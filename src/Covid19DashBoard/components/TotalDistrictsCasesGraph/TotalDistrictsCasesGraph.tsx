@@ -12,6 +12,7 @@ import districtsConfirmedCasesOverTheTime from '../../fixtures/districtsConfirme
 
 class TotalDistrictsCasesGraph extends React.Component {
    render() {
+      const datakeys = Object.keys(districtsConfirmedCasesOverTheTime.districts[0]).slice(0,-1)
       return (
          <div style={{ width: '100%', height: 250 }}>
             <ResponsiveContainer>
@@ -28,95 +29,14 @@ class TotalDistrictsCasesGraph extends React.Component {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line
+                  {datakeys.map(name=>
+                  <Line key = {name}
                      type='monotone'
-                     dataKey='Kurnool'
+                     dataKey={name}
                      stroke='#b30000'
                      activeDot={{ r: 1 }}
-                  />
-                  <Line
-                     type='monotone'
-                     dataKey='Kadapa'
-                     stroke='yellow'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Nellore'
-                     stroke='orange'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Chittoor'
-                     stroke='blue'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Ananthapur'
-                     stroke='white'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Prakasham'
-                     stroke='green'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Krishna'
-                     stroke='yellow'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Guntur'
-                     stroke='red'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='West Godavari'
-                     stroke='blue'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='East Godavari'
-                     stroke='#b30000'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Vijayanagaram'
-                     stroke='#b30000'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Vishakaptnam'
-                     stroke='#b30000'
-                     activeDot={{ r: 1 }}
-                  />
-
-                  <Line
-                     type='monotone'
-                     dataKey='Srikakulam'
-                     stroke='#b30000'
-                     activeDot={{ r: 1 }}
-                  />
+                  />)}
+                  
                </LineChart>
             </ResponsiveContainer>
          </div>

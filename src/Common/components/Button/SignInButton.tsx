@@ -5,20 +5,21 @@ import Loader from 'react-loader-spinner'
 import { PrimarySignInButton } from './styledComponents'
 
 type SignInButtonTypes = {
-   onClickSignIn:any
-   apiStatus:number
-   name:string
-   
+   onClickSignIn: any
+   apiStatus: number
+   name: string
+
 }
 @observer
-class SignInButton extends React.Component <SignInButtonTypes> {
+class SignInButton extends React.Component<SignInButtonTypes> {
    render() {
-      const { onClickSignIn, apiStatus,  name } = this.props
+      const { onClickSignIn, apiStatus, name } = this.props
 
       return (
          <div>
             {apiStatus === 100 ? (
                <PrimarySignInButton
+                  apiStatus={100}
                   type='submit'
                   value='Submit'
                   onClick={onClickSignIn}
@@ -26,14 +27,15 @@ class SignInButton extends React.Component <SignInButtonTypes> {
                   <Loader type='TailSpin' color='#fff' height={30} width={30} />
                </PrimarySignInButton>
             ) : (
-               <PrimarySignInButton
-                  type='submit'
-                  value='Submit'
-                  onClick={onClickSignIn}
-               >
-                  {name}
-               </PrimarySignInButton>
-            )}
+                  <PrimarySignInButton
+                     apiStatus={10}
+                     type='submit'
+                     value='Submit'
+                     onClick={onClickSignIn}
+                  >
+                     {name}
+                  </PrimarySignInButton>
+               )}
          </div>
       )
    }

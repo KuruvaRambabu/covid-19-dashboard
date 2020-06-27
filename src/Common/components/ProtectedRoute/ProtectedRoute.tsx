@@ -6,7 +6,6 @@ import { COVID_19_SIGN_IN_PAGE_PATH } from '../../routes/RouteConstants'
 export const ProtectedRoute = inject('authenticationStore')(
    observer(({ component: Component, authenticationStore, ...rest }) => {
       const accessToken = authenticationStore.accessToken
-      console.log('protected route', accessToken)
       return (
          <Route
             {...rest}

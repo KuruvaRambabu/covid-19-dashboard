@@ -8,6 +8,7 @@ type InputFieldTypes = {
    value:string
    onChangeField :any
    errorMessage:string
+   validate:any
 }
 
 class InputField extends React.Component <InputFieldTypes>  {
@@ -17,7 +18,8 @@ class InputField extends React.Component <InputFieldTypes>  {
          placeholder,
          value,
          onChangeField,
-         errorMessage
+         errorMessage,
+         validate
       } = this.props
       return (
          <InputElement
@@ -26,6 +28,7 @@ class InputField extends React.Component <InputFieldTypes>  {
             placeholder={placeholder}
             value={value}
             onChange={onChangeField}
+            onBlur={validate}
          ></InputElement>
       )
    }

@@ -1,38 +1,43 @@
 import {
-    StateCumulativeResponseObject,
-    StateCumulativeDataRequestObject,
-    StateCumulativeGraphDataResponseObject,
-    DistrictWiseCaseAnalysisResponseObject,
-    StateDailyGraphDataResponseObject,
-    StateDailyDataRequestObject,
-    SelectedDistrctCumulativeDataResponseObject,
-    SelectedDistrctCumulativeGraphDataResponseObject,
-    SelectedDistrictDailyGraphDataResponseObject
-} from "../../stores/types"
+   StateCumulativeResponseObject,
+   StateCumulativeGraphDataResponseObject,
+   DistrictWiseCaseAnalysisResponseObject,
+   StateDailyGraphDataResponseObject,
+   SelectedDistrctCumulativeDataResponseObject,
+   SelectedDistrctCumulativeGraphDataResponseObject,
+   SelectedDistrictDailyGraphDataResponseObject
+} from '../../stores/types'
 
 interface Covid19Service {
+   Covid19DataAPI: (date: object) => Promise<StateCumulativeResponseObject>
 
-    Covid19DataAPI: (
-        date: object
-    ) => Promise<StateCumulativeResponseObject>
+   stateCumulativeReportData: () => Promise<
+      StateCumulativeGraphDataResponseObject
+   >
 
-    stateCumulativeReportData: () => Promise<StateCumulativeGraphDataResponseObject>
+   districtAnalysisData: () => Promise<DistrictWiseCaseAnalysisResponseObject>
 
-    districtAnalysisData: () => Promise<DistrictWiseCaseAnalysisResponseObject>
+   stateDailyData: (date: any) => Promise<StateCumulativeResponseObject>
 
-    stateDailyData: (date: any
-    ) => Promise<StateCumulativeResponseObject>
+   stateDailyVerticalGraphsAPI: () => Promise<StateDailyGraphDataResponseObject>
 
+   districtCumulativeDataAPI(
+      date: object,
+      id: number
+   ): Promise<SelectedDistrctCumulativeDataResponseObject>
 
-    stateDailyVerticalGraphsAPI: () => Promise<StateDailyGraphDataResponseObject>
+   getDistrictCumulativeGraphDataAPI(
+      id: number
+   ): Promise<SelectedDistrctCumulativeGraphDataResponseObject>
 
-    districtCumulativeDataAPI(date: object, id: number): Promise<SelectedDistrctCumulativeDataResponseObject>
+   selectedDistrictDailyDataAPI(
+      date: object,
+      id: number
+   ): Promise<SelectedDistrctCumulativeDataResponseObject>
 
-    getDistrictCumulativeGraphDataAPI(id: number): Promise<SelectedDistrctCumulativeGraphDataResponseObject>
-
-    selectedDistrictDailyDataAPI(date: object, id: number): Promise<SelectedDistrctCumulativeDataResponseObject>
-
-    selectedDistrictDailyVerticalGraphAPI(id: number): Promise<SelectedDistrictDailyGraphDataResponseObject>
+   selectedDistrictDailyVerticalGraphAPI(
+      id: number
+   ): Promise<SelectedDistrictDailyGraphDataResponseObject>
 }
 
 export default Covid19Service
