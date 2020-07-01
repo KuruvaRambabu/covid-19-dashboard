@@ -3,15 +3,16 @@ import { InputElement } from './StyledComponents'
 import { colors } from '../../themes/Colors'
 
 type InputFieldTypes = {
-   type:string
-   placeholder:string
-   value:string
-   onChangeField :any
-   errorMessage:string
-   validate:any
+   type: string
+   placeholder: string
+   value: string
+   onChangeField: any
+   errorMessage: string
+   validate: any
+   forwardRef: React.RefObject<HTMLInputElement>
 }
 
-class InputField extends React.Component <InputFieldTypes>  {
+class InputField extends React.Component<InputFieldTypes> {
    render() {
       const {
          type,
@@ -19,7 +20,8 @@ class InputField extends React.Component <InputFieldTypes>  {
          value,
          onChangeField,
          errorMessage,
-         validate
+         validate,
+         forwardRef
       } = this.props
       return (
          <InputElement
@@ -29,6 +31,7 @@ class InputField extends React.Component <InputFieldTypes>  {
             value={value}
             onChange={onChangeField}
             onBlur={validate}
+            ref={forwardRef}
          ></InputElement>
       )
    }

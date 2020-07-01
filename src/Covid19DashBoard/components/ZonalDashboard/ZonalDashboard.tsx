@@ -2,8 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
 
-import Covid19DataStore from "../../stores/Covid19StateStore"
-
+import Covid19DataStore from '../../stores/Covid19StateStore'
 
 import DailyMode from '../DailyMode/DailyMode'
 import CumulativeMode from '../CumulativeMode/CumulativeMode'
@@ -15,11 +14,8 @@ interface ZonalDashboardTypes {
    covid19DataStore: Covid19DataStore
 }
 
-
-
-
 @observer
-class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
+class ZonalDashboard extends React.Component<ZonalDashboardTypes> {
    @observable isCumulative: boolean = true
    @observable isDaily: boolean = false
    @observable modeOfData: string = 'state'
@@ -60,7 +56,6 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
          }
       } else {
          if (!this.isDaily) {
-
             this.props.covid19DataStore.init()
             this.props.covid19DataStore.getSelectedDistrictDailyData(
                this.districtId
@@ -136,18 +131,21 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
       const deathCases = this.props.covid19DataStore.totalDeathCases
       const districtWiseData = this.props.covid19DataStore.totalDistrictCases
       const barChartData = this.props.covid19DataStore.barChartData
-      const stateCumulativeReportData = this.props.covid19DataStore.stateCumulativeReport
+      const stateCumulativeReportData = this.props.covid19DataStore
+         .stateCumulativeReport
       const startDate = this.props.covid19DataStore.currentDate
-      const stateDailyVerticalGraphData = this.props.covid19DataStore.stateDailyVerticalGraphData
+      const stateDailyVerticalGraphData = this.props.covid19DataStore
+         .stateDailyVerticalGraphData
       const {
          getCovid19DataAPIStatus,
          getCovid19DataAPIError,
          getStateDailyDataAPIStatus,
          getStateDailyDataAPIError,
-         getStateCumulativeReportDataAPIStatus,
+         getStateCumulativeReportDataAPIStatus
       } = this.props.covid19DataStore
       const name = this.props.covid19DataStore.name
-      const selectedDistrictDailyData = this.props.covid19DataStore.selectedDistrictBarChartData
+      const selectedDistrictDailyData = this.props.covid19DataStore
+         .selectedDistrictBarChartData
       const {
          selectedDistrictDailyVerticalGraphData
       } = this.props.covid19DataStore
@@ -188,70 +186,70 @@ class ZonalDashboard extends React.Component<ZonalDashboardTypes>{
                         }
                      />
                   ) : (
-                        <DailyMode
-                           confirmedCases={confirmedCases}
-                           activeCases={activeCases}
-                           recoveredCases={recoveredCases}
-                           deathCases={deathCases}
-                           tableData={districtWiseData}
-                           tableHeaderName='District Name'
-                           tableDataAccessor='districtName'
-                           barChartDataKey='districtName'
-                           barChartData={barChartData}
-                           getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
-                           getStateDailyDataAPIError={getStateDailyDataAPIError}
-                           networkCallForDailyData={this.networkCallForDailyData}
-                           stateDailyVerticalGraphData={
-                              stateDailyVerticalGraphData
-                           }
-                           onRetryClick={this.onRetryClick}
-                        />
-                     )}
+                     <DailyMode
+                        confirmedCases={confirmedCases}
+                        activeCases={activeCases}
+                        recoveredCases={recoveredCases}
+                        deathCases={deathCases}
+                        tableData={districtWiseData}
+                        tableHeaderName='District Name'
+                        tableDataAccessor='districtName'
+                        barChartDataKey='districtName'
+                        barChartData={barChartData}
+                        getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
+                        getStateDailyDataAPIError={getStateDailyDataAPIError}
+                        networkCallForDailyData={this.networkCallForDailyData}
+                        stateDailyVerticalGraphData={
+                           stateDailyVerticalGraphData
+                        }
+                        onRetryClick={this.onRetryClick}
+                     />
+                  )}
                </React.Fragment>
             ) : (
-                  <React.Fragment>
-                     {this.isCumulative ? (
-                        <CumulativeMode
-                           confirmedCases={confirmedCases}
-                           activeCases={activeCases}
-                           recoveredCases={recoveredCases}
-                           deathCases={deathCases}
-                           tableData={districtWiseData}
-                           stateCumulativeReportData={stateCumulativeReportData}
-                           barChartData={barChartData}
-                           tableHeaderName='Mandal Name'
-                           tableDataAccessor='mandalName'
-                           barChartDataKey='mandalName'
-                           getCovid19DataAPIStatus={getCovid19DataAPIStatus}
-                           getCovid19DataAPIError={getCovid19DataAPIError}
-                           onRetryClick={this.onRetryClick}
-                           onClickGotoDistrictPage={this.onClickGotoDistrictPage}
-                           getStateCumulativeReportDataAPIStatus={
-                              getStateCumulativeReportDataAPIStatus
-                           }
-                        />
-                     ) : (
-                           <DailyMode
-                              confirmedCases={confirmedCases}
-                              activeCases={activeCases}
-                              recoveredCases={recoveredCases}
-                              deathCases={deathCases}
-                              tableData={selectedDistrictDailyData}
-                              tableHeaderName='Mandal Name'
-                              tableDataAccessor='mandalName'
-                              barChartDataKey='mandalName'
-                              barChartData={selectedDistrictDailyData}
-                              getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
-                              getStateDailyDataAPIError={getStateDailyDataAPIError}
-                              networkCallForDailyData={this.networkCallForDailyData}
-                              stateDailyVerticalGraphData={
-                                 selectedDistrictDailyVerticalGraphData
-                              }
-                              onRetryClick={this.onRetryClick}
-                           />
-                        )}
-                  </React.Fragment>
-               )}
+               <React.Fragment>
+                  {this.isCumulative ? (
+                     <CumulativeMode
+                        confirmedCases={confirmedCases}
+                        activeCases={activeCases}
+                        recoveredCases={recoveredCases}
+                        deathCases={deathCases}
+                        tableData={districtWiseData}
+                        stateCumulativeReportData={stateCumulativeReportData}
+                        barChartData={barChartData}
+                        tableHeaderName='Mandal Name'
+                        tableDataAccessor='mandalName'
+                        barChartDataKey='mandalName'
+                        getCovid19DataAPIStatus={getCovid19DataAPIStatus}
+                        getCovid19DataAPIError={getCovid19DataAPIError}
+                        onRetryClick={this.onRetryClick}
+                        onClickGotoDistrictPage={this.onClickGotoDistrictPage}
+                        getStateCumulativeReportDataAPIStatus={
+                           getStateCumulativeReportDataAPIStatus
+                        }
+                     />
+                  ) : (
+                     <DailyMode
+                        confirmedCases={confirmedCases}
+                        activeCases={activeCases}
+                        recoveredCases={recoveredCases}
+                        deathCases={deathCases}
+                        tableData={selectedDistrictDailyData}
+                        tableHeaderName='Mandal Name'
+                        tableDataAccessor='mandalName'
+                        barChartDataKey='mandalName'
+                        barChartData={selectedDistrictDailyData}
+                        getStateDailyDataAPIStatus={getStateDailyDataAPIStatus}
+                        getStateDailyDataAPIError={getStateDailyDataAPIError}
+                        networkCallForDailyData={this.networkCallForDailyData}
+                        stateDailyVerticalGraphData={
+                           selectedDistrictDailyVerticalGraphData
+                        }
+                        onRetryClick={this.onRetryClick}
+                     />
+                  )}
+               </React.Fragment>
+            )}
          </ZonalDashboardMainContainer>
       )
    }

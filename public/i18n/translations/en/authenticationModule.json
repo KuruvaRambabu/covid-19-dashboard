@@ -1,0 +1,16 @@
+{
+   "hiTherePleaseSignUp": "Hi there, please login",
+   "userName": "email",
+   "password": "PASSWORD",
+   "login": "LOGIN",
+   "userNameErrorMessage": "Please enter username",
+   "passwordErroeMessage": "Please enter password",
+   "userNamePlaceholderText": "Enter email address",
+   "passwordPlaceholderText": "password",
+   "userNameInputFieldType": "text",
+   "passwordInputFieldType": "password",
+   "altForCompanyLogo": "IbhusLogo",
+   "signInBtntype": "submit",
+   "LoginButtonName": "LOGIN",
+   "dontHaveanAccountText": "Don't have an account ? SignUp"
+}

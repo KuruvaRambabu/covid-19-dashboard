@@ -4,9 +4,6 @@ import { observer } from 'mobx-react'
 import { Typo12SteelHKGrotesk } from '../../../StyleGuide/Typos'
 import SignInButton from '../../../Common/components/Button/SignInButton'
 
-
-import strings from '../../i18n/strings.json'
-
 import InputField from '../InputField/index'
 
 import {
@@ -18,28 +15,36 @@ import {
    ErrorMessage,
    DontHaveAccount
 } from './StyledComponents'
-import IbHubsLogo from "../../../Common/components/Icons/IbHubsLogo/IbHubsLogo"
+import IbHubsLogo from '../../../Common/components/Icons/IbHubsLogo/IbHubsLogo'
+import i18n from '../../i18n'
 
-
-
-type SignInPageTypes = {
+interface SignInPageTypes {
    email: string
    password: string
    errorMessage: string
    onChangePassword: Function
-   onClickSignIn: (event: React.FormEvent) => any
+   onClickSignIn: (event: React.FormEvent) => void
    onChangeUserName: Function
    getUserSignInAPIStatus: number
    passwordErrorMessage: string
    emailErrorMessage: string
    validateUserName: Function
    validatePassword: Function
+   t: any
 }
 
-
-
 @observer
-class SignInPage extends React.Component<SignInPageTypes>{
+class SignInPage extends React.Component<SignInPageTypes> {
+   emailRef: React.RefObject<HTMLInputElement> = React.createRef()
+   passwordRef: React.RefObject<HTMLInputElement> = React.createRef()
+
+   componentDidMount() {
+      this.emailRef.current?.focus()
+   }
+   changeLanguage = e => {
+      i18n.changeLanguage(e.target.value)
+   }
+
    render() {
       const {
          email,
@@ -52,71 +57,91 @@ class SignInPage extends React.Component<SignInPageTypes>{
          passwordErrorMessage,
          emailErrorMessage,
          validateUserName,
-         validatePassword
+         validatePassword,
+         t
       } = this.props
 
       return (
          <SignInPageMainContainer>
+            <select onChange={this.changeLanguage}>
+               <option selected value='en'>
+                  English
+               </option>
+               <option value='te'>Telugu</option>
+            </select>
+
             <SignInCardContanier>
                <ImageContainer>
                   <IbHubsLogo />
                </ImageContainer>
 
-               <Heading>{strings.hiTherePleaseSignUp}</Heading>
+               <Heading>
+                  {t('authenticationModule:hiTherePleaseSignUp')}
+               </Heading>
 
                <Form>
-                  <Typo12SteelHKGrotesk>
-                     {strings.userName}
-                     <InputField
-                        onChangeField={onChangeUserName}
-                        type={strings.userNameInputFieldType}
-                        value={email}
-                        placeholder={strings.userNamePlaceholderText}
-                        errorMessage={emailErrorMessage}
-                        validate={validateUserName}
-                     />
-                     {emailErrorMessage ? (
-                        <ErrorMessage>{emailErrorMessage}</ErrorMessage>
-                     ) : (
+                  <div className='h-20 '>
+                     <Typo12SteelHKGrotesk>
+                        {t('authenticationModule:userName')}
+                        <InputField
+                           forwardRef={this.emailRef}
+                           onChangeField={onChangeUserName}
+                           type={t(
+                              'authenticationModule:userNameInputFieldType'
+                           )}
+                           value={email}
+                           placeholder={t(
+                              'authenticationModule:userNamePlaceholderText'
+                           )}
+                           errorMessage={emailErrorMessage}
+                           validate={validateUserName}
+                        />
+                        {emailErrorMessage ? (
+                           <ErrorMessage>{emailErrorMessage}</ErrorMessage>
+                        ) : (
                            ''
                         )}
-                  </Typo12SteelHKGrotesk>
-
-                  <Typo12SteelHKGrotesk>
-                     {strings.password}
-                     <InputField
-                        onChangeField={onChangePassword}
-                        type={strings.passwordInputFieldType}
-                        placeholder={strings.passwordPlaceholderText}
-                        value={password}
-                        errorMessage={passwordErrorMessage}
-                        validate={validatePassword}
-                     />
-                     {passwordErrorMessage ? (
-                        <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
-                     ) : (
+                     </Typo12SteelHKGrotesk>{' '}
+                  </div>
+                  <div className='h-20 '>
+                     <Typo12SteelHKGrotesk>
+                        {t('authenticationModule:password')}
+                        <InputField
+                           forwardRef={this.passwordRef}
+                           onChangeField={onChangePassword}
+                           type={t(
+                              'authenticationModule:passwordInputFieldType'
+                           )}
+                           placeholder={t(
+                              'authenticationModule:passwordPlaceholderText'
+                           )}
+                           value={password}
+                           errorMessage={passwordErrorMessage}
+                           validate={validatePassword}
+                        />
+                        {passwordErrorMessage ? (
+                           <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
+                        ) : (
                            ''
                         )}
-                  </Typo12SteelHKGrotesk>
-
+                     </Typo12SteelHKGrotesk>
+                  </div>
                   <SignInButton
                      apiStatus={getUserSignInAPIStatus}
                      onClickSignIn={onClickSignIn}
-                     name={strings.LoginButtonName}
+                     name={t('authenticationModule:login')}
                   />
 
                   {errorMessage ? (
                      <ErrorMessage>{errorMessage}</ErrorMessage>
                   ) : (
-                        ''
-                     )}
+                     ''
+                  )}
                </Form>
                <DontHaveAccount>
-                  {strings.dontHaveanAccountText}
+                  {t('authenticationModule:dontHaveanAccountText')}
                </DontHaveAccount>
             </SignInCardContanier>
-            
-
          </SignInPageMainContainer>
       )
    }

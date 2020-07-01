@@ -5,21 +5,23 @@ import { observable } from 'mobx'
 import { COVID_19_DASHBOARD_PATH } from '../../../Common/routes/RouteConstants'
 import { getAccessToken } from '../../../Common/utils/StorageUtils'
 import { Redirect, withRouter, RouteComponentProps } from 'react-router-dom'
-import {
-   getUserDisplayableErrorMessage
-} from '../../../Common/utils/APIUtils'
+import { getUserDisplayableErrorMessage } from '../../../Common/utils/APIUtils'
 import { goToCoivd19_DashBoard } from '../../utils/NavigationModule/NavigationModule'
-import AuthenticationStore from "../../stores/AuthenticationStore"
-import { ValidateUserName, ValidatePassword } from "../../../Common/components/Validation/ValidateUserName"
+import AuthenticationStore from '../../stores/AuthenticationStore'
+import {
+   ValidateUserName,
+   ValidatePassword
+} from '../../../Common/components/Validation/ValidateUserName'
 
+import { withTranslation, WithTranslation } from 'react-i18next'
 
-interface AuthenticationRouteProps extends RouteComponentProps { }
+interface AuthenticationRouteProps extends WithTranslation {}
 
+interface AuthenticationRouteProps extends RouteComponentProps {}
 
 interface InjectedProps extends AuthenticationRouteProps {
    authenticationStore: AuthenticationStore
 }
-
 
 @inject('authenticationStore')
 @observer
@@ -29,21 +31,19 @@ class SignInRoute extends React.Component<AuthenticationRouteProps> {
    @observable errorMessage: string
    @observable passwordErrorMessage: string
    @observable emailErrorMessage: string
-   private signInref: React.RefObject<HTMLInputElement>;
+   private signInref: React.RefObject<SignInPage>
 
    constructor(props) {
       super(props)
       this.email = ''
       this.password = ''
       this.errorMessage = ''
-      this.passwordErrorMessage = ""
-      this.emailErrorMessage = ""
+      this.passwordErrorMessage = ''
+      this.emailErrorMessage = ''
       this.signInref = React.createRef()
-
    }
 
    getInjectedProps = (): InjectedProps => this.props as InjectedProps
-
 
    getAuthenticationStore = () => {
       return this.getInjectedProps().authenticationStore
@@ -74,15 +74,18 @@ class SignInRoute extends React.Component<AuthenticationRouteProps> {
 
    onClickSignIn = (event: React.FormEvent) => {
       event.preventDefault()
-      if (this.email === '' || this.password === '') {
+      if (this.email === '' && this.password === '') {
          this.checkUserNameValidation()
          this.checkPasswordValidation()
+         this.signInref.current?.emailRef.current?.focus()
+      } else if (this.email && this.password === '') {
+         this.checkPasswordValidation()
+         this.signInref.current?.passwordRef.current?.focus()
       } else {
          if (this.emailErrorMessage || this.passwordErrorMessage) {
             this.checkUserNameValidation()
             this.checkPasswordValidation()
-         }
-         else {
+         } else {
             this.errorMessage = ''
             const { userSignIn } = this.getAuthenticationStore()
             userSignIn(
@@ -94,7 +97,6 @@ class SignInRoute extends React.Component<AuthenticationRouteProps> {
                this.onSignInFailure
             )
          }
-
       }
    }
 
@@ -106,10 +108,10 @@ class SignInRoute extends React.Component<AuthenticationRouteProps> {
    checkPasswordValidation = () => {
       const res = ValidatePassword(this.password)
       this.passwordErrorMessage = res.errorMessage
-
    }
    render() {
       const { getUserSignInAPIStatus } = this.getAuthenticationStore()
+      const { t } = this.props
       if (getAccessToken()) {
          return <Redirect to={{ pathname: COVID_19_DASHBOARD_PATH }} />
       }
@@ -126,9 +128,11 @@ class SignInRoute extends React.Component<AuthenticationRouteProps> {
             emailErrorMessage={this.emailErrorMessage}
             validateUserName={this.checkUserNameValidation}
             validatePassword={this.checkPasswordValidation}
+            ref={this.signInref}
+            t={t}
          />
       )
    }
 }
 
-export default withRouter(SignInRoute)
+export default withRouter(withTranslation('translation')(SignInRoute))

@@ -1,0 +1,16 @@
+{
+   "hiTherePleaseSignUp": "హాయ్ దయచేసి సైన్ ఇన్ చేయండి",
+   "userName": "ఇమెయిల్",
+   "password": "గుర్తింపు అక్షరములు",
+   "login": "ప్రవేశించండి",
+   "userNameErrorMessage": "దయచేసి వినియోగదారు పేరును నమోదు చేయండి",
+   "passwordErroeMessage": "దయచేసి వినియోగదారు గుర్తింపు అక్షరములు నమోదు చేయండి",
+   "userNamePlaceholderText": "ఈ - మెయిల్ చిరునామా నమోదు చేయండి",
+   "passwordPlaceholderText": "గుర్తింపు అక్షరములు నమోదు చేయండి",
+   "userNameInputFieldType": "text",
+   "passwordInputFieldType": "password",
+   "altForCompanyLogo": "IbhusLogo",
+   "signInBtntype": "submit",
+   "LoginButtonName": "LOGIN",
+   "dontHaveanAccountText": "ఖాతా లేదా? సృష్టించుకుని చేరoడి"
+}

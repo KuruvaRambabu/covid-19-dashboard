@@ -3,9 +3,8 @@ import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
 
 export const SignInPageMainContainer = styled.div`
-    
-    ${tw`min-h-screen w-full flex justify-center items-center`}
-    background:black;
+   ${tw`min-h-screen w-full flex justify-center items-center`}
+   background:black;
 `
 export const SignInCardContanier = styled.div`
    @media only screen and (max-width: 767px) {
@@ -14,7 +13,7 @@ export const SignInCardContanier = styled.div`
    }
 
    @media only screen and (min-width: 768px) {
-      height: 500px;
+      height: 55 0px;
       width: 400px;
    }
 
