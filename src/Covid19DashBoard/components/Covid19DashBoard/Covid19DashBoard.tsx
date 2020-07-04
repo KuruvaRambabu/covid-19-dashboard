@@ -6,7 +6,6 @@ import strings from '../../i18n/strings.json'
 import ZonalDashboard from '../ZonalDashboard'
 import DistrictWiseCaseAnalysis from '../DistrictWiseCaseAnalysis/DistrictWiseCaseAnalysis'
 
-
 import {
    Covid19DashBoardMainContainer,
    SignOutBtn,
@@ -15,20 +14,19 @@ import {
    ZonalWiseBtn,
    DistrictWiseBtn
 } from './StyledComponents'
-import Covid19DataStore from "../../stores/Covid19StateStore"
+import Covid19DataStore from '../../stores/Covid19StateStore'
 
-interface Covid19DashBoardTypes  {
-   onClickSignOut:()=>void
-   zonalDashboard:boolean
-   onClickZonalDashboard:()=>void
-   districtWiseCaseAnalysis:boolean
-   onClickDistrictWIseCaseAnalysis:()=>void
-   covid19DataStore:Covid19DataStore
+interface Covid19DashBoardTypes {
+   onClickSignOut: () => void
+   zonalDashboard: boolean
+   onClickZonalDashboard: () => void
+   districtWiseCaseAnalysis: boolean
+   onClickDistrictWIseCaseAnalysis: () => void
+   covid19DataStore: Covid19DataStore
 }
-   
 
 @observer
-class Covid19DashBoard extends React.Component <Covid19DashBoardTypes>{
+class Covid19DashBoard extends React.Component<Covid19DashBoardTypes> {
    render() {
       const {
          onClickSignOut,
@@ -62,9 +60,9 @@ class Covid19DashBoard extends React.Component <Covid19DashBoardTypes>{
             </ZonalAndDistrictWiseContainer>
 
             {zonalDashboard && !districtWiseCaseAnalysis ? (
-               <ZonalDashboard covid19DataStore={covid19DataStore}/>
+               <ZonalDashboard covid19DataStore={covid19DataStore} />
             ) : (
-               <DistrictWiseCaseAnalysis  covid19DataStore={covid19DataStore}/>
+               <DistrictWiseCaseAnalysis covid19DataStore={covid19DataStore} />
             )}
          </Covid19DashBoardMainContainer>
       )

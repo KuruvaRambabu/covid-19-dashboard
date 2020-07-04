@@ -43,11 +43,11 @@
     src/modeleName/utils/NavigationUtils/index.js
 
 2. single responsibility to a component
-3. Encapsulate --> do allow the cchildren to 
+3. Encapsulate --> do allow the children to 
 4. composable
 5. Reusable : DRY Principle don't repeat again 
     1. if there is any third party library use it
-    2. dont repeat the code again again just make it as a common component
+    2. don't repeat the code again again just make it as a common component
     3. 
 5. component should be pure or almost pure
 6. Testable

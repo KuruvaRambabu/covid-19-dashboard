@@ -1,13 +1,13 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
-  interface CumulativeBtnType{
-     isCumulative:boolean
-  }
+interface CumulativeBtnType {
+   isCumulative: boolean
+}
 
-  interface DailyBtnTypes{
-     isDaily:boolean
-  }
+interface DailyBtnTypes {
+   isDaily: boolean
+}
 
 export const HeaderMainContainer = styled.div`
    ${tw`p-5 flex flex-col justify-around  md:flex-row md:justify-between h-40  md:h-20 flex-flow items-center  `}
@@ -22,16 +22,17 @@ export const CasesTypecontainer = styled.div`
    ${tw`flex`}
 `
 export const CumulativeBtn = styled.button`
-   background: ${(props:CumulativeBtnType )=> (props.isCumulative ? ' #4d0099' : '')};
+   background: ${(props: CumulativeBtnType) =>
+      props.isCumulative ? ' #4d0099' : ''};
    border: ${props => (props.isCumulative ? ' white' : '')};
    ${tw`border text-xl h-8 w-40 font-serif focus:outline-none rounded-lg mr-4`}
 `
 
 export const DailyBtn = styled.button`
    background: ${props => (props.isDaily ? ' #4d0099' : '')};
-   border: ${(props:DailyBtnTypes) => (props.isDaily ? ' white' : '')};
+   border: ${(props: DailyBtnTypes) => (props.isDaily ? ' white' : '')};
    ${tw`border text-xl  h-8  w-32 font-serif focus:outline-none rounded-lg mr-4`}
 `
 export const Datelabel = styled.div`
-   ${tw`flex  `}
+   ${tw`flex flex-col justify-center items-center font-xl md:flex md:flex-row  `}
 `

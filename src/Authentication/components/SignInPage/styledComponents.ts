@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { colors } from '../../themes/Colors'
+import { Typo12SteelHKGrotesk } from '../../../StyleGuide/Typos'
 
 export const SignInPageMainContainer = styled.div`
    ${tw`min-h-screen w-full flex justify-center items-center`}
@@ -8,12 +9,12 @@ export const SignInPageMainContainer = styled.div`
 `
 export const SignInCardContanier = styled.div`
    @media only screen and (max-width: 767px) {
-      height: 100%;
+      height: 500px;
       width: 400px;
    }
 
    @media only screen and (min-width: 768px) {
-      height: 55 0px;
+      height: 550px;
       width: 400px;
    }
 
@@ -49,9 +50,11 @@ export const PrimarySignInButton = styled.button`
 export const ErrorMessage = styled.span`
    ${tw`text-red-500 text-center h-6  `}
 `
+export const LabelField = styled(Typo12SteelHKGrotesk)``
+
 export const DontHaveAccount = styled.p`
    color: ${colors.darkBlueGrey};
-   line-height: 8;
+   line-height: 2;
    font-family: HKGrotesk;
    font-size: 14px;
    font-weight: normal;

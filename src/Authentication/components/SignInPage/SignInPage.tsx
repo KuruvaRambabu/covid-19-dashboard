@@ -1,7 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import { Typo12SteelHKGrotesk } from '../../../StyleGuide/Typos'
 import SignInButton from '../../../Common/components/Button/SignInButton'
 
 import InputField from '../InputField/index'
@@ -13,8 +12,9 @@ import {
    Heading,
    ImageContainer,
    ErrorMessage,
-   DontHaveAccount
-} from './StyledComponents'
+   DontHaveAccount,
+   LabelField
+} from './styledComponents'
 import IbHubsLogo from '../../../Common/components/Icons/IbHubsLogo/IbHubsLogo'
 import i18n from '../../i18n'
 
@@ -63,13 +63,6 @@ class SignInPage extends React.Component<SignInPageTypes> {
 
       return (
          <SignInPageMainContainer>
-            <select onChange={this.changeLanguage}>
-               <option selected value='en'>
-                  English
-               </option>
-               <option value='te'>Telugu</option>
-            </select>
-
             <SignInCardContanier>
                <ImageContainer>
                   <IbHubsLogo />
@@ -81,7 +74,7 @@ class SignInPage extends React.Component<SignInPageTypes> {
 
                <Form>
                   <div className='h-20 '>
-                     <Typo12SteelHKGrotesk>
+                     <LabelField>
                         {t('authenticationModule:userName')}
                         <InputField
                            forwardRef={this.emailRef}
@@ -101,10 +94,10 @@ class SignInPage extends React.Component<SignInPageTypes> {
                         ) : (
                            ''
                         )}
-                     </Typo12SteelHKGrotesk>{' '}
+                     </LabelField>{' '}
                   </div>
                   <div className='h-20 '>
-                     <Typo12SteelHKGrotesk>
+                     <LabelField>
                         {t('authenticationModule:password')}
                         <InputField
                            forwardRef={this.passwordRef}
@@ -124,7 +117,7 @@ class SignInPage extends React.Component<SignInPageTypes> {
                         ) : (
                            ''
                         )}
-                     </Typo12SteelHKGrotesk>
+                     </LabelField>
                   </div>
                   <SignInButton
                      apiStatus={getUserSignInAPIStatus}
@@ -141,6 +134,15 @@ class SignInPage extends React.Component<SignInPageTypes> {
                <DontHaveAccount>
                   {t('authenticationModule:dontHaveanAccountText')}
                </DontHaveAccount>
+               <select
+                  className='bg-white border rounded focus:outline-none border-black'
+                  onChange={this.changeLanguage}
+               >
+                  <option selected value='en'>
+                     English
+                  </option>
+                  <option value='te'>Telugu</option>
+               </select>
             </SignInCardContanier>
          </SignInPageMainContainer>
       )

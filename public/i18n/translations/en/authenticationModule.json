@@ -1,6 +1,6 @@
 {
    "hiTherePleaseSignUp": "Hi there, please login",
-   "userName": "email",
+   "userName": "Email",
    "password": "PASSWORD",
    "login": "LOGIN",
    "userNameErrorMessage": "Please enter username",

@@ -10,24 +10,22 @@ import {
    DatePicker,
    CumulativeBtn,
    DailyBtn,
-   Datelabel,
-   
+   Datelabel
 } from './StyledComponents'
 
 interface HeaderTypes {
-   onClickDailyData:()=>void
-   onClickCumulativeData:()=>void
-   isDaily:boolean
-   isCumulative:boolean
-   startDate:Date
-   name:string
-   changeDataMode:()=>void
-   onChangeCurrentDate:(date:Date)=>void
+   onClickDailyData: () => void
+   onClickCumulativeData: () => void
+   isDaily: boolean
+   isCumulative: boolean
+   startDate: Date
+   name: string
+   changeDataMode: () => void
+   onChangeCurrentDate: (date: Date) => void
 }
 
-
 @observer
-class Header extends React.Component <HeaderTypes> {
+class Header extends React.Component<HeaderTypes> {
    // handleChangeDate = (date:Date) => {
    //    this.props.onChangeCurrentDate(date)
    // }
@@ -48,20 +46,19 @@ class Header extends React.Component <HeaderTypes> {
             <StateName onClick={changeDataMode}>
                Andhra Pradesh /{name}{' '}
             </StateName>
-            <React.Fragment>
-               <Datelabel>
-                  Date : 
-                  <DatePicker>
-                     <ReactDatePicker
-                        onChange={onChangeCurrentDate}
-                        // onSelect={this.onSelectDate}
-                        selected={startDate}
-                        dateFormat='yyyy-MM-dd'
-                        className="bg-gray-800 text-white text-xl rounded focus:outline-none focus focus:shadow-outline"
-                     />
-                  </DatePicker>
-               </Datelabel>
-            </React.Fragment>
+
+            <Datelabel>
+               Date :
+               <DatePicker>
+                  <ReactDatePicker
+                     onChange={onChangeCurrentDate}
+                     // onSelect={this.onSelectDate}
+                     selected={startDate}
+                     dateFormat='yyyy-MM-dd'
+                     className='bg-gray-800 text-white text-xl rounded focus:outline-none focus focus:shadow-outline'
+                  />
+               </DatePicker>
+            </Datelabel>
             <CasesTypecontainer>
                <CumulativeBtn
                   isCumulative={isCumulative}
