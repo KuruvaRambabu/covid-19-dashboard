@@ -16,7 +16,7 @@ export const SignOutBtnContainer = styled.div`
 `
 
 export const ZonalAndDistrictWiseContainer = styled.div`
-   ${tw`h-12 flex  items-center justify-center md:justify-start `}
+   ${tw`h-12 flex  items-center justify-center md:justify-start  lg:px-20 `}
 `
 
 export const DistrictWiseBtn = styled.button`

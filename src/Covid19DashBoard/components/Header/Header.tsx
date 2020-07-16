@@ -11,7 +11,7 @@ import {
    CumulativeBtn,
    DailyBtn,
    Datelabel
-} from './StyledComponents'
+} from './styledComponents'
 
 interface HeaderTypes {
    onClickDailyData: () => void

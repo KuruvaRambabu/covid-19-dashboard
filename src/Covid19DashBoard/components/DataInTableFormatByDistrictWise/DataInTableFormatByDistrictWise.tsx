@@ -5,9 +5,7 @@ import 'react-table/react-table.css'
 import './table.css'
 import { toJS } from 'mobx'
 
-import {
-   DistrictWiseTableDataContainer
-} from './StyledComponents'
+import { DistrictWiseTableDataContainer } from './styledComponents'
 
 interface DataInTableFormatByDistrictWiseTypes {
    tableData: Array<object>
@@ -15,9 +13,10 @@ interface DataInTableFormatByDistrictWiseTypes {
    tableHeaderName: string
 }
 
-
 @observer
-class DataInTableFormatByDistrictWise extends React.Component<DataInTableFormatByDistrictWiseTypes> {
+class DataInTableFormatByDistrictWise extends React.Component<
+   DataInTableFormatByDistrictWiseTypes
+> {
    render() {
       const { tableData, tableDataAccessor, tableHeaderName } = this.props
       return (

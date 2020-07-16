@@ -1,26 +1,21 @@
-import {
-   LineChart,
-   Line,
-   XAxis,
-   YAxis,
-   Tooltip,
-   Legend
-} from 'recharts'
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from 'recharts'
 import React from 'react'
 
 import {
    IndividualDistrictCasesGraphMainContainer,
    DistrictNameTag
-} from './StyledComponents'
+} from './styledComponents'
 
 interface IndividualDistrictCasesGraphTypes {
-   district:any
+   district: any
 }
 
-class IndividualDistrictCasesGraph extends React.Component <IndividualDistrictCasesGraphTypes>{
+class IndividualDistrictCasesGraph extends React.Component<
+   IndividualDistrictCasesGraphTypes
+> {
    render() {
       let { district } = this.props
-      const name:string = district.districtName
+      const name: string = district.districtName
       district = district.districtStats
 
       return (

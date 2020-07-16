@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputElement } from './StyledComponents'
+import { InputElement } from './styledComponents'
 import { colors } from '../../themes/Colors'
 
 type InputFieldTypes = {

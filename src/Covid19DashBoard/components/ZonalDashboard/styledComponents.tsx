@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
 export const ZonalDashboardMainContainer = styled.div`
-   ${tw``}
+   ${tw`lg:px-20`}
 `
 
 export const ZonalDashboardCasesMapAndGraphContainer = styled.div`

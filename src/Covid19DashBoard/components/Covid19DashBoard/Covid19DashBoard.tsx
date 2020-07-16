@@ -13,7 +13,7 @@ import {
    ZonalAndDistrictWiseContainer,
    ZonalWiseBtn,
    DistrictWiseBtn
-} from './StyledComponents'
+} from './styledComponents'
 import Covid19DataStore from '../../stores/Covid19StateStore'
 
 interface Covid19DashBoardTypes {
